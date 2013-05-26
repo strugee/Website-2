@@ -1,0 +1,47 @@
+/*	Master CIF Joomla CSS additions
+ *	This should be linked to from the template's CSS
+ *
+ */
+
+
+/* added by ISR to support daily quotes */
+div.moduletabledailyquote {
+float:right;clear:right;
+}
+
+/* added by ISR to support CIF Header text */
+div.moduletablecifheader {
+clear: left; float: left; line-height:normal z-index:999;
+}
+div.moduletablecifheader p {
+margin-top: 0px; margin-bottom: 0px; padding-bottom: 0px; padding-top: 0px;
+}
+div.moduletablecifheader p a {
+color:#ffffff;
+text-decoration:none;
+}
+div.moduletablecifheader p a:hover {
+color:#ffffff;
+text-decoration:underline;
+}
+div.moduletablecifheader a {
+color:#ffffff;
+text-decoration:none;
+}
+div.moduletablecifheader a:hover {
+color:#ffffff;
+text-decoration:underline;
+}
+a.cifheader {
+color:#ffffff;
+text-decoration:none;
+}
+a.cifheader:hover {
+color:#ffffff;
+text-decoration:underline;
+}
+
+/* added by ISR to hide chronoforms link as per license noted at http://www.chronoengine.com/ */
+div.chronoform {
+display:none;
+}

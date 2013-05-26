@@ -1,0 +1,115 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 1 (0x1)
+        Signature Algorithm: sha1WithRSAEncryption
+        Issuer: C=US, ST=New York, O=University of Rochester, OU=Computer Interest Floor, CN=CIF Root CA
+        Validity
+            Not Before: Sep 25 03:00:47 2007 GMT
+            Not After : Sep 22 03:00:47 2017 GMT
+        Subject: C=US, ST=New York, O=University of Rochester, OU=Computer Interest Floor, CN=CIF User Sub-CA
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (2048 bit)
+                Modulus (2048 bit):
+                    00:d0:47:ea:a2:dc:6c:f4:f4:f1:18:82:ca:7a:de:
+                    66:e9:34:5a:7f:d8:d0:ec:ee:4d:3f:b3:70:99:62:
+                    6f:df:50:b7:ca:5b:0c:ca:70:ee:10:87:42:50:da:
+                    36:d7:be:a4:31:21:7c:db:cb:35:88:7e:ff:b1:95:
+                    f3:99:ed:8e:e9:48:b1:7f:8c:1e:73:0e:4a:9a:30:
+                    ba:99:7d:0c:8b:80:75:59:fd:7b:3f:55:a3:f7:4b:
+                    29:7d:e0:32:a0:8c:b2:15:8a:16:9f:0f:6e:8e:76:
+                    1e:5f:5f:5f:2e:d1:5c:0f:d0:2e:54:24:ee:5f:49:
+                    d0:b5:61:7d:17:5f:3b:7a:ba:52:a5:45:47:bf:ad:
+                    22:80:b2:af:d4:88:6a:4d:ae:16:aa:0d:c5:2d:ab:
+                    91:ea:1d:ce:01:42:db:1e:0b:ff:60:bf:94:1d:9f:
+                    e7:43:05:f2:0e:70:e6:9a:97:6f:e7:e8:a3:f3:73:
+                    a9:46:78:04:7a:17:68:44:08:4b:c0:ae:37:9d:d1:
+                    6a:9b:ac:6c:02:4a:c0:a4:81:26:20:ec:18:1b:37:
+                    14:40:e6:c4:5d:b4:b7:37:7d:71:0c:59:e2:5d:c3:
+                    bb:82:a3:8e:ac:43:13:0d:c1:81:b7:f7:b0:6d:5a:
+                    68:dd:5f:15:1a:78:bd:1e:f0:54:e8:8e:ac:0c:8a:
+                    98:43
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Key Identifier: 
+                0B:B0:76:BF:EF:57:24:27:33:F0:D0:A3:28:0D:3B:07:59:84:DA:FE
+            X509v3 Authority Key Identifier: 
+                keyid:BD:72:99:52:F5:64:CD:7D:8A:0E:A6:00:9F:5A:57:59:89:B5:2E:FB
+                DirName:/C=US/ST=New York/O=University of Rochester/OU=Computer Interest Floor/CN=CIF Root CA
+                serial:07
+
+            X509v3 Basic Constraints: 
+                CA:TRUE, pathlen:0
+            X509v3 Key Usage: 
+                Certificate Sign, CRL Sign
+            Netscape Cert Type: 
+                SSL CA, S/MIME CA
+            X509v3 Subject Alternative Name: 
+                <EMPTY>
+
+            X509v3 Issuer Alternative Name: 
+                <EMPTY>
+
+    Signature Algorithm: sha1WithRSAEncryption
+        64:1b:57:44:16:02:e1:77:38:bf:d1:62:85:6e:e6:0e:fc:bf:
+        b5:d8:93:97:3e:c2:9a:bc:a8:3e:72:b4:73:44:21:0c:00:06:
+        83:c8:78:0b:da:81:76:4d:81:73:d1:b8:3c:ab:e8:70:cb:aa:
+        98:23:85:7a:18:f6:fb:ce:40:9a:f0:20:0f:c4:f8:45:d5:8d:
+        5c:a9:ad:bf:bd:9c:17:32:b0:43:a5:72:de:67:bc:a9:67:58:
+        8f:96:04:91:72:6d:05:e3:d4:b6:8e:7a:27:94:d5:d1:78:ce:
+        23:eb:3d:92:15:16:a0:bb:d5:b0:6f:0b:29:c0:8c:29:83:ea:
+        26:e5:d5:b5:1e:9f:ef:d4:18:38:9d:06:8f:1d:77:0b:ea:59:
+        66:a8:ca:1f:4b:3e:6a:04:44:22:77:d5:1d:6d:74:6b:b2:b7:
+        33:e7:e4:e5:9c:8e:fc:f1:1a:f5:c8:2f:47:89:5c:88:d2:c2:
+        ac:5f:40:f4:40:2b:ad:81:6a:ae:e1:bd:6b:44:d2:22:d3:de:
+        03:5d:4b:f3:6e:06:7a:d7:60:4d:53:a2:d9:b1:3d:65:9a:b7:
+        fa:b7:79:27:6e:d1:ea:a5:c6:60:8e:b5:4e:9f:c4:33:25:4d:
+        3a:9e:15:d7:34:c8:fc:d3:88:8a:87:45:43:5c:be:57:8b:16:
+        bc:34:20:44:e6:cd:73:6d:c8:1d:82:96:31:75:4b:ef:ce:86:
+        e9:5b:90:92:d9:ed:f0:6c:8e:8c:f6:99:e8:2a:d1:21:e3:d1:
+        29:f3:af:91:ea:8d:f1:60:65:82:3a:d6:b8:5b:d8:6e:15:7f:
+        68:9a:2a:3c:8e:ff:d9:46:d2:53:da:47:6b:f7:f3:42:12:e2:
+        b9:aa:41:9e:27:06:5e:46:c9:11:98:ed:1c:24:21:48:f1:2a:
+        a9:c5:92:2c:cc:ee:eb:76:7f:b5:19:1e:a2:e1:22:27:e7:a4:
+        a8:07:df:de:1d:33:a9:54:f6:ed:52:87:29:3c:bc:74:c5:6e:
+        bc:9d:3d:64:cb:7f:7d:a3:2d:71:99:fc:91:28:5f:39:c0:15:
+        7f:d3:36:5c:df:85:90:c5:3c:a2:92:c5:d7:ac:7b:13:06:7c:
+        03:56:a3:06:98:86:a5:36:6f:34:c8:c2:52:48:c8:e3:aa:87:
+        e3:1e:61:d5:6a:a3:09:13:ef:53:61:33:e5:0d:c5:56:ca:dc:
+        46:43:4c:52:e8:f2:26:df:3e:69:dc:13:fd:98:00:f7:78:f0:
+        b7:47:62:d9:58:13:89:4c:89:00:44:da:3c:cd:eb:5a:1a:05:
+        93:f3:0f:80:69:42:7e:21:8a:71:e9:b6:23:34:28:4a:ea:19:
+        e1:9f:a8:1f:33:af:78:71
+-----BEGIN CERTIFICATE-----
+MIIFhjCCA26gAwIBAgIBATANBgkqhkiG9w0BAQUFADB6MQswCQYDVQQGEwJVUzER
+MA8GA1UECBMITmV3IFlvcmsxIDAeBgNVBAoTF1VuaXZlcnNpdHkgb2YgUm9jaGVz
+dGVyMSAwHgYDVQQLExdDb21wdXRlciBJbnRlcmVzdCBGbG9vcjEUMBIGA1UEAxML
+Q0lGIFJvb3QgQ0EwHhcNMDcwOTI1MDMwMDQ3WhcNMTcwOTIyMDMwMDQ3WjB+MQsw
+CQYDVQQGEwJVUzERMA8GA1UECBMITmV3IFlvcmsxIDAeBgNVBAoTF1VuaXZlcnNp
+dHkgb2YgUm9jaGVzdGVyMSAwHgYDVQQLExdDb21wdXRlciBJbnRlcmVzdCBGbG9v
+cjEYMBYGA1UEAxMPQ0lGIFVzZXIgU3ViLUNBMIIBIjANBgkqhkiG9w0BAQEFAAOC
+AQ8AMIIBCgKCAQEA0Efqotxs9PTxGILKet5m6TRaf9jQ7O5NP7NwmWJv31C3ylsM
+ynDuEIdCUNo2176kMSF828s1iH7/sZXzme2O6Uixf4wecw5KmjC6mX0Mi4B1Wf17
+P1Wj90spfeAyoIyyFYoWnw9ujnYeX19fLtFcD9AuVCTuX0nQtWF9F187erpSpUVH
+v60igLKv1IhqTa4Wqg3FLauR6h3OAULbHgv/YL+UHZ/nQwXyDnDmmpdv5+ij83Op
+RngEehdoRAhLwK43ndFqm6xsAkrApIEmIOwYGzcUQObEXbS3N31xDFniXcO7gqOO
+rEMTDcGBt/ewbVpo3V8VGni9HvBU6I6sDIqYQwIDAQABo4IBETCCAQ0wHQYDVR0O
+BBYEFAuwdr/vVyQnM/DQoygNOwdZhNr+MIGkBgNVHSMEgZwwgZmAFL1ymVL1ZM19
+ig6mAJ9aV1mJtS77oX6kfDB6MQswCQYDVQQGEwJVUzERMA8GA1UECBMITmV3IFlv
+cmsxIDAeBgNVBAoTF1VuaXZlcnNpdHkgb2YgUm9jaGVzdGVyMSAwHgYDVQQLExdD
+b21wdXRlciBJbnRlcmVzdCBGbG9vcjEUMBIGA1UEAxMLQ0lGIFJvb3QgQ0GCAQcw
+DwYDVR0TBAgwBgEB/wIBADALBgNVHQ8EBAMCAQYwEQYJYIZIAYb4QgEBBAQDAgEG
+MAkGA1UdEQQCMAAwCQYDVR0SBAIwADANBgkqhkiG9w0BAQUFAAOCAgEAZBtXRBYC
+4Xc4v9FihW7mDvy/tdiTlz7CmryoPnK0c0QhDAAGg8h4C9qBdk2Bc9G4PKvocMuq
+mCOFehj2+85AmvAgD8T4RdWNXKmtv72cFzKwQ6Vy3me8qWdYj5YEkXJtBePUto56
+J5TV0XjOI+s9khUWoLvVsG8LKcCMKYPqJuXVtR6f79QYOJ0Gjx13C+pZZqjKH0s+
+agREInfVHW10a7K3M+fk5ZyO/PEa9cgvR4lciNLCrF9A9EArrYFqruG9a0TSItPe
+A11L824GetdgTVOi2bE9ZZq3+rd5J27R6qXGYI61Tp/EMyVNOp4V1zTI/NOIiodF
+Q1y+V4sWvDQgRObNc23IHYKWMXVL786G6VuQktnt8GyOjPaZ6CrRIePRKfOvkeqN
+8WBlgjrWuFvYbhV/aJoqPI7/2UbSU9pHa/fzQhLiuapBnicGXkbJEZjtHCQhSPEq
+qcWSLMzu63Z/tRkeouEiJ+ekqAff3h0zqVT27VKHKTy8dMVuvJ09ZMt/faMtcZn8
+kShfOcAVf9M2XN+FkMU8opLF16x7EwZ8A1ajBpiGpTZvNMjCUkjI46qH4x5h1Wqj
+CRPvU2Ez5Q3FVsrcRkNMUujyJt8+adwT/ZgA93jwt0di2VgTiUyJAETaPM3rWhoF
+k/MPgGlCfiGKcem2IzQoSuoZ4Z+oHzOveHE=
+-----END CERTIFICATE-----
