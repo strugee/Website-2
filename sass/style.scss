@@ -1,0 +1,56 @@
+/*!
+Theme Name: CIF
+Description: Computer Interest Floor master stylesheet.
+Author: Nate Hart (and future CIFers)
+Author URI: http://iamnatehart.com/
+Version: 1.0
+*/
+
+@charset 'UTF-8';
+@import 'compass/reset'; // Normalize default element styles
+
+// Design variables
+@import 'variables/color';
+@import 'variables/typography';
+@import 'variables/grid'; // Must come after variables/typography
+
+// Imported Compass modules
+@import 'imports'; // Should come after variable declarations
+
+// SASS mixins
+@import 'mixins/cif-clearfix';
+@import 'mixins/cif-trim-vertical-margins';
+@import 'mixins/cif-high-res-background-image';
+@import 'mixins/cif-ie-pseudo-element';
+
+// Base styles
+@import 'base/typography';
+@import 'base/forms';
+@import 'base/cif-icon-font';
+@import 'base/debug';
+
+// Layout styles
+@import 'layout/align';
+@import 'layout/grid';
+@import 'layout/header';
+@import 'layout/sub-header';
+@import 'layout/footer';
+
+// Design modules
+@import 'modules/button';
+@import 'modules/icons';
+@import 'modules/menu'; // Must come after modules/button
+@import 'modules/secondary-menu';
+@import 'modules/callout';
+@import 'modules/sidebar'; // Must come after modules/callout
+@import 'modules/article';
+@import 'modules/profile';
+@import 'modules/hero';
+@import 'modules/gce-wordpress-plugin';
+
+// Design variations and themes
+@import 'themes/syntax-highlighting'; // Must come after modules/callout
+@import 'themes/background';
+
+// Print stylesheet
+@import 'print';

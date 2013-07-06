@@ -1,0 +1,178 @@
+/**
+ * Defines the dimensions of the design's grid system.
+ * Also defines styling for the <hr> element.
+ *
+ *
+ * Presentational markup provided by this file:
+ *
+ * .content, .*-columns: Defines a row of grid content.
+ *                       All page contents should be wrapped in a .content wrapper.
+ *                       Manually marked up grid columns should be contained in a .*-columns wrapper.
+ *
+ * .two-columns: Defines a row with two columns of content.
+ *
+ * .four-columns: Defines a row with four columns of content.
+ *
+ * .fluid.*-columns: Defines a row of grid columns which is only as wide as its contents.
+ *                   Fluid grid rows are floated, so their container may collapse to have 0 height.
+ *                   Use this with care.
+ *
+ * .column, .column-#: Specifies the column as being the nth column.
+ *                     Elements with this class should be contained within a .*-columns wrapper.
+ *
+ * .last.column: Specifies the last column.
+ *               Elements with this class should be contained within a .*-columns wrapper.
+ *
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+/**
+ * Aligns its contents to the grid.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.content {
+	/**
+	 * Don't use Compass's Blueprint Grid container mixin here. It calls Compass's
+	 * clearfix mixin which sets overflow: hidden, breaking some of our styles.
+	 * Instead, we do the same thing as the container mixin but with our own clearfix.
+	 */
+	margin: 0 auto;
+	width: $blueprint-container-size;
+	
+	// Prevent floated children from collapsing this element to 0 height
+	@include cif-clearfix;
+}
+
+
+
+// Targets elements which have a class attribute that contains "-columns" (like "two-columns")
+[class*=-columns] {
+	@extend .content; // Inherit styles from the content class
+	
+	@include margin-trailer(1); // 1 line bottom margin
+	
+	/**
+	 * The extra width from adding the grid margins prevents elements with additional padding
+	 * from wrapping if those elements account for the grid margins responsibly.
+	 * For example, this allows .callout columns to exist without causing other columns to wrap.
+	 */
+	width: $blueprint-container-size + $blueprint-grid-margin;
+	
+	
+	
+	/**
+	 * Individual grid column.
+	 *
+	 * @version 1.0
+	 * @since 1.0
+	 */
+	[class*=column-], // Targets direct descendants which have a class attribute that contains "column-"
+	.column { 
+		// Remove vertical margins on columns to prevent columns from having different vertical rhythms.
+		// This fixes issues with alignment when .callout is applied to a column, for example.
+		margin-top: 0;
+		margin-bottom: 0;
+		
+		// Remove the top and bottom margin from the first and last elements in the column
+		@include cif-trim-vertical-margins;
+		
+		// Resize images to fit within the column
+		img {
+			max-width: 100%;
+			height: auto;
+		}
+	}
+	
+	.last.column {
+		@include last; // Applies styles for the last column in a row
+	}
+	
+	
+	
+	/**
+	 * A row of grid columns which is only as wide as its contents.
+	 *
+	 * @version 1.0
+	 * @since 1.0
+	 */
+	&.fluid {
+		// Don't horizontally center the row
+		margin-right: 0;
+		margin-left: 0;
+		
+		float: left;
+		width: auto;
+		
+		// Support for older IE
+		// * targets IE7
+		*float: none;
+		*display: inline;
+		*zoom: 1;
+	}
+}
+
+
+
+
+/**
+ * Two column row of grid content.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.two-columns {
+	[class*=column-], // Targets direct descendents which have a class attribute that contains "column-"
+	.column {
+		@include column($blueprint-grid-columns / 2);
+	}
+	
+	// Last column
+	.column-2 {
+		@extend .last.column; // Inherit styles from the last column class
+	}
+}
+
+/**
+ * Four column row of grid content.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.four-columns {
+	[class*=column-], // Targets direct descendents which have a class attribute that contains "column-"
+	.column {
+		@include column($blueprint-grid-columns / 4);
+	}
+	
+	// Last column
+	.column-4 {
+		@extend .last.column; // Inherit styles from the last column class
+	}
+}
+
+
+
+/**
+ * Horizontal rule for separating design elements.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+hr {
+	// Compass mixin for aligning <hr> to the grid
+	@include colruler(darken($color-light-primary-background, 10));
+	
+	height: 1px;
+	
+	// 2.5 line top and bottom margin
+	margin-top: rhythm(2.5, $offset: 1px); // 1px offset to account for the 1px height of the <hr>
+	margin-bottom: rhythm(2.5);
+	
+	// Extend into the gutter of the grid
+	width: $blueprint-container-size + $blueprint-grid-margin;
+	margin-left: -($blueprint-grid-margin / 2);
+}

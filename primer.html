@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	
+	<title>SASS &amp; Compass Primer</title>
+	
+	<link rel="shortcut icon" href="favicon.ico" />
+	
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic|Sorts+Mill+Goudy:400,400italic|Inconsolata:400,700" />
+	
+	<!-- Allows HTML5 elements to be styled in older versions of IE -->
+	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	
+	<link rel="stylesheet" href="stylesheets/style.css" />
+</head>
+<body>
+	<header id="header">
+		<div class="content">
+			<h1 class="header-logo"><a href="cif.rochester.edu">CIF</a></h1>
+			
+			<nav class="inverted light menu">
+				<ul>
+					<li><a href="index.html">Design Library</a></li>
+					<li><a href="curating.html">Curating the Library</a></li>
+					<li class="current-menu-item"><a href="primer.html">SASS &amp; Compass Primer</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	
+	<div class="sub-header">
+		<div class="content">
+			<!-- Will be populated by find-section-links.js -->
+			<ul class="secondary-menu align-right" id="document-submenu"></ul>
+		</div>
+	</div>
+	
+	<div class="content">
+		<h1>SASS &amp; Compass Primer</h1>
+		
+		<h2>TODO</h2>
+		<ul>
+			<li>Write a "how you should be using/things to know for maintaining/coding standards" guide</li>
+			<li>Vertical rhythm docs</li>
+			<li>Grid system docs</li>
+			<li>Info on commonly used mixins/functions</li>
+			<li>Refer people to http://atendesigngroup.com/blog/vertical-rhythm-compass for maintaining the stylesheet</li>
+			<li>Explain our commonly used variables (colors, etc), mixins, etc.</li>
+			<li>Go through SASS files looking for other topics to cover</li>
+			<li>
+				Also document common CSS mistakes/pitfalls/things to know
+				<ul>
+					<li>inline-block and whitespace (people don't seem to get the "inline" part)</li>
+					<li>Floats and clearfix (why <code>overflow: hidden;</code> is a bad idea)</li>
+					<li>Margin collapsing</li>
+					<li><code>&gt;</code> selector</li>
+					<li>Attribute selectors, why they're good, watch out for things like <code>[class*=menu]</code> which could unintentionally target other classes</li>
+				</ul>
+			</li>
+		</ul>
+		
+		<hr />
+		
+		<div class="two-columns">
+			<div class="column">
+				<p>Because the CIF design consists of numerous modules, <a href="http://sass-lang.com" target="_blank">SASS</a> and <a href="http://compass-style.org" target="_blank">Compass</a> were chosen to make development faster and more organized. However, it is understandable that not everyone is familiar with these and that a brief introduction is necessary to get you on your way.</p>
+				<p>SASS is an unofficial extension of CSS with two syntaxes; we use the more popular &ldquo;Sassy CSS&rdquo; syntax which has an <code>scss</code> file extension. SASS compiles into CSS, making it ideal for organizing code into multiple files which can then be compiled into a single CSS file. Compass is a framework built on top of SASS that provides useful utilities for grid systems, typographic rhythm, and cross-browser CSS3 vendor prefixing. This guide will go over the parts of SASS and Compass that are commonly used in our files.</p>
+			</div>
+			<div class="last column callout">
+				<p>Compiling everything into a single stylesheet is much more efficient than making multiple HTTP requests to the server for multiple stylesheet files. It is worth noting that the <code>@import</code> directive in SASS does not function as in CSS; the imported file's contents will be injected into the compiled CSS, resulting in a single file. Using <code>@import</code> in pure CSS to request additional stylesheets is highly inefficient and results in additional HTTP requests.</p>
+				<p>You can read more about SASS's <code>@import</code> at the <a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#import" target="_blank">official documentation</a>.</p>
+			</div>
+		</div>
+		
+		<hr />
+		
+		<h2 id="file-handling">How SASS Handles Files</h2>
+		<div class="two-columns">
+			<div class="column">
+				<p>SASS files have an <code>scss</code> extension and will be compiled into a corresponding CSS file. However, SASS files prefixed with an underscore are considered &ldquo;partials&rdquo; and will not be compiled into their own CSS file. Because we want to compile our styles into a single stylesheet, most of our SASS files are partials which are imported into a master file (<code>style.scss</code> in our case). The master file is then the only file compiled into CSS, leaving us with a single stylesheet containing all of our code.</p>
+				<p>When importing a partial in SASS, the underscore can be left off of the filename.</p>
+			</div>
+			<div class="last column">
+				<h5>_my-module.scss</h5>
+				<pre><code class="language-scss">.my-module { color: #f0f; }</code></pre>
+				
+				<h5>style.scss</h5>
+				<pre><code class="language-scss">body { color: #222; }
+@import 'my-module';</code></pre>
+				
+				<h4>Compiles into&hellip;</h4>
+				<h5>style.css</h5>
+				<pre><code class="language-css">body { color: #222; }
+.my-module { color: #f0f; }</code></pre>
+			</div>
+		</div>
+		
+		<hr />
+		
+		<h2 id="syntax">SASS Syntax</h2>
+		<div class="two-columns">
+			<div class="column">
+				<p>As an extension of CSS, SASS's syntax is not much different. In fact, pure CSS is also valid SASS, so if you feel most comfortable writing CSS then you can do so, although we recommend at least using some of SASS's more basic features.</p>
+			</div>
+		</div>
+	</div>
+	<div class="sub-header">
+		<div class="content">
+			<ul class="secondary-menu">
+				<li><a href="#sass-variables">Variables</a></li>
+				<li><a href="#sass-nesting">Nested Selectors</a></li>
+				<li><a href="#sass-extend"><code>@extend</code> Directive</a></li>
+				<li><a href="#sass-mixins">Mixins</a></li>
+				<li><a href="#sass-control-directives">Control Directives</a></li>
+				<li><a href="#sass-comments">Comments</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="content">
+		<ul>
+			<li>
+				<h3 id="sass-variables">Variables</h3>
+				<div class="two-columns">
+					<div class="column">
+						<p>SASS provides the ability to define variables in your stylesheets. This is useful for common values such as colors, font stacks, or grid dimensions. Please note that these values will be compiled into hardcoded values in the final CSS, as CSS does not natively support variables.</p>
+						<p>For more information on SASS variables, see the <a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#variables_">official documentation</a>.</p>
+					</div>
+					<div class="last column">
+						<pre><code class="language-scss">$serif-typeface: 'Adobe Garamond Pro', Georgia, serif;
+$h1-font-size:   48px;
+$text-color:     #222;</code></pre>
+					</div>
+				</div>
+				
+				<div class="two-columns">
+					<div class="column">
+						<h3>Variable Scope</h3>
+						<p>SASS variables are prefixed with a <code>$</code> and are assigned much like CSS properties. SASS variables also have scope. A variable defined outside any declaration will be available everywhere, while those defined within a declaration are local to that declaration.</p>
+					</div>
+					<div class="last column">
+						<pre><code class="language-scss">$my-color: red;
+
+.red { color: $my-color; /* red */ }
+
+.blue {
+	$my-color: blue;
+	color: $my-color; /* blue */
+}</code></pre>
+					</div>
+				</div>
+				<div class="two-columns">
+					<div class="column">
+						<h3>Variable Operations</h3>
+						<p>SASS variables also support mathematical operations.</p>
+						<p>For more information on SASS variables operations, see the <a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#operations">official documentation</a>.</p>
+					</div>
+					<div class="last column">
+						<pre><code class="language-scss">$column-width: 90px;
+$gutter-width: 30px;
+$columns: 8;
+
+$grid-width: ($columns * $column-width) + ($gutter-width * ($columns - 1));</code></pre>
+					</div>
+				</div>
+			</li>
+			
+			<li>
+				<h3 id="sass-nesting">Nested Selectors</h3>
+				<div class="two-columns">
+					<div class="column">
+						<p>SASS allows declarations to be nested. This makes it easier to write and organize complex selectors.</p>
+					</div>
+					<div class="last column">
+						<p>For more information on nesting selectors, see the <a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#nested_rules">official documentation</a>.</p>
+					</div>
+				</div>
+				<div class="two-columns">
+					<div class="column">
+						<h5>SASS</h5>
+						<pre><code class="language-scss">p {
+	color: grey;
+	a { color: blue; }
+	em, strong { color: black; }
+}</code></pre>
+					</div>
+					<div class="last column">
+						<h5>CSS</h5>
+						<pre><code class="language-scss">p { color: grey; }
+
+p a { color: blue; }
+
+p em, p strong { color: black; }</code></pre>
+					</div>
+				</div>
+				
+				<h3>The <code>&amp;</code> Operator</h3>
+				<div class="two-columns">
+					<div class="column">
+						<p>The <code>&amp;</code> operator is used in SASS to reference the parent selector. This does not allow you to style an element based on its parent element, which is impossible in CSS. This merely allows you to reference the parent selector in a nested selector.</p>
+					</div>
+					<div class="last column">
+						<p>For more information on referencing parent selectors, see the <a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#referencing_parent_selectors_">official documentation</a>.</p>
+					</div>
+				</div>
+				<div class="two-columns">
+					<div class="column">
+						<h5>SASS</h5>
+						<pre><code class="language-scss">p {
+	color: black;
+	&amp;.light-color { color: grey; }
+	.large-text &amp; { font-size: 3em; }
+}</code></pre>
+					</div>
+					<div class="last column">
+						<h5>CSS</h5>
+						<pre><code class="language-scss">p { color: black; }
+
+p.light-color { color: grey; }
+
+.large-text p { font-size: 3em; }</code></pre>
+					</div>
+				</div>
+			</li>
+			
+			<li>
+				<h3 id="sass-extend"><code>@extend</code> and Inheritance</h3>
+				<div class="two-columns">
+					<div class="column">
+						<p>Selectors in SASS can be inherited from via the <code>@extend</code> directive to reduce the duplication of code. This applies the styles of the extended selector to the selector that called <code>@extend</code>.</p>
+					</div>
+					<div class="last column">
+						<p>For more information on the <code>@extend</code> directive, see the <a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#extend">official documentation</a>.</p>
+					</div>
+				</div>
+				<div class="two-columns">
+					<div class="column">
+						<h5>SASS</h5>
+						<pre><code class="language-scss">p { margin-bottom: 1.5em; }
+ul, ol {
+	@extend p;
+	list-style-position: outside;
+}</code></pre>
+					</div>
+					<div class="last column">
+						<h5>CSS</h5>
+						<pre><code class="language-scss">p, ul, ol { margin-bottom: 1.5em; }
+
+ul, ol {
+	list-style-position: outside;
+}</code></pre>
+					</div>
+				</div>
+			</li>
+			
+			<li>
+				<h3 id="sass-mixins">Mixins</h3>
+				<div class="two-columns">
+					<div class="column">
+						<p>Mixins are blocks of styles which can accept arguments. A mixin is defined with the <code>@mixin</code> directive and can accept parameters.</p>
+						<p>Common uses for mixins are for vendor prefixing (calling a <code>box-shadow</code> mixin instead of writing out <code>-webkit-box-shadow</code>, <code>-moz-box-shadow</code>, etc) or storing common blocks of code (clearfix code, high resolution background image code, etc).</p>
+					</div>
+					<div class="last column">
+						<pre><code class="language-scss">@mixin my-mixin($color, $bg: white, $use-border: false) {
+	color: $color;
+	background-color: $bg;
+	
+	@if $use-border {
+		border: 1px solid $color;
+	}
+}</code></pre>
+					</div>
+				</div>
+				
+				<div class="two-columns">
+					<div class="column">
+						<h3>Calling Mixins</h3>
+						<p>Mixins are called using the <code>@include</code> directive. SASS supports named variables, so values can be passed to specific parameters.</p>
+					</div>
+					<div class="last column">
+						<pre><code class="language-scss">p { @include my-mixin(black); }
+.inverted { @include my-mixin(white, black); }
+.border { @include my-mixin(black, $use-border: true); }</code></pre>
+					</div>
+				</div>
+			</li>
+			
+			<li>
+				<h3 id="sass-control-directives">Control Directives</h3>
+				<div class="two-columns">
+					<div class="column">
+						<p>Control directives allow styling to be applied based on certain conditions. This is primarily intended for mixins and styles which make use of variables. It is recommended to avoid these directives if possible because they can add bloat and make code more complex. In most cases you shouldn't need anything more than the <code>@if</code> directive.</p>
+						<p>For more information on the different control directives, see the <a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#control_directives">official documentation</a>.</p>
+					</div>
+					<div class="last column">
+						<pre><code class="language-scss">$module-width: 300px;
+
+@if $module-width &lt; 300px {
+	font-size: 0.75em;
+} @else if $module-width &gt; 1000px {
+	font-size: 1.5em;
+}</code></pre>
+					</div>
+				</div>
+			</li>
+			
+			<li>
+				<h3 id="sass-comments">Comments</h3>
+				<div class="two-columns">
+					<div class="column">
+						<p>SASS supports 3 types of comments: multiline CSS comments (<code class="language-scss">/* */</code>), single-line comments (<code class="language-scss">//</code>), and loud comments (<code class="language-scss">/*! */</code>).</p>
+						<p>Multiline CSS comments are preserved in the compiled CSS, unless compression is on in which case they are removed (we compress our CSS). Single-line comments are always removed from the compiled CSS and are only visible in the SASS source code. Loud comments are similar to multiline comments, but they are <em>never</em> removed from the compiled CSS. Because of this, loud comments should rarely be used.</p>
+					</div>
+					<div class="last column callout">
+						<p>We use a single loud comment at the top of our stylesheet for WordPress, which reads theme metadata from that comment. Loud comments are best used for functional comments like that, which serve a purpose other than style documentation. Multiline and single-line comments should primarily be used for documenting styles to make maintenance easier for future maintainers.</p>
+					</div>
+				</div>
+		</ul>
+		
+		<hr />
+		
+		<h2 id="using-compass">Using Compass</h2>
+		<div class="two-columns">
+			<div class="column">
+				<p>Compass is a framework for SASS which provides useful mixins and functions. Compass also makes referencing external files from SASS easier. The <code>config.rb</code> file, which defines the Compass project directory, allows you to change the CSS output style and location of external resources.</p>
+			</div>
+			<div class="last column">
+				<p>For more information on the <code>config.rb</code> file, see the <a href="http://compass-style.org/help/tutorials/configuration-reference/">official documentation</a>.</p>
+			</div>
+		</div>
+		
+		<h3>Resource Locations</h3>
+		<div class="two-columns">
+			<div class="column">
+				<p>Compass resources can be located relative to the Compass project directory (the directory with the <code>config.rb</code> file). By default, images, SASS, and CSS are located in their own subdirectories of the Compass project. Fonts for embedding in CSS are located in a fonts directory of the CSS directory by default.</p>
+			</div>
+			<div class="last column">
+				<code>/compass_project</code> <br />
+				<code>/compass_project/sass</code> <br />
+				<code>/compass_project/css</code> <br />
+				<code>/compass_project/css/fonts</code> <br />
+				<code>/compass_project/images</code>
+			</div>
+		</div>
+		
+		<hr />
+		
+		<h2 id="compiling">Compiling SASS</h2>
+		<div class="two-columns">
+			<div class="column">
+				<p>Because we're using Compass, the command line utility for Compass, not SASS, should be used to compile the stylesheets. Some apps exist to perform this task for you, but the command line is really not bad at all.</p>
+				<p>Simply run <code class="language-bash">compass compile [path/to/project]</code>, where the path to the project is the path to the directory with the <code>config.rb</code> file.</p>
+			</div>
+			<div class="last column">
+				<pre><code class="language-bash">$ compass compile ~/Documents/CIF/design/</code></pre>
+				<p>For more information on the Compass command line interface, see the <a href="http://compass-style.org/help/tutorials/command-line/">official documentation</a>.</p>
+			</div>
+		</div>
+		<h3>Automatic Compilation</h3>
+		<div class="two-columns">
+			<div class="column">
+				<p>Alternatively,  you can run <code class="language-bash">compass watch [path/to/project]</code> to recompile the stylesheet when any changes to a SASS file are made. This is great for development, because the CSS file will be up to date with your SASS styles within a second. When you're done, you can stop the Compass process by pressing <kbd>ctrl-c</kbd>. The only downside to this command is that if changes are made to the <code>config.rb</code> file, you may need to stop the current process, re-run <code class="language-bash">compass watch</code> and save a SASS file to trigger a recompilation. This behavior may change in future versions of Compass.</p>
+			</div>
+			<div class="last column">
+				<pre><code class="language-bash">$ compass watch ~/Documents/CIF/design/
+>>> Compass is polling for changes. Press Ctrl-C to Stop.
+>>> Change detected at 04:48:35 to: style.scss
+overwrite css/style.css
+^C
+$</code></pre>
+			</div>
+		</div>
+	</div>
+	
+	<footer id="footer">
+		<div class="content">
+			<p class="copyright">&copy; 2013 CIF</p>
+			<p class="quote">Welcome to /dev/null.</p>
+		</div>
+	</footer>
+	
+	<script src="js/prism.js"></script>
+	<script src="js/show-markup.js"></script>
+	<script src="js/find-section-links.js"></script>
+</body>
+</html>

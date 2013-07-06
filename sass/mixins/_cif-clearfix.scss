@@ -1,0 +1,35 @@
+/**
+ * Prevents containers with floated children from collapsing to have no height.
+ * This mixin is based on a clearfix solution documented here: http://nicolasgallagher.com/micro-clearfix-hack/
+ * Most notably, this solution does not use overflow: hidden.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+@mixin cif-clearfix() {
+	/**
+	 * For modern browsers
+	 * 1. The space content is one way to avoid an Opera bug when the
+	 *    contenteditable attribute is included anywhere else in the document.
+	 *    Otherwise it causes space to appear at the top and bottom of elements
+	 *    that are clearfixed.
+	 * 2. The use of `table` rather than `block` is only necessary if using
+	 *    `:before` to contain the top-margins of child elements.
+	 */
+	
+	&:before,
+	&:after {
+		content: ' '; // See 1 above
+		display: table; // See 2 above
+	}
+	
+	&:after {
+		clear: both;
+	}
+	
+	/**
+	 * For IE 6/7 only
+	 * Include this rule to trigger hasLayout and contain floats.
+	 */
+	*zoom: 1;
+}

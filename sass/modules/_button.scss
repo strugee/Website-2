@@ -1,0 +1,251 @@
+/**
+ * Provides styles for buttons.
+ *
+ *
+ * Presentational markup provided by this file:
+ *
+ * .button: Defines a button.
+ *
+ * .light.button: Defines a button which is visually less distinct than a normal button.
+ *
+ * .selected.button: Defines a button which has been selected.
+ *                   This is useful in menus or for toggle buttons.
+ *
+ * .selected.light.button: Defines a light button which is selected.
+ *
+ * .inverted.button: Defines a button which has its colors inverted.
+ *
+ * .inverted.light.button: Defines a light button which has its colors inverted.
+ *
+ * .inverted.selected.button: Defines a selected button which has its colors inverted.
+ *
+ * .inverted.selected.light.button: Defines a light, selected button which has its colors inverted.
+ *
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+/**
+ * A visually distinct button.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.button {
+	/**
+	 * Number of pixels the button will be raised/inset by.
+	 *
+	 * Setting this value does not automatically update the raised effect, unfortunately.
+	 * You must add as many box shadows to $shadow (declared below) as necessary because
+	 * SASS can not generate a set of parameters to pass to the box-shadow mixin.
+	 */
+	$depth: 1px;
+	$emsDepth: rhythm(1, $offset: $base-line-height - $depth); // $depth in ems instead of pixels
+	
+	/**
+	 * The box shadow to use for the raised effect.
+	 * This must be updated manually whenever $depth (declared above) is changed.
+	 *
+	 * Each successive shadow should be at Npx, Npx, where N is the index of the shadow.
+	 * A blur of 0 should always be used to keep edges crisp.
+	 */
+	$shadow: 1px 1px 0 $color-primary-background;
+	$inverted-shadow: 1px 1px 0 $color-secondary-background;
+	
+	$margin-top: 0;
+	$margin-bottom: rhythm(1); // 1 line bottom margin
+	$horizontal-padding: rhythm(1/3); // 1/3 line padding on the sides
+	
+	// Darken the background and text color to appear as if it is shadowed by being inset into the page
+	$inset-darken-amount: 5;
+	$inset-background-color: darken($color-secondary-background, $inset-darken-amount);
+	$inset-color: darken($color-primary-text, $inset-darken-amount);
+	
+	$inset-inverted-darken-amount: 5;
+	$inset-inverted-background-color: darken($color-primary-background, $inset-inverted-darken-amount);
+	$inset-inverted-color: darken($color-secondary-text, $inset-inverted-darken-amount);
+	
+	
+	
+	// Reset any translations applied to the button.
+	// This is useful for classes which extend this one.
+	@include translate(none);
+	
+	margin: $margin-top 0 $margin-bottom;
+	padding: 0 $horizontal-padding;
+	height: rhythm(1, $offset: 2px); // 1 line tall, 2px offset to account for the borders
+	
+	display: inline-block;
+	vertical-align: top; // Prevent document whitespace from affecting vertical margins
+	
+	background-color: $color-secondary-background;
+	border: 1px solid $color-primary-background;
+	color: $color-primary-text;
+	
+	text-align: center;
+	text-decoration: none;
+	font-weight: bold;
+	
+	&:hover {
+		/**
+		 * Move the button up a bit, as if it is raised.
+		 * Using CSS translations instead of relative positioning or margins ensures
+		 * that any positioning applied to the button is maintained, and we can
+		 * safely apply margins to the button without worry. inline-block elements
+		 * do not accept margin-top values, so using a top margin would not always
+		 * be feasible for a button as is. Hence, using translate instead.
+		 */
+		@include translate(-$depth, -$depth);
+		
+		// Use the box shadow to create a raised appearance
+		@include box-shadow($shadow);
+		
+		// Prevent a.button from inheriting link colors
+		color: $color-primary-text;
+	}
+	
+	&:active {
+		/**
+		 * Move the button back down to where it was before it was raised.
+		 * Using CSS translations instead of relative positioning or margins ensures
+		 * that any positioning applied to the button is maintained, and we can
+		 * safely apply margins to the button without worry. inline-block elements
+		 * do not accept margin-top values, so using a top margin would not always
+		 * be feasible for a button as is. Hence, using translate instead.
+		 */
+		@include translate(0, 0);
+		
+		// Use borders for the inset appearance
+		border-top-width: $depth + 1px;
+		border-left-width: $depth + 1px;
+		@include box-shadow(none); // Remove the box shadow, since the button is now inset with borders
+		
+		// Shrink the padding on the right side of the button to appear obscured by being inset into the page
+		padding-right: $horizontal-padding - $emsDepth;
+		// Do the same for the height, to appear obscured by being inset into the page
+		height: rhythm(1, $offset: 2px + $depth); // 1 line tall, 2px to account for the borders
+		
+		// Darken the background and text to appear as if it is shadowed by being inset into the page
+		background-color: $inset-background-color;
+		color: $inset-color;
+	}
+	
+	
+	
+	/**
+	 * Button which is visually less distinct than a normal button.
+	 *
+	 * @version 1.0
+	 * @since 1.0
+	 */
+	&.light {
+		background-color: transparent;
+		border-color: transparent;
+		
+		&:hover {
+			border-color: $color-primary-background;
+		}
+		
+		&:active {
+			background-color: rgba(0,0,0, $inset-darken-amount / 100);
+			border-color: $color-primary-background;
+		}
+		
+		
+		
+		/**
+		 * Light button which is selected.
+		 *
+		 * @version 1.0
+		 * @since 1.0
+		 */
+		&.selected {
+			// Use the dimensions of a normal button
+			@include translate(none);
+			margin: $margin-top 0 $margin-bottom;
+			padding: 0 $horizontal-padding;
+			height: rhythm(1, $offset: 2px); // 1 line tall, 2px offset to account for the borders
+			
+			background-color: transparent;
+			border-width: 1px;
+			color: $color-primary-text;
+		}
+	}
+	
+	
+	
+	/**
+	 * Button which is selected.
+	 *
+	 * @version 1.0
+	 * @since 1.0
+	 */
+	&.selected {
+		@extend .button:active; // Inherit styles from the active button class
+		
+		// Use inverted colors for selected buttons
+		background: $inset-inverted-background-color;
+		color: $inset-inverted-color;
+	}
+	
+	
+	
+	/**
+	 * Button which has its colors inverted.
+	 *
+	 * @version 1.0
+	 * @since 1.0
+	 */
+	&.inverted {
+		background-color: $color-primary-background;
+		border-color: $color-secondary-background;
+		color: $color-secondary-text;
+		
+		&:hover {
+			// Use the box shadow to create a raised appearance
+			@include box-shadow($inverted-shadow);
+		}
+		
+		&:active {
+			background-color: $inset-inverted-background-color;
+			color: $inset-inverted-color;
+			@include box-shadow(none); // Remove the box shadow, since the button is now inset with borders
+		}
+		
+		
+		
+		/**
+		 * Light button which has its colors inverted.
+		 *
+		 * @version 1.0
+		 * @since 1.0
+		 */
+		&.light {
+			background-color: transparent;
+			border-color: transparent;
+			
+			&:hover {
+				border-color: $color-secondary-background;
+			}
+			
+			&:active {
+				background-color: rgba(0,0,0, $inset-inverted-darken-amount / 100);
+				border-color: $color-secondary-background;
+			}
+		}
+		
+		
+		
+		/**
+		 * Selected button which has its colors inverted.
+		 *
+		 * @version 1.0
+		 * @since 1.0
+		 */
+		&.selected {
+			background: $inset-background-color;
+			color: $inset-color;
+		}
+	}
+}

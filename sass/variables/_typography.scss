@@ -1,0 +1,39 @@
+/**
+ * Defines typefaces and font sizes for the design.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+
+
+// Typefaces
+
+
+
+// Source Sans Pro, Sorts Mill Goudy, and Inconsolata need to be served via Google Web Fonts.
+$serif: 'Sorts Mill Goudy', Georgia, 'Times New Roman', 'Times Roman', serif;
+$sans-serif: 'Source Sans Pro', 'Verdana', 'Helvetica Neue', 'Arial', sans-serif;
+$monospace: 'Inconsolata', Consolas, Monaco, 'Andale Mono', monospace;
+
+
+
+// Font sizes
+
+
+
+$h1-font-size: 36px;
+$h2-font-size: 21px;
+$h3-font-size: 18px;
+$h4-font-size: 15px;
+$h5-font-size: 13px;
+$h6-font-size: 13px;
+
+$small-font-size: 13px;
+
+/**
+ * These are used by compass/typography/vertical_rhythm to establish vertical rhythm.
+ * @see http://compass-style.org/reference/compass/typography/vertical_rhythm/
+ */
+$base-font-size: 15px;
+$base-line-height: 24px;

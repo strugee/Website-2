@@ -1,0 +1,28 @@
+/**
+ * Defines major colors for the design.
+ * This includes background, text, and link colors.
+ *
+ * Colors can be defined as hexdecimal (#ff00ff) or
+ * via rgb (rgb(255, 0, 255)).
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+// Dark blueish-grey
+$color-primary-background: rgb(40, 55, 65);
+$color-light-primary-background: rgb(240, 242.5, 242.5);
+
+// Dark blueish-grey
+$color-primary-text: rgb(40, 55, 65);
+$color-light-primary-text: rgb(170, 175, 180);
+
+// White
+$color-secondary-background: rgb(255, 255, 255);
+
+// White
+$color-secondary-text: rgb(255, 255, 255);
+
+// Link colors
+$color-link: rgb(37, 121, 190);
+$color-link-hover: rgb(50, 152, 255);

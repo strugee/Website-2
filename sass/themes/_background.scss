@@ -1,0 +1,34 @@
+/**
+ * Provides styles for easily changing background colors.
+ *
+ *
+ * Presentational markup provided by this file:
+ *
+ * .light-background: Sets a light background on the element.
+ *
+ * .dark-background: Sets a dark background on the element.
+ *
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+/**
+ * Sets a light background color.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.light-background {
+	background-color: $color-light-primary-background;
+}
+
+/**
+ * Sets a dark background color.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.dark-background {
+	background-color: $color-primary-background;
+}

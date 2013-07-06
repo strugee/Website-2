@@ -1,0 +1,44 @@
+/**
+ * Provides styles for making content stand out in the design.
+ *
+ *
+ * Presentational markup provided by this file:
+ *
+ * .callout: Defines a stylistically distinct block of content.
+ *
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+/**
+ * Stylistically distinct block of content.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.callout {
+	background-color: $color-light-primary-background;
+	
+	// Callouts jut out into the gutter of the grid
+	margin-left: -($blueprint-grid-margin / 2);
+	margin-right: ($blueprint-grid-margin / 2) !important;
+	
+	// Half-line top and bottom padding, with half grid margin padding on the sides
+	padding: rhythm(0.5) ($blueprint-grid-margin / 2);
+	
+	// Pull the element up a bit to account for the padding
+	position: relative;
+	top: rhythm(-0.5);
+	
+	margin-top: rhythm(1); // 1 line top margin
+	margin-bottom: rhythm(1); // 1 line bottom margin
+	
+	//display: inline-block;
+	vertical-align: top; // Prevent document whitespace from causing vertical margin gaps
+	width: 100%;
+	
+	// Remove top and bottom margins of the first and last child respectively to
+	// prevent them from stretching the "padding" of this element.
+	@include cif-trim-vertical-margins;
+}

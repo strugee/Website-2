@@ -1,0 +1,68 @@
+/**
+ * Defines styles for short blocks of content which describe something or someone specific,
+ * optionally with an associated image.
+ *
+ *
+ * Presentational markup provided by this file:
+ *
+ * .profile: Defines a profile.
+ *
+ * .profile-image: Defines an optional image to associate with the profile.
+ *
+ * .profile-body: Defines the body of a profile.
+ *
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+/**
+ * Defines a profile.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.profile {
+	@include margin-trailer(2); // 2 line bottom margin
+	@include cif-clearfix; // Prevent floated children from collapsing this element to 0 height
+	
+	width: span(8); // Spans 8 columns
+	
+	// cif-clearfix sets display:table to prevent margin collapsing, but we want margins to collapse here
+	&:before,
+	&:after {
+		display: block;
+	}
+}
+
+/**
+ * Defines an optional profile image.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.profile-image {
+	@include column(3); // 3 columns wide
+	
+	// Center any small profile images
+	text-align: center;
+	
+	// Keep the profile image within its container
+	& > img {
+		vertical-align: top; // Prevent document whitespace from creating vertical gaps
+		max-width: span(3); // At most 3 columns wide
+	}
+}
+
+/**
+ * Defines the body of the profile.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.profile-body {
+	width: span(5); // Spans 5 columns
+	
+	// Use a left margin to push content away from where the profile image would be
+	margin-left: span(3) + $blueprint-grid-margin;
+}

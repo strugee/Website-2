@@ -1,0 +1,44 @@
+/**
+ * Provides classes for helping with style debugging.
+ *
+ *
+ * Presentational markup provided by this file:
+ *
+ * body.debug: Overlays a baseline grid on the page.
+ *
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+/**
+ * Overlays guidelines on the <body> for checking style alignment.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+body.debug {
+	// Necessary to position our :after pseudo-element relative to the body
+	position: relative;
+	
+	// Create a baseline grid overlay for checking alignment
+	&:after {
+		content: '';
+		display: block;
+		
+		// Horizontally center the overlay
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 50%;
+		margin-left: -($blueprint-container-size / 2);
+		width: $blueprint-container-size;
+		
+		// Prevent the overlay from blocking interaction with the page elements.
+		// This lets you click through the overlay in browsers that support this property.
+		pointer-events: none;
+		
+		// Creates the grid as a background image using CSS gradients
+		@include grid-background;
+	}
+}

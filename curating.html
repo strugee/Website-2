@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	
+	<title>Curating the Design Library</title>
+	
+	<link rel="shortcut icon" href="favicon.ico" />
+	
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic|Sorts+Mill+Goudy:400,400italic|Inconsolata:400,700" />
+	
+	<!-- Allows HTML5 elements to be styled in older versions of IE -->
+	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	
+	<link rel="stylesheet" href="stylesheets/style.css" />
+</head>
+<body>
+	<header id="header">
+		<div class="content">
+			<h1 class="header-logo"><a href="cif.rochester.edu">CIF</a></h1>
+			
+			<nav class="inverted light menu">
+				<ul>
+					<li><a href="index.html">Design Library</a></li>
+					<li class="current-menu-item"><a href="curating.html">Curating the Library</a></li>
+					<li><a href="primer.html">SASS &amp; Compass Primer</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	
+	<div class="content">
+		<h1>Curating the Design Library</h1>		
+		
+		<div class="two-columns">
+			<div class="column">
+				<p>The <a href="index.html">CIF Design Library</a> is intended to serve as a showcase and basic documentation for design modules. The file itself is a basic HTML document. When adding a module to the library, the module's name should be marked up as an <code>&lt;h2&gt;</code> and given a unique id attribute. The <code>find-section-links.js</code> script finds all <code>&lt;h2&gt;</code> elements with ids and creates section links to those headings in the sub-header. Modules should be separated with <code>&lt;hr /&gt;</code> elements.</p>
+				<p>All design modules should have a demo, with a button for displaying the necessary markup. This is easy enough to do; simply create a <code>&lt;div&gt;</code> with a unique id such as <code>{module_name}-demo</code>, place <em>only</em> the necessary markup for the module inside that wrapper, and add a button to the document with the following markup:</p>
+			</div>
+		</div>
+		<pre><code class="language-markup">&lt;a href="#" class="show-markup button" data-for="{module_name}-demo"&gt;Show Markup&lt;/a&gt;</code></pre>
+		<div class="two-columns">
+			<div class="column">
+				<p>The <code>show-markup.js</code> script finds all elements with a <code>show-markup</code> class and displays the markup within the element with the same id as the button's <code>data-for</code> attribute when the button is clicked.</p>
+			</div>
+			<div class="last column">
+				<p>By default, the markup's container element is not included in the displayed markup. If the container should also be displayed, an additional <code>include-container</code> class can be added to the button.</p>
+			</div>
+		</div>
+		
+
+		<hr />
+		
+		<h2 id="module-documentation-example">Module Documentation Example</h2>
+		<p>Module documentation should go here. Something like &ldquo;The example module should be given an <code>example-module</code> class&rdquo; should be good.</p>
+		
+		<a href="#" class="show-markup button" data-for="example-module-demo">Show Markup</a>
+		
+		<div id="example-module-demo">
+			<p class="example-module">This is the example module.</p>
+		</div>
+		
+		<hr />
+
+		<h3>Module Documentation Example Markup</h3>
+		<br />
+		<pre><code class="language-markup">&lt;hr /&gt;
+
+&lt;h2 id=&quot;module-documentation-example&quot;&gt;Module Documentation Example&lt;/h2&gt;
+&lt;p&gt;Module documentation should go here. Something like &amp;ldquo;The example module should be given an &lt;code&gt;example-module&lt;/code&gt; class&amp;rdquo; should be good.&lt;/p&gt;
+
+&lt;a href=&quot;#&quot; class=&quot;show-markup button&quot; data-for=&quot;example-module-demo&quot;&gt;Show Markup&lt;/a&gt;
+
+&lt;div id=&quot;example-module-demo&quot;&gt;
+	&lt;p class=&quot;example-module&quot;&gt;This is the example module.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;</code></pre>
+	</div>
+	
+	<footer id="footer">
+		<div class="content">
+			<p class="copyright">&copy; 2013 CIF</p>
+			<p class="quote">Welcome to /dev/null.</p>
+		</div>
+	</footer>
+	
+	<script src="js/prism.js"></script>
+	<script src="js/show-markup.js"></script>
+</body>
+</html>

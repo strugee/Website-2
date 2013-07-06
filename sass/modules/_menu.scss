@@ -1,0 +1,163 @@
+/**
+ * Provides styles for navigational menus.
+ * Menus should always be marked up as lists of links.
+ *
+ *
+ * Presentational markup provided by this file:
+ *
+ * .menu: Defines a menu with slight spacing between menu items.
+ *
+ * .current-menu-item: Defines the currently selected menu item.
+ *                     This class should be applied to a <li>.
+ *
+ * .menu.condensed: Defines a menu where menu items abut with each other.
+ *
+ * .menu.light: Defines a visually lighter menu with less pronounced menu items.
+ *
+ * .inverted.menu: Defines a menu which has its menu item colors inverted.
+ *
+ * .inverted.collpased.menu: Defines a collapsed menu which has its menu item colors inverted.
+ *
+ * .inverted.light.menu: Defines a light menu which has its menu item colors inverted.
+ *
+ *
+ * @dependency modules/button
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+/**
+ * Menu with slight spacing between menu items.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.menu {
+	// Prevent floated children from collapsing this element to 0 height
+	@include cif-clearfix;
+	
+	// The menu items will set the margins
+	margin-top: 0;
+	margin-bottom: 0;
+	
+	
+	
+	& > ul,
+	& > ol {
+		// Apply clearfix to any immediate children that are lists.
+		// This is because .menu may be applied to a wrapper <nav>.
+		@include cif-clearfix;
+		
+		// These margins are extraneous because the menu items will set the margins
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	// Menu item
+	li {
+		margin-left: 10px;
+		list-style: none;
+		float: left;
+		
+		&:first-child {
+			margin-left: 0;
+		}
+		
+		& > a {
+			@extend .button; // Inherit styles from the button class
+		}
+	}
+	
+	/**
+	 * Defines the currently selected menu item.
+	 *
+	 * @version 1.0
+	 * @since 1.0
+	 */
+	.current-menu-item {
+		& > a {
+			@extend .button.selected; // Inherit styles from the selected button class
+			
+			// Browsers which support this property will not allow the current menu item to be clicked.
+			// This can be useful to prevent users from requesting the current page a second time and clueing
+			// them in to the fact that this option has already been selected.
+			pointer-events: none;
+		}
+	}
+	
+	
+	
+	/**
+	 * Menu where menu items abut with each other.
+	 *
+	 * @version 1.0
+	 * @since 1.0
+	 */
+	&.condensed {
+		li {
+			margin-left: -1px;
+		}
+	}
+	
+	
+	
+	/**
+	 * Visually lighter menu with less pronounced menu items.
+	 *
+	 * @version 1.0
+	 * @since 1.0
+	 */
+	&.light {
+		li > a {
+			@extend .button.light; // Inherit styles from the light button class
+			
+			font-weight: normal;
+		}
+		
+		.current-menu-item > a {
+			@extend .selected.light.button; // Inherit styles from the selected light button class
+		}
+		
+		
+		
+		/**
+		 * Light menu which has its menu item colors inverted.
+		 *
+		 * @version 1.0
+		 * @since 1.0
+		 */
+		&.inverted {
+			li > a {
+				@extend .inverted.light.button; // Inherit styles from the inverted light button class
+				
+				font-weight: normal;
+			}
+			
+			.current-menu-item > a {
+				@extend .inverted.button; // Inherit styles from the inverted button class
+				
+				background-color: transparent;
+				font-weight: normal;
+			}
+		}
+	}
+	
+	
+	
+	/**
+	 * Menu which has its menu item colors inverted.
+	 *
+	 * @version 1.0
+	 * @since 1.0
+	 */
+	&.inverted {
+		li > a {
+			@extend .inverted.button; // Inherit styles from the inverted button class
+		}
+		
+		.current-menu-item > a {
+			@extend .inverted.button.selected; // Inherit styles from the selected inverted button class
+		}
+	}
+}

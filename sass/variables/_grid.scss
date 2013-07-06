@@ -1,0 +1,28 @@
+/**
+ * Defines the dimensions for the design's underlying grid system.
+ *
+ * @dependency variables/typography
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+/**
+ * These are used by blueprint/grid to establish the grid system.
+ * @see http://compass-style.org/reference/blueprint/grid/
+ */
+$blueprint-grid-columns: 16;
+$blueprint-grid-width:   40px;
+$blueprint-grid-margin:  20px;
+
+
+
+/**
+ * These are used by compass/layout/grid-background to draw a grid background
+ * for debugging the grid system.
+ * @see http://compass-style.org/reference/compass/layout/grid_background/
+ */
+$grid-background-total-columns:   $blueprint-grid-columns;
+$grid-background-column-width:    $blueprint-grid-width;
+$grid-background-gutter-width:    $blueprint-grid-margin;
+$grid-background-baseline-height: $base-line-height;

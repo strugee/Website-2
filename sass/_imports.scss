@@ -1,0 +1,123 @@
+/**
+ * All necessary Compass modules and plugins should be imported and documented here.
+ *
+ * A brief explanation of what the Compass module provides and a list of which files use it
+ * should be sufficient. A link to the online documentation for that module would also
+ * be extremely helpful for future maintainers.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+/**
+ * Allows for a vertical rhythm to be defined using the $base-font-size and $base-line-height
+ * variables. This module also provides mixins and functions for maintaing that vertical rhythm
+ * throughout the design.
+ *
+ * Used by:
+ *   All files should be assumed to use this module, as it is essential to the design.
+ *
+ * @see http://compass-style.org/reference/compass/typography/vertical_rhythm/
+ */
+@import 'compass/typography/vertical_rhythm';
+
+
+
+/**
+ * Provides mixins and functions for aligning elements to a grid system.
+ *
+ * Used by:
+ *   All files should be assumed to use this module, as it is essential to the design.
+ *
+ * @see http://compass-style.org/reference/blueprint/grid/
+ */
+@import 'blueprint/grid';
+
+
+
+/**
+ * Provides mixins and functions for drawing the underlying grid system with CSS gradients.
+ *
+ * Used by:
+ *   base/debug
+ *
+ * @see http://compass-style.org/reference/compass/layout/grid_background/
+ */
+@import 'compass/layout/grid-background';
+
+
+
+/**
+ * Provides mixins and functions for cross-browser CSS3 background properties.
+ * These functions are also useful for easily referring to images from SASS, which
+ * Compass then rewrites to point to the correct physical resource.
+ *
+ * Used by:
+ *   mixins/cif-high-res-image
+ *   modules/hero
+ *
+ * @see http://compass-style.org/reference/compass/css3/images/
+ */
+@import 'compass/css3/images';
+
+
+
+/**
+ * Provides mixins for CSS box shadows with vendor prefixes for all major browsers.
+ *
+ * Used by:
+ *   modules/button
+ *
+ * @see http://compass-style.org/reference/compass/css3/box_shadow/
+ */
+@import 'compass/css3/box-shadow';
+
+
+
+/**
+ * Provides mixins for CSS transformations with vendor prefixes for all major browsers.
+ *
+ * Used by:
+ *   base/typography
+ *   modules/button
+ *
+ * @see http://compass-style.org/reference/compass/css3/transform/
+ */
+@import 'compass/css3/transform';
+
+
+
+/**
+ * Provides mixins for the box-sizing property with vendor prefixes for all major browsers.
+ *
+ * Used by:
+ *   base/forms
+ *
+ * @see http://compass-style.org/reference/compass/css3/box_sizing/
+ */
+@import 'compass/css3/box-sizing';
+
+
+
+/**
+ * Provides mixins for setting text hyphenation via CSS.
+ *
+ * Used by:
+ *   base/typography
+ *   modules/secondary-menu
+ *
+ * @see http://compass-style.org/reference/compass/css3/hyphenation/
+ */
+@import 'compass/css3/hyphenation';
+
+
+
+/**
+ * Provides mixins for importing fonts to use in CSS.
+ *
+ * Used by:
+ *   base/cif-icon-font
+ *
+ * @see http://compass-style.org/reference/compass/css3/font_face/
+ */
+@import 'compass/css3/font-face';

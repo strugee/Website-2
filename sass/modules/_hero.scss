@@ -1,0 +1,120 @@
+/**
+ * Defines a block of content with a hero graphic and an introductory body of text.
+ * The hero graphic is typically the first thing you want the visitor to see.
+ *
+ * The hero graphic can have a knocked out CIF logo overlaid to mask the graphic to the logo
+ * by using the .hero-graphic-logo-overlay class.
+ *
+ * NOTE: Please look at ie/modules/hero when modifying this file to
+ * maintain compatibility with older versions of IE.
+ *
+ *
+ * Presentational markup provided by this file:
+ *
+ * .hero: Defines a block of hero content.
+ *
+ * .hero-graphic: Defines a large hero graphic.
+ *                The .hero-graphic element should contain an <img> element.
+ * .hero-graphic-logo-overlay: A hero graphic which has a knocked out CIF logo overlaid
+ *                             to mask the image to the logo.
+ *
+ * .hero-body: Defines introductory hero content.
+ *
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+/**
+ * Creates a block of hero content.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.hero {
+	@include margin-leader(2); // 2 line top margin
+	@include margin-trailer(1); // 1 line bottom margin
+	
+	// Prevent floated children from collapsing this element to 0 height
+	@include cif-clearfix;
+}
+
+/**
+ * Creates a hero graphic. This element should contain an <img> element.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+[class*=hero-graphic] { // Selects elements with a class containing "hero-graphic"
+	@include margin-trailer(1); // 1 line bottom margin
+
+	@include column(12); // 12 columns wide
+	
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+}
+
+/**
+ * A hero graphic which has a knocked out CIF logo overlaid
+ * to mask the image with the CIF logo.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.hero-graphic-logo-mask {
+	// Fixed pixel units because we're using an image
+	height: $base-line-height * 18;
+	
+	// :after will be positioned relative to this element
+	position: relative;
+	
+	// Hide any overflow from the <img>
+	overflow: hidden;
+	
+	img {
+		min-height: 100%; // Make the image fill the mask area
+	}
+	
+	// CIF logo overlay
+	&:after {
+		content: '';
+		
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		
+		// Serve a high resolution version of the background image to high resolution displays
+		@include cif-high-res-background-image('white-logo-knockout', $type: 'png');
+		
+		// Allow the user to interact with the image under this mask by
+		// preventing pointer interaction with this pseudo-element.
+		pointer-events: none;
+	}
+	
+	// Support for older IE
+	@include cif-ie-pseudo-element('after');
+	.after {
+		@extend .hero-graphic-logo-mask:after;
+	}
+}
+
+/**
+ * Defines the body copy to go along with the hero graphic.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.hero-body {
+	@include column(4); // 4 columns wide
+	@include last; // Last column
+	
+	@include margin-trailer(1); // 1 line margin bottom
+	
+	// Remove top and bottom margins of the first and last child respectively to
+	// prevent them from stretching the "padding" of this element.
+	@include cif-trim-vertical-margins;
+}

@@ -1,0 +1,81 @@
+/**
+ * Provides styles for secondary navigational menus.
+ * Secondary menus should be marked up as lists.
+ *
+ *
+ * Presentational markup provided by this file:
+ *
+ * .secondary-menu: Defines a secondary menu with slight spacing between menu items.
+ * 
+ * .current-menu-item: Defines the currently selected menu item.
+ *                     This class should be applied to a <li>.
+ *
+ * .grid-aligned.secondary-menu: Defines a secondary menu aligned to a grid.
+ *
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+/**
+ * Secondary menu with slight spacing between menu items.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.secondary-menu {
+	// Prevent floated children from collapsing this element to 0 height
+	@include cif-clearfix;
+
+	li {
+		margin-right: $blueprint-grid-margin;
+		list-style: none;
+		float: left;
+		
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+	
+	/**
+	 * Defines the currently selected menu item.
+	 *
+	 * @version 1.0
+	 * @since 1.0
+	 */
+	.current-menu-item {
+		& > a {
+			color: $color-primary-text;
+			
+			// Browsers which support this property will not allow the current menu item to be clicked.
+			// This can be useful to prevent users from requesting the current page a second time and clueing
+			// them in to the fact that this option has already been selected.
+			pointer-events: none;
+		}
+	}
+	
+	
+	
+	/**
+	 * Secondary navigation with each menu item aligned to the grid.
+	 *
+	 * @version 1.0
+	 * @since 1.0
+	 */
+	&.grid-aligned {
+		margin-left: -$blueprint-grid-margin;
+		
+		li {
+			/**
+			 * Hyphenate wrapped words which are too long for the grid column.
+			 * @see http://compass-style.org/reference/compass/css3/hyphenation/#mixin-hyphenation
+			 */
+			@include hyphenation;
+			
+			margin-left: $blueprint-grid-margin;
+			margin-right: 0;
+			display: inline-block;
+			width: span(2); // Span 2 columns of the grid
+		}
+	}
+}

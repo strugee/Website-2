@@ -1,0 +1,32 @@
+/**
+ * Defines styles for the Google Calendar Events plugin for WordPress.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+// Removes extraneous margins from the calendar grid tooltips
+[class*=gce-tooltip-] { // Selects elements with a class containing "gce-tooltip-"
+	// Remove top and bottom margins of the first and last child respectively to
+	// prevent them from stretching the "padding" of this element.
+	@include cif-trim-vertical-margins;
+}
+
+// Remove extraneous margins from the events list wrapper element
+.gce-page-list {
+	// Remove top and bottom margins of the first and last child respectively to
+	// prevent them from stretching the "padding" of this element.
+	@include cif-trim-vertical-margins;
+	@include margin-trailer(1); // 1 line margin bottom
+}
+
+// Style next/previous month buttons above the calendar grid
+.gce-prev,
+.gce-next {
+	@include adjust-font-size-to($h1-font-size);
+}
+
+// Style month and year displayed above the calendar grid
+.gce-month-title {
+	@include adjust-font-size-to($h2-font-size);
+}

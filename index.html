@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	
+	<title>CIF Design Library</title>
+	
+	<link rel="shortcut icon" href="favicon.ico" />
+	
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic|Sorts+Mill+Goudy:400,400italic|Inconsolata:400,700" />
+	
+	<!-- Allows HTML5 elements to be styled in older versions of IE -->
+	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	
+	<link rel="stylesheet" href="stylesheets/style.css" />
+	
+	<style>
+		/* Fix the debug button to the bottom right corner */
+		.debug-button {
+			position: fixed;
+			bottom: -1.6em; /* 24px / 15px = 1.6em */
+			right: 0;
+			z-index: 9999;
+		}
+		
+		/* Grid demo */
+		
+		/* Add background colors to the columns to show their dimension */
+		#grid-demo [class*=column-], #grid-demo .column {background-color:#ccc;}
+
+
+		/* Fluid grids demo */
+		
+		/* Simple clearfix */
+		#fluid-grid-demo {overflow: hidden;}
+		/* Add background colors to the rows to show their dimension */
+		#fluid-grid-demo [class*=-columns] {background-color:#ddd;}
+		/* Add background colors to the columns to show their dimension */
+		#fluid-grid-demo [class*=column-], #fluid-grid-demo .column {background-color:#ccc;}
+		
+		
+		/* Text alignment demo */
+
+		/* Add background colors to the columns to show their dimension */
+		#text-align-demo [class*=column-], #text-align-demo .column {background-color:#ccc;}
+		
+		
+		/* Block alignment demo */
+		
+		/* Add background colors to the columns to show their dimension */
+		#block-align-demo { overflow: hidden; } /* Simple clearfix */
+		#block-align-demo > p {background-color:#ccc;width:45%;clear:both;}
+		
+		
+		/* Column callout demo */
+		
+		/* Add background colors to the columns to show their dimension */
+		#callout-column-demo .column, #callout-column-demo .column-last {background-color:#ccc;}
+		#callout-column-demo .callout {background-color:#999;}
+		
+		
+		/* Sidebar demo */
+		
+		/* Simple clearfix */
+		#sidebar-demo:after {content:'';display:block;clear:both;}
+		/* Worse clearfix for IE7 (* targets IE7) */
+		#sidebar-demo {*overflow:hidden;}
+		
+		
+		/* Right sidebar demo */
+		
+		/* Simple clearfix */
+		#right-sidebar-demo:after {content:'';display:block;clear:both;}
+		/* Worse clearfix for IE7 (* targets IE7) */
+		#right-sidebar-demo {*overflow:hidden;}
+	</style>
+</head>
+<body>
+	<header id="header">
+		<div class="content">
+			<h1 class="header-logo"><a href="cif.rochester.edu">CIF</a></h1>
+			
+			<nav class="inverted light menu">
+				<ul>
+					<li class="current-menu-item"><a href="index.html">Design Library</a></li>
+					<li><a href="curating.html">Curating the Library</a></li>
+					<li><a href="primer.html">SASS &amp; Compass Primer</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	
+	<div class="sub-header">
+		<div class="content">
+			<!-- Will be populated by find-section-links.js -->
+			<ul class="secondary-menu align-right" id="document-submenu"></ul>
+		</div>
+	</div>
+	
+	<div class="content">
+		<h1>CIF Design Library</h1>
+		
+		<!-- Fixed to bottom right corner via CSS (see the <head>) -->
+		<a class="button debug-button" href="#">Show Grid</a>
+		
+		<div class="two-columns">
+			<div class="column">
+				<p>This design library is a collection of design elements and modules to be used throughout CIF's online properties. The design library also serves as documentation for how to use these modules as well. Whenever a new design module is created, it is highly encouraged that it be documented here so that future maintainers can quickly learn how to implement the module.</p>
+				<p>The maintainers of CIF's web properties are encouraged to learn how to <a href="curating.html">curate this library</a>.</p>
+			</div>
+			<div class="last column callout">
+				<p>Elements may not be perfectly aligned to the grid system in some browsers because relative units are used for margins and font sizing. Using relative units ensures that our design is scalable, but some browsers may round these values differently and yield slightly different pixel sizes.</p>
+				<p>There may also be an uneven application of the background color on some elements. This is not a bug; many elements on this page are placed on differently colored backgrounds to accentuate them, while on an actual page they would not be.</p>
+			</div>
+		</div>
+		
+		<h3>Supported Browsers</h3>
+		<p>This library has been determined to render and function acceptably in the following browsers and platforms:</p>
+		<div class="four-columns">
+			<div class="column">
+				<h4>Mac OS 10.8</h4>
+				<ul>
+					<li>Safari 6+</li>
+					<li>Firefox 22.0+</li>
+					<li>Chrome 27+</li>
+					<li>Opera 12.15+</li>
+				</ul>
+			</div>
+			<div class="column">
+				<h4>Windows 8</h4>
+				<ul>
+					<li>Firefox 22.0+</li>
+					<li>Chrome 27+</li>
+					<li>Internet Explorer 7+</li>
+					<li>Opera 12.15+</li>
+				</ul>
+			</div>
+		</div>
+		
+		
+		<h2>TODO</h2>
+		<div class="two-columns">
+			<ul class="column">
+				<li>Note somewhere not to rely on oddly-shaped margins, they get stripped at the top and bottom of some common containers (like callouts)</li>
+				
+				<li>CIF syntax highlighting theme</li>
+				<li>Alternating image layout (board page) (is this necessary?)</li>
+			</ul>
+			<ul class="last column">
+				<li>Grid column pulls and pushes</li>
+				
+				<li>Document <code>.light-background</code> and <code>.dark-background</code></li>
+			</ul>
+		</div>
+		
+		
+		
+		<hr />
+		
+		
+		
+		<h2 id="site-header">Header</h2>
+		<div class="two-columns">
+			<div class="column">
+				<p>The header is a major navigational landmark for the design. It should contain the CIF logo (which should link to the homepage) and the site's primary navigation. Only a single header can exist on a page.</p>
+				<p>Headers are created by giving an element a <code>header</code> id. The header's contents should be contained within an element with a <code>content</code> class. If an element has a <code>header-logo</code> class, that element's contents will be replaced with the CIF logo. The element with the <code>header-logo</code> class should contain an <code>&lt;a&gt;</code> element, which preferably links to the home page.</p>
+				<p>Any menus in the header will have additional styles applied to them.</p>
+			</div>
+		</div>
+		<a href="#" class="show-markup include-container button" data-for="header">Show Markup</a>
+		
+		
+		
+		<hr />
+		
+		
+		
+		<h2 id="sub-headers">Sub-Headers</h2>
+		<div class="two-columns">
+			<div class="column">
+				<p>Sub-headers are intended for use as headers for major sections of content. They should be used sparingly.</p>
+				<p>Because sub-headers span the width of the page, they can not be contained within an element with a <code>content</code> class. Instead, they must be used outside the <code>content</code> wrapper.</p>
+			</div>
+			<div class="last column">
+				<p>Sub-headers themselves are created by applying a <code>sub-header</code> class to an element. The contents of a sub-header should be wrapped in an element with a <code>content</code> class. Textual contents may be wrapped with a <code>sub-header-body</code> class to better align them with modules such as right-aligned menus.</p>
+			</div>
+		</div>
+		<a href="#" class="show-markup include-container button" data-for="sub-header-demo">Show Markup</a>
+	</div>
+	<div class="sub-header" id="sub-header-demo">
+		<div class="content">
+			<div class="sub-header-body">
+				<h3>Example Sub-Header</h3>
+				<p>This is what a sub-header looks like.</p>
+			</div>
+
+			<ul class="secondary-menu align-right">
+				<li><a href="#">One</a></li>
+				<li class="current-menu-item"><a href="#">Two</a></li>
+				<li><a href="#">Three</a></li>
+				<li><a href="#">Four</a></li>
+				<li><a href="#">Hamburgefonstiv</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="content">
+		
+		
+		
+		<hr />
+		
+		
+		
+		<h2 id="typography">Typography</h2>
+		<div class="two-columns">
+			<div class="column">
+				<p>Common typographic markup styles. It should be noted that text which does not need to be displaced visually, but is still useful to screen readers and robots, should be wrapped by an element (probably a <code>&lt;span&gt;</code>) with a <code>screen-reader-text</code> class.</p>
+			</div>
+		</div>
+		<div class="two-columns">
+			<div class="column">
+				<a href="#" class="show-markup button" data-for="typography-heading-demo">Show Markup</a>
+			</div>
+			<div class="last column">
+				<a href="#" class="show-markup button" data-for="typography-body-demo">Show Markup</a>
+			</div>
+		</div>
+		<section class="two-columns">
+			<div class="column" id="typography-heading-demo">
+				<h1>Heading Level 1</h1>
+				<h2>Heading Level 2</h2>
+				<h3>Heading Level 3</h3>
+				<h4>Heading Level 4</h4>
+				<h5>Heading Level 5</h5>
+				<h6>Heading Level 6</h6>
+			</div>
+			<div class="last column" id="typography-body-demo">
+				<p>Lorem ipsum dolor sit amet, consectetuer <a href="#" title="/">adipiscing elit</a>. Aliquam nisi, pulvinar id, commodo feugiat, <em>vehicula et</em>, mauris. Aenean id <strong>massa</strong> ut lacus molestie porta. Curabitur sit amet quam id <code>printf("Hall&aring; %s!", "v&auml;rld");</code> suscipit venenatis.</p>
+				
+				<ul>
+					<li>Lorem ipsum dolor sit amet.</li>
+					<li>Consectetuer adipiscing elit. </li>
+					<li>Nam at tortor quis ipsum tempor aliquet.</li>
+				</ul>
+				
+				<ol>
+					<li>Lorem ipsum dolor sit amet.</li>
+					<li>Consectetuer adipiscing elit. </li>
+					<li>Nam at tortor quis ipsum tempor aliquet.</li>
+				</ol>
+				
+				<blockquote>Donec placerat mauris commodo dolor. Nulla tincidunt. Nulla vitae augue.</blockquote>
+				
+				<small>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</small>
+			</div>
+		</section>
+		
+		
+		
+		<hr />
+		
+		
+		
+		<h2 id="grid-layout">Grid Layout</h2>
+		<div class="two-columns">
+			<div class="column">
+				<p>Grid layouts can be constructed manually by creating a wrapper element for the row with a <code>*-columns</code> class, where <code>*</code> specifies the number of columns (either <code>two</code> or <code>four</code>). The row should contain 2 to 4 elements with a <code>column-#</code> class, where <code>#</code> is the number of the column (<code>1</code>, <code>2</code>, <code>3</code>, etc).</p>
+				<p>A <code>column</code> class can also be used for columns, where the last column has a an additional <code>last</code> class.</p>
+			</div>
+			<div class="last column callout">
+				<p>Manually specifying a grid layout should be avoided if possible. These classes are primarily intended for defining two-column layouts. If you need finer control over the grid, consider creating a new class in the sass/modules directory which has the layout you need. The more generalized your module is, the more reusable it will be throughout the design.</p>
+			</div>
+		</div>
+		<a href="#" class="show-markup button" data-for="grid-demo">Show Markup</a>
+		<div id="grid-demo">
+			<div class="two-columns">
+				<div class="column">
+					<p>Column 1</p>
+				</div>
+				<div class="last column">
+					<p>Column 2</p>
+				</div>
+			</div>
+			
+			<div class="four-columns">
+				<div class="column-1">
+					<p>Column 1</p>
+				</div>
+				<div class="column-2">
+					<p>Column 2</p>
+				</div>
+				<div class="column-3">
+					<p>Column 3</p>
+				</div>
+				<div class="column-4">
+					<p>Column 4</p>
+				</div>
+			</div>
+		</div>
+		
+		<h3>Fluid Rows</h3>
+		<div class="two-columns">
+			<div class="column">
+				<p>A fluid row is only as wide as its contents. A row becomes fluid by adding a <code>fluid</code> class to the row container.</p>
+			</div>
+			<div class="last column callout">
+				<h4>Please Note</h4>
+				<p>Fluid grids are floated left, so their containers may collapse to have 0 height if there is not a non-floated sibling element. You may need a container which has a clearfix to contain the fluid grid.</p>
+			</div>
+		</div>
+		<a href="#" class="show-markup button" data-for="fluid-grid-demo">Show Markup</a>
+		<div id="fluid-grid-demo">
+			<div class="fluid two-columns">
+				<div class="last column">
+					<p>Column 1</p>
+				</div>
+			</div>
+			
+			<div class="fluid four-columns">
+				<div class="column">
+					<p>Column 1</p>
+				</div>
+				<div class="column">
+					<p>Column 2</p>
+				</div>
+				<div class="last column">
+					<p>Column 3</p>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<hr />
+		
+		
+		
+		<h2 id="forms">Forms</h2>
+		<div class="two-columns">
+			<div class="column">
+				<p>Form elements do not require special classes for their styling, so proper markup is necessary to prevent form elements from becoming unruly. All form inputs should be wrapped in a <code>&lt;label&gt;</code> with an appropriate text label for the field. Multiple related fields should be contained in a <code>&lt;fieldset&gt;</code>, with a <code>&lt;legend&gt;</code> if appropriate. See the markup of the form below for a better idea of how forms should be marked up.</p>
+			</div>
+			<div class="last column callout">
+				<p>This form has been placed within a callout to accentuate it. Forms look more natural against the page background.</p>
+			</div>
+		</div>
+		
+		<a href="#" class="show-markup button" data-for="form-text-demo">Show Markup</a>
+		<form action="/" id="form-text-demo" class="callout">
+			<fieldset class="four-columns">
+				<label for="form-demo-text" class="column">
+					Text field
+					<input type="text" name="text" id="form-demo-text" value="Text field contents" />
+				</label>
+				
+				<label for="form-demo-disabled-text" class="column">
+					Disabled text field
+					<input type="text" name="disabled-text" id="form-demo-disabled-text" value="Disabled text field contents" disabled />
+				</label>
+				
+				<label for="form-demo-search" class="column">
+					Search field
+					<input type="search" name="search" id="form-demo-search" value="Search field contents" />
+				</label>
+			</fieldset>
+		</form>
+		
+		<a href="#" class="show-markup button" data-for="form-textarea-demo">Show Markup</a>
+		<form action="/" id="form-textarea-demo" class="callout">
+			<fieldset class="two-columns">
+				<label for="form-demo-textarea" class="column">
+					Textarea
+					<textarea id="form-demo-textarea">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</textarea>
+				</label>
+				
+				<label for="form-demo-disabled-textarea" class="last column">
+					Disabled textarea
+					<textarea id="form-demo-disabled-textarea" disabled>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</textarea>
+				</label>
+			</fieldset>
+		</form>
+		
+		<a href="#" class="show-markup button" data-for="form-inputs-demo">Show Markup</a>
+		<form action="/" id="form-inputs-demo" class="four-columns callout">
+			<fieldset class="column">
+				<legend>Radio Buttons</legend>
+				
+				<label for="form-demo-radio-1">
+					<input type="radio" name="radio" id="form-demo-radio-1" />
+					Radio button 1
+				</label>
+				
+				<label for="form-demo-radio-2">
+					<input type="radio" name="radio" id="form-demo-radio-2" checked />
+					Radio button 2
+				</label>
+				
+				<label for="form-demo-disabled-radio">
+					<input type="radio" name="radio" id="form-demo-disabled-radio" disabled />
+					Disabled radio button
+				</label>
+			</fieldset>
+			
+			<fieldset class="column">
+				<legend>Checkboxes</legend>
+				
+				<label for="form-demo-checkbox-1">
+					<input type="checkbox" name="checkbox-1" id="form-demo-checkbox-1" />
+					Checkbox 1
+				</label>
+				
+				<label for="form-demo-checkbox-2">
+					<input type="checkbox" name="checkbox-2" id="form-demo-checkbox-2" checked />
+					Checkbox 2
+				</label>
+				
+				<label for="form-demo-disabled-checkbox">
+					<input type="checkbox" name="disabled-checkbox" id="form-demo-disabled-checkbox" disabled />
+					Disabled checkbox
+				</label>
+				
+				<label for="form-demo-checkbox-3">
+					<input type="checkbox" name="checkbox-3" id="form-demo-checkbox-3" />
+					Other
+				</label>
+				<input type="text" />
+			</fieldset>
+					
+			<fieldset class="column">
+				<legend>Drop-down Menus</legend>
+				
+				<label for="form-demo-drop-down">
+					Drop-down menu 1
+					<select id="form-demo-drop-down">
+						<option>Option 1</option>
+						<option>Option 2</option>
+						<option>Option 3</option>
+					</select>
+				</label>
+				
+				<label for="form-demo-disabled-drop-down">
+					Disabled drop-down menu
+					<select id="form-demo-disabled-drop-down" disabled>
+						<option>Option 1</option>
+						<option selected>Option 2</option>
+						<option>Option 3</option>
+					</select>
+				</label>
+			</fieldset>
+		</form>
+			
+		<a href="#" class="show-markup button" data-for="form-buttons-demo">Show Markup</a>
+		<form action="/" id="form-buttons-demo" class="four-columns callout">
+			<input type="button" value="Form Button" />
+			
+			<input type="reset" value="Form Reset Button" />
+			
+			<input type="reset" class="light" value="Light Form Reset Button" />
+			
+			<input type="submit" value="Form Submit Button" />
+		</form>		
+		
+		
+		
+		<hr />
+		
+		
+		
+		<h2 id="image-captions">Image Captions</h2>
+		<div class="two-columns">
+			<div class="column">
+				<p>Image and figure captions can be created by using the <code>&lt;figcaption&gt;</code> element or applying a <code>caption</code> class to an element. If using <code>&lt;figcaption&gt;</code>, please be aware of <a href="http://www.w3.org/TR/html-markup/figcaption.html">its semantics</a> and the <a href="http://www.w3.org/TR/html-markup/figure.html">semantics of the <code>&lt;figure&gt;</code> element</a>.</p>
+			</div>
+			<div class="last column callout">
+				<p>It should also be kept in mind that images will not always line up with the vertical rhythm of the page, so captions and anything under the image may be offset from the page's vertical rhythm.</p>
+			</div>
+		</div>
+		<a href="#" class="show-markup button" data-for="image-caption-demo">Show Markup</a>
+		<div class="two-columns callout">
+			<div class="column">
+				<p>Because it is impossible to set the margin under an image to fill in the gap it creates with the vertical rhythm using pure CSS, captions may be out of sync with the vertical rhythm of the page. While this isn't a big deal, the only way to deal with it is to use JavaScript to set the margins under only those images which <em>should</em> maintain the vertical rhythm of the page (gross, I know), or just use images in columns next to text columns which extend past the image (like I'm doing here to keep this page's vertical rhythm together).</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+			</div>
+			<div class="last column" id="image-caption-demo">
+				<figure>
+					<img src="sample-images/cif-balloons.jpg" />
+					<figcaption>CIF covered in balloons.</figcaption>
+				</figure>
+			</div>
+		</div>
+		
+		
+		
+		<hr />
+		
+		
+		
+		<h2 id="code-blocks">Code Blocks</h2>
+		<div class="two-columns">
+			<div class="column">
+				<p>Code blocks are created by placing code within a <code>&lt;code&gt;</code> tag nested within a <code>&lt;pre&gt;</code>. Syntax highlighting is performed with JavaScript via <a href="http://prismjs.com">Prism</a>. To activate highlighting for a block of code, it must have a <code>language-*</code> class, where <code>*</code> is the name of the language (<code>markup</code>, <code>css</code>, <code>c</code>, etc).</p>
+			</div>
+			<div class="last column callout">
+				<p>Please keep whitespace in mind when marking up your code. The <code>&lt;pre&gt;</code> tag <em>will</em> pick up all newlines, so there should be no whitespace between the first and last line of your code and the opening and closing tags.</p>
+			</div>
+		</div>
+		<a href="#" class="show-markup button" data-for="code-block-demo">Show Markup</a>
+		<div class="two-columns">
+			<div class="column">
+				<h3>Without Highlighting</h3>
+			</div>
+			<div class="last column">
+				<h3>With Highlighting</h3>
+			</div>
+		</div>
+		<div class="two-columns">
+			<div class="column" id="code-block-demo">
+				<pre><code class="language-none">class Printer(object):
+	
+	def __init__(text='Hello world'):
+		self.text = text
+	
+	def print_out(self):
+		print(self.text)
+
+p = Printer('Hello CIF')
+p.print_out() # Hello CIF</code></pre>
+			</div>
+			<div class="last column">
+				<pre><code class="language-python">class Printer(object):
+	
+	def __init__(text='Hello world'):
+		self.text = text
+	
+	def print_out(self):
+		print(self.text)
+
+p = Printer('Hello CIF')
+p.print_out() # Hello CIF</code></pre>
+			</div>
+		</div>
+		
+		
+		
+		<hr />
+		
+		
+		
+		<h2 id="icons">Icons</h2>
+		<div class="two-columns">
+			<div class="column">
+				<p>Icons can be added to text by applying an <code>icon-*</code> class, where <code>*</code> is a supported icon. These classes should only be applied to inline elements.</p>
+				<p>By default, the icon appears before the text it is associated with. It can be placed after the text by adding an <code>icon-after</code> class to the element.
+			</div>
+			<div class="last column callout">
+				<p>Text can be replaced by an icon by wrapping the text in a <code>screen-reader-text</code> class. This removes the text from the page, while still leaving it accessible to screen readers and robots.</p>
+			</div>
+		</div>
+		<a href="#" class="show-markup button" data-for="icons-demo">Show Markup</a>
+		<div id="icons-demo" class="four-columns">
+			<div class="column">
+				<h3>Icon Before</h3>
+				<a href="#" class="icon-rss">RSS Feed</a>
+			</div>
+			<div class="column">
+				<h3>Icon After</h3>
+				<a href="#" class="icon-rss icon-after">RSS Feed</a>
+			</div>
+			<div class="column">
+				<h3>Icon Replacement</h3>
+				<a href="#" class="icon-rss"><span class="screen-reader-text">RSS Feed</span></a>
+			</div>
+		</div>
+		
+		
+		
+		<hr />
+		
+		
+		
+		<h2 id="text-alignment">Text Alignment</h2>
+		<p>Text can be aligned with the <code>text-left</code>, <code>text-center</code>, and <code>text-right</code> classes.</p>
+		<a href="#" class="show-markup button" data-for="text-align-demo">Show Markup</a>
+		<div id="text-align-demo">
+			<div class="four-columns">
+				<div class="column">
+					<p>Default text alignment.</p>
+				</div>
+				<div class="column">
+					<p class="text-left">Left aligned text.</p>
+				</div>
+				<div class="column">
+					<p class="text-center">Centered text.</p>
+				</div>
+				<div class="last column">
+					<p class="text-right">Right aligned text.</p>
+				</div>
+			</div>
+		</div>
+		
+		<hr />
+		
+		<h2 id="block-alignment">Block Alignment</h2>
+		<div class="two-columns">
+			<div class="column">
+				<p>Content blocks can be aligned with the <code>align-left</code> and <code>align-right</code> classes.</p>
+			</div>
+			<div class="last column callout">
+				<h4>Please Note</h4>
+				<p>Use of these classes is highly discouraged because floated elements can cause problems with other elements on the page. Most notably, a container will collapse to have a height of 0 if all of its children are floated.</p>
+				<p>The solution to this issue is to apply a clearfix. However, there is no markup class defined for applying a clearfix to discourage the excessive use of these classes. If you need a complex layout, please consider using one of the UI modules defined in this file or create your own module in the sass/modules directory.</p>
+			</div>
+		</div>
+		<a href="#" class="show-markup button" data-for="block-align-demo">Show Markup</a>
+		<div id="block-align-demo" class="callout">
+			<p class="align-left">Left aligned content block.</p>
+			
+			<p class="align-right">Right aligned content block.</p>
+		</div>
+		
+		
+		
+		<hr />
+		
+		
+		
+		<h2 id="callouts">Callouts</h2>
+		<p>A callout is a visually distinct block of content. Callouts should be used for blocks of content that need emphasis.</p>
+		<a href="#" class="show-markup button" data-for="callout-demo">Show Markup</a>
+		<div id="callout-demo">
+			<div class="callout">
+				<p>This is an example of a callout.</p>
+			</div>
+			
+			<div class="two-columns callout">
+				<div class="column">
+					<p>Grid layouts can easily be turned into callouts by adding a <code>callout</code> class to the row.</p>
+				</div>
+				<div class="last column">
+					<p>This is an example of a multi-column callout.</p>
+				</div>
+			</div>
+		</div>
+		
+		<h3>Calling out an individual column</h3>
+		<div class="two-columns">
+			<div class="column">
+				<p>Individual columns can also be called out by applying a <code>callout</code> class to the column.</p>
+			</div>
+			<div class="last column callout">
+				<p>The background colors below have been modified to emphasize the dimensions of the columns.</p>
+			</div>
+		</div>
+		<a href="#" class="show-markup button" data-for="callout-column-demo">Show Markup</a>
+		<div id="callout-column-demo">
+			<div class="two-columns">
+				<p class="column">Column 1</p>
+				<p class="last column callout">Column 2 is called out</p>
+			</div>
+			
+			<div class="four-columns">
+				<p class="column">Column 1</p>
+				<p class="column callout">Column 2 is called out</p>
+				<p class="column">Column 3</p>
+				<p class="last column">Column 4</p>
+			</div>
+		</div>
+		
+		
+		
+		<hr />
+		
+		
+		
+		<h2 id="sidebar">Sidebar</h2>
+		<div class="two-columns">
+			<div class="column">
+				<p>Sidebars are useful for related material or secondary navigation. When using a sidebar in a design, be sure to account for the space it occupies and ensure that the primary content does not become smushed.</p>
+			</div>
+		</div>
+		<a href="#" class="show-markup button" data-for="sidebar-demo">Show Markup</a>
+		<div id="sidebar-demo">
+			<div class="sidebar">
+				<h4>Sidebar Example</h4>
+				
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+		</div>
+		
+		<h3>Right-Aligned Sidebars</h3>
+		<div class="two-columns">
+			<div class="column">
+				<p>A right-aligned sidebar can be created by adding an <code>align-right</code> class.</p>
+			</div>
+		</div>
+		<a href="#" class="show-markup button" data-for="right-sidebar-demo">Show Markup</a>
+		<div id="right-sidebar-demo">
+			<div class="align-right sidebar">
+				<h4>Right-Aligned Sidebar Example</h4>
+				
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+		</div>
+		
+		<h3>Placing Sidebars with Content</h3>
+		<a href="#" class="show-markup button" data-for="sidebar-with-content-demo">Show Markup</a>
+		<div id="sidebar-with-content-demo">
+			<div class="sidebar">
+				<h4>Sidebar Example</h4>
+				
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+			<div class="articles">
+				<article class="article">
+					<h4>Article Title</h4>
+					<footer class="article-metadata">
+						<p>Posted on January 1st, 2013</p>
+						<p>Posted by Nate Hart</p>
+					</footer>
+					
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</article>
+			</div>
+		</div>
+		
+		
+		
+		<hr />
+		
+		
+		
+		<h2 id="buttons">Buttons</h2>
+		<div class="two-columns">
+			<div class="column">
+				<p>Buttons are useful for when a link performs an action rather than taking the user to a new page. The alternate styles can create a visual hierarchy and convey the status of the buttons.</p>
+			</div>
+		</div>
+		<div class="two-columns">
+			<div class="column">
+				<h3>Normal Buttons</h3>
+				<a href="#" class="show-markup button" data-for="buttons-demo">Show Markup</a>
+			</div>
+			<div class="last column">
+				<h3>Inverted Buttons</h3>
+				<a href="#" class="show-markup button" data-for="inverted-buttons-demo">Show Markup</a>
+			</div>
+		</div>
+		<div class="two-columns">
+			<div id="buttons-demo" class="column callout">
+				<a href="#" class="button">Anchor Button</a>
+				
+				<a href="#" class="light button">Light Anchor Button</a>
+				
+				<a href="#" class="selected button">Selected Anchor Button</a>
+			</div>
+			<div id="inverted-buttons-demo" class="last column callout dark-background">
+				<a href="#" class="inverted button">Anchor Button</a>
+				
+				<a href="#" class="inverted light button">Light Anchor Button</a>
+				
+				<a href="#" class="inverted selected button">Selected Anchor Button</a>
+			</div>
+		</div>
+		
+		
+		
+		<hr />
+		
+		
+		
+		<h2 id="menus">Menus</h2>
+		<div class="two-columns">
+			<div class="column">
+				<p>When creating menus, they should always be marked up as lists. Menu styling will fail otherwise.</p>
+				<p>Menus can also be used within <code>&lt;nav&gt;</code> elements. Please be aware of the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/sections.html#the-nav-element" title="W3C documentation for &lt;nav&gt;">semantics of the <code>&lt;nav&gt;</code> element</a> when using it.</p>
+			</div>
+			<div class="last column callout">
+				<p>The menus below have background colors set behind them to accentuate the color of the buttons. Menus do not define their own background color.</p>
+			</div>
+		</div>
+		
+		<div class="two-columns">
+			<div class="column">
+				<h3>Menu</h3>
+				<a href="#" class="show-markup button" data-for="menu-demo">Show Markup</a>
+				<div id="menu-demo" class="callout">
+					<ul class="menu">
+						<li><a href="#">One</a></li>
+						<li class="current-menu-item"><a href="#">Selected</a></li>
+						<li><a href="#">Three</a></li>
+						<li><a href="#">Four</a></li>
+						<li><a href="#">Hamburgefonstiv</a></li>
+					</ul>
+				</div>
+				
+				<h3>Condensed Menu</h3>
+				<a href="#" class="show-markup button" data-for="condensed-menu-demo">Show Markup</a>
+				<div id="condensed-menu-demo" class="callout">
+					<nav class="condensed menu">
+						<ul>
+							<li><a href="#">One</a></li>
+							<li class="current-menu-item"><a href="#">Selected</a></li>
+							<li><a href="#">Three</a></li>
+							<li><a href="#">Four</a></li>
+							<li><a href="#">Hamburgefonstiv</a></li>
+						</ul>
+					</nav>
+				</div>
+				
+				<h3>Light Menu</h3>
+				<a href="#" class="show-markup button" data-for="light-menu-demo">Show Markup</a>
+				<div id="light-menu-demo" class="callout">
+					<ul class="light menu">
+						<li><a href="#">One</a></li>
+						<li class="current-menu-item"><a href="#">Selected</a></li>
+						<li><a href="#">Three</a></li>
+						<li><a href="#">Four</a></li>
+						<li><a href="#">Hamburgefonstiv</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="last column">
+				<h3>Inverted Menu</h3>
+				<a href="#" class="show-markup button" data-for="inverted-menu-demo">Show Markup</a>
+				<div id="inverted-menu-demo" class="callout dark-background">
+					<ul class="inverted menu">
+						<li><a href="#">One</a></li>
+						<li class="current-menu-item"><a href="#">Selected</a></li>
+						<li><a href="#">Three</a></li>
+						<li><a href="#">Four</a></li>
+						<li><a href="#">Hamburgefonstiv</a></li>
+					</ul>
+				</div>
+				
+				<h3>Inverted Condensed Menu</h3>
+				<a href="#" class="show-markup button" data-for="inverted-condensed-menu-demo">Show Markup</a>
+				<div id="inverted-condensed-menu-demo" class="callout dark-background">
+					<nav class="inverted condensed menu">
+						<ul>
+							<li><a href="#">One</a></li>
+							<li class="current-menu-item"><a href="#">Selected</a></li>
+							<li><a href="#">Three</a></li>
+							<li><a href="#">Four</a></li>
+							<li><a href="#">Hamburgefonstiv</a></li>
+						</ul>
+					</nav>
+				</div>
+				
+				<h3>Inverted Light Menu</h3>
+				<a href="#" class="show-markup button" data-for="inverted-light-menu-demo">Show Markup</a>
+				<div id="inverted-light-menu-demo" class="callout dark-background">
+					<ul class="inverted light menu">
+						<li><a href="#">One</a></li>
+						<li class="current-menu-item"><a href="#">Selected</a></li>
+						<li><a href="#">Three</a></li>
+						<li><a href="#">Four</a></li>
+						<li><a href="#">Hamburgefonstiv</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<hr />
+		
+		
+		
+		<h2 id="secondary-menus">Secondary Menus</h2>
+		<div class="two-columns">
+			<div class="column">
+				<p>Secondary menus should be used for navigation which is relevant to the page content, but is not a major navigational block for the site.</p>
+				<p>Like menus, secondary menus should be marked up as <code>&lt;ul&gt;</code> or <code>&lt;ol&gt;</code> elements.</p>
+			</div>
+		</div>
+		<a href="#" class="show-markup button" data-for="secondary-menu-demo">Show Markup</a>
+		<div id="secondary-menu-demo">
+			<ul class="secondary-menu">
+				<li><a href="#">One</a></li>
+				<li class="current-menu-item"><a href="#">Selected</a></li>
+				<li><a href="#">Three</a></li>
+				<li><a href="#">Four</a></li>
+				<li><a href="#">Hamburgefonstiv</a></li>
+			</ul>
+		</div>
+		
+		<h3>Grid Aligned Secondary Menu</h3>
+		<div class="two-columns">
+			<div class="column">
+				<p>Grid aligned secondary menus have their contents aligned to the grid. This should be used for secondary navigation with short menu item names; longer names will be awkwardly wrapped within the grid cell.</p>
+			</div>
+			<div class="last column callout">
+				<p>It's worth noting that this variation was specifically designed for semesterly navigation, where menu items would never be longer than "Spring YYYY."</p>
+			</div>
+		</div>
+		<a href="#" class="show-markup button" data-for="grid-secondary-menu-demo">Show Markup</a>
+		<div id="grid-secondary-menu-demo">
+			<ul class="grid-aligned secondary-menu">
+				<li><a href="#">One</a></li>
+				<li class="current-menu-item"><a href="#">Selected</a></li>
+				<li><a href="#">Three</a></li>
+				<li><a href="#">Four</a></li>
+				<li><a href="#">Hamburgefonstiv</a></li>
+			</ul>
+		</div>
+		
+		
+		
+		<hr />
+		
+		
+		
+		<h2 id="hero-block">Hero Block</h2>
+		<div class="two-columns">
+			<div class="column">
+				<p>A hero block is intended to be the first thing a user sees when visiting the site. It consists of a hero graphic and a hero body, which should contain introductory text.</p>
+				<p>The hero block should be contained within an element with a <code>hero</code> class. The <code>&lt;img&gt;</code> element should be wrapped in an element with a <code>hero-graphic</code> class, and the hero body should be contained within an element with a <code>hero-body</code> class.</p>
+			</div>
+		</div>
+		<a href="#" class="show-markup button" data-for="hero-demo">Show Markup</a>
+		<div id="hero-demo">
+			<section class="hero">
+				<div class="hero-graphic">
+					<img src="sample-images/cif-balloons.jpg" alt="CIF covered in balloons" />
+				</div>
+				<div class="hero-body">
+					<h1>Hero Title</h1>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				</div>
+			</section>
+		</div>
+		
+		<h3>Masked Hero Graphic</h3>
+		<div class="two-columns">
+			<div class="column">
+				<p>The hero graphic can be masked to the CIF logo by using the <code>hero-graphic-logo-mask</code> class instead of <code>hero-graphic</code>.</p>
+			</div>
+		</div>
+		<a href="#" class="show-markup button" data-for="hero-overlay-demo">Show Markup</a>
+		<div id="hero-overlay-demo">
+			<section class="hero">
+				<div class="hero-graphic-logo-mask">
+					<img src="sample-images/cif-balloons.jpg" alt="CIF covered in balloons" />
+				</div>
+				<div class="hero-body">
+					<h1>Hero Title</h1>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</div>
+			</section>
+		</div>
+		
+		
+		
+		<hr />
+		
+		
+		
+		<h2 id="articles">Articles</h2>
+		<div class="two-columns">
+			<div class="column">
+				<p>An article is a block of serialized content with an <code>article</code> class. All articles should be contained inside an element with an <code>articles</code> class. Because serialized content usually has metadata associated with it, applying an <code>article-metadata</code> class to the metadata's container will style its contents appropriately.</p>
+				<p>Articles were specifically designed with the dimensions of a sidebar in mind. It is highly encouraged to pair a collection of articles with a sidebar containing archive navigation.</p>
+			</div>
+			<div class="last column callout">
+				<p>The example code uses <code>&lt;article&gt;</code> tags to wrap each article, and <code>&lt;footer&gt;</code> tags to wrap metadata. This is actually the semantically correct usage of <code>&lt;footer&gt;</code>, <a href="http://dev.w3.org/html5/markup/footer.html" title="W3C documentation on &lt;footer&gt;">see the docs</a>.</p>
+			</div>
+		</div>
+		<a href="#" class="show-markup button" data-for="article-demo">Show Markup</a>
+		<div id="article-demo" class="callout">
+			<section class="articles">
+				<article class="article">
+					<h3>Article Title</h3>
+					<footer class="article-metadata">
+						<p>Posted on January 1st, 2013</p>
+						<p>Posted by Nate Hart</p>
+					</footer>
+					
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</article>
+				
+				<article class="article">
+					<h3>Second Article Title</h3>
+					<footer class="article-metadata">
+						<p>Posted on January 1st, 2013</p>
+						<p>Posted by Nate Hart</p>
+					</footer>
+					
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</article>
+			</section>
+		</div>
+		
+		
+		
+		<hr />
+		
+		
+		
+		<h2 id="profile">Profile</h2>
+		<div class="two-columns">
+			<div class="column">
+				<p>A profile is a short block of content describing something specific, optionally with a profile image. A profile is contained within a wrapper with a <code>profile</code> class. Profile images should be wrapped within an element with a <code>profile-image</code> class &mdash; the <code>&lt;img&gt;</code> element itself should not have this class. The body of the profile should be wrapped in an element with a <code>profile-body</code> class. The body contents can be whatever you need.</p>
+			</div>
+		</div>
+		<a href="#" class="show-markup button" data-for="profile-demo">Show Markup</a>
+		<div class="two-columns">
+			<div id="profile-demo" class="column">
+				<div class="profile">
+					<figure class="profile-image">
+						<img src="sample-images/nejt.jpg" alt="Nate wearing a furry paw hat" />
+					</figure>
+					<div class="profile-body">
+						<h3>Nate Hart</h3>
+						<h6>CIF Designer &amp; Web Programmer</h6>
+						<p>This be the bloke who wrote the code for CIF's 30<sup>th</sup> anniversary website and put together this design library. At the time this profile module demo was created, he had completed his freshman year at the University of Rochester, where he was majoring in computer science.</p>
+						<p>You might think I'm telling you this because I'm narcissistic, but really I just wanted some realistic dummy copy that'd extend past the profile image so I could make sure the text didn't spill out underneath it.</p>
+					</div>
+				</div>
+				
+				<div class="profile">
+					<div class="profile-body">
+						<h3>Imageless Profile</h3>
+						<h6>You know it's inevitable</h6>
+						<p>Just because I don't have a profile image, doesn't mean my contents shouldn't be wrapped in a <code>.profile-body</code>.</p>
+					</div>
+				</div>
+			</div>
+			<div class="last column">
+				<div class="profile">
+					<figure class="profile-image">
+						<img src="sample-images/logo-black.png" alt="CIF logo" />
+					</figure>
+					<div class="profile-body">
+						<h3>Computer Interest Floor</h3>
+						<h6>At the University of Rochester</h6>
+						<p>The University of Rochester Computer Interest Floor is one of the best places to hang with people who love technology. Whether you're a world-class programmer, or just interested in getting your feet wet with technology, CIF is there for you.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<hr />
+		
+		
+		
+		<h2 id="site-footer">Footer</h2>
+		<div class="two-columns">
+			<div class="column">
+				<p>The footer is a major navigational landmark for the design. This is where copyright information and random quotes fit best. Secondary navigation also belongs in the footer.</p>
+				<p>Footers are created by giving an element a <code>footer</code> id. The footer's contents should be contained within an element with a <code>content</code> class.</p>
+				<p>Any menus in the footer will have additional styles applied to them. Elements with a <code>copyright</code> or <code>quote</code> class will also be given additional styling.</p>
+			</div>
+		</div>
+		<a href="#" class="show-markup include-container button" data-for="footer">Show Markup</a>
+
+	</div>
+	
+	<footer id="footer">
+		<div class="content">
+			<nav class="light menu inverted">
+				<ul>
+					<li><a href="#">One</a></li>
+					<li class="current-menu-item"><a href="#">Selected</a></li>
+					<li><a href="#">Three</a></li>
+					<li><a href="#">Hamburgefonstiv</a></li>
+				</ul>
+			</nav>
+			
+			<p class="copyright">&copy; 2013 CIF</p>
+			<p class="quote">Welcome to /dev/null.</p>
+		</div>
+	</footer>
+	
+	<script src="js/prism.js"></script>
+	<script src="js/show-markup.js"></script>
+	<script src="js/find-section-links.js"></script>
+	<script src="js/debug-button.js"></script>
+</body>
+</html>

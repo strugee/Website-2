@@ -1,0 +1,47 @@
+/**
+ * Defines classes for aligning blocks of content.
+ *
+ * These classes set the float property on the element,
+ * so they should be used with care. A common pitfall is
+ * that a container will collapse to have a height of 0 if
+ * all of its children are floated. The solution for this
+ * is to apply a clearfix to the parent.
+ *
+ * However, there is no markup class for applying a clearfix
+ * to discourage excessive use of these alignment classes.
+ * If you need finer control over the layout, consider
+ * creating a new class in the sass/modules directory
+ * with the layout you need. The more generalized your module is,
+ * the more reusable it will be throughout the design.
+ *
+ *
+ * Presentational markup provided by this file:
+ *
+ * .align-left: Aligns a block of content left.
+ *
+ * .align-right: Aligns a block of content right.
+ *
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+/**
+ * Aligns a block of content to the left.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.align-left {
+	float: left;
+}
+
+/**
+ * Aligns a block of content to the right.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.align-right {
+	float: right;
+}

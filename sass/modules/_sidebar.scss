@@ -1,0 +1,42 @@
+/**
+ * Defines styles for a sidebar.
+ *
+ *
+ * Presentational markup provided by this file:
+ *
+ * .sidebar: Defines a block of content as belonging in a sidebar.
+ *
+ *
+ * @dependency modules/_callout
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+/**
+ * Defines a block of sidebar content.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.sidebar {
+	// Sidebars are similar to callouts
+	@extend .callout; // Inherit styles from the callout class
+	
+	// Sidebar have narrow dimensions
+	@include column(4); // 4 columns wide
+	
+	margin-top: 0;
+	margin-right: 10px !important; // !important to overwrite inherited .callout margin with !important set
+	
+	ul, ol {
+		list-style: none;
+	}
+	
+	// Support for right-aligned sidebars
+	&.align-right {
+		float: right;
+		margin-left: 10px;
+		margin-right: -10px !important;
+	}
+}

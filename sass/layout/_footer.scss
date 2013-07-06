@@ -1,0 +1,91 @@
+/**
+ * Provides styles for the design's footer.
+ *
+ *
+ * Presentational markup provided by this file:
+ *
+ * #footer: Defines the footer. The contents of the footer should be
+ *          contained within a .content wrapper to align them to the grid.
+ *          If the footer contains a .copyright or .quote element, they will be
+ *          positioned appropriately within the footer.
+ *
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+/**
+ * Defines the page footer.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+#footer {
+	background-color: $color-primary-background;
+	color: $color-light-primary-text;
+	
+	/**
+	 * Because the sticky footer solution sets display: table-row, we can't set margins.
+	 * Instead, we'll have to use a transparent border. However, the border is half inside the element,
+	 * half outside, so we have to make the border twice as thick as the margin we want, and then
+	 * pull up the footer contents with negative margins. Gross, I know.
+	 *
+	 * Essentially, this is a 2 line tall top margin, with an additional 2 lines of top padding.
+	 */
+	border-top: rhythm(4) solid transparent;
+	
+	// Support for older IE
+	// * targets IE7
+	// IE7 doesn't support display: table, so the border is entirely inside the element.
+	// Therefore, we have to make the border smaller.
+	*border-top-width: rhythm(1);
+	
+	& > .content {
+		// Pull up the footer contents with negative margins. See border-top (above) for why we're doing this.
+		// Half of the border-top value is 2, and we want 1 line of internal padding, so only pull up by 1 line.
+		@include margin-leader(-1);
+	}
+	
+	.copyright {
+		float: left;
+	}
+	
+	.quote {
+		float: right;
+	}
+}
+
+
+
+/**
+ * Make the footer stick to the bottom of the page, even if there's
+ * not enough content to push it to the bottom of the viewport.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+// Necessary for <html> and <body> to be as tall as the viewport
+html, body {
+	height: 100%;
+}
+
+// The trick for having a sticky footer of variable height is to use table layout on the <body>
+body {
+	display: table;
+	border-collapse: collapse;
+    border-spacing: 0;
+	width: 100%;
+	
+	// The footer is then defined as a table row, which places it at the bottom of the <body>
+	#footer {
+		display: table-row;
+		
+		// Necessary to prevent the footer from expanding to fill the viewport in some browsers
+		height: 1px;
+		
+		// Support for older IE
+		// * targets IE7
+		*height: auto; // IE7 doesn't support display: table, so the height needs to be unset
+	}
+}

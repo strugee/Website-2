@@ -1,0 +1,135 @@
+/**
+ * Specifies styles for form elements.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+// Text fields
+
+input[type=text],
+input[type=tel],
+input[type=password],
+input[type=email],
+input[type=url],
+input[type=search],
+textarea {
+	/**
+	 * By default, padding is added to the 100% width, so
+	 * the total width is greater than 100%.
+	 * With box-sizing: border-box, padding is part of
+	 * that 100% and the total width of the element will be 100%.
+	 */
+	@include box-sizing(border-box);
+	
+	@include margin-trailer(1); // 1 line bottom margin
+	padding: 0 0.25em;
+	width: 100%;
+	
+	/**
+	 * 1 line tall.
+	 * No 2px offset because box-sizing:border-box; makes
+	 * the borders not count towards the element's height.
+	 */
+	height: rhythm(1);
+	
+	display: inline-block;
+	vertical-align: top; // Prevent the vertical rhythm from being thrown off by document whitespace
+	
+	background: $color-secondary-background;
+	border: 1px solid $color-primary-background;
+	
+	// WebKit can be very opinionated about how things like search fields should look.
+	// This resets them to appear like normal text fields.
+	-webkit-appearance: textfield;
+	
+	
+	
+	&:focus {
+		@extend .button:hover;
+		
+		outline: none; // Remove a glow that some browsers apply
+	}
+	
+	
+	
+	&[disabled], // IE8 and below don't support :disabled
+	&:disabled {
+		background-color: $color-light-primary-background;
+		color: $color-light-primary-text;
+	}
+}
+
+input[type=search] {
+	// Remove extraneous padding from search fields in WebKit
+	&::-webkit-search-decoration,
+	&::-webkit-search-results-decoration {
+		display: none;
+	}
+}
+
+textarea {
+	/**
+	 * 3 lines tall.
+	 * No 2px offset because box-sizing:border-box; makes
+	 * the borders not count towards the element's height.
+	 */
+	height: rhythm(3);
+	
+	// Only allow vertical resizing from the user.
+	// This affects the behavior of the drag handle in the bottom right corner of the textarea.
+	resize: vertical;
+}
+
+
+
+// Drop-down menus
+
+select {
+	@include margin-trailer(1); // 1 line bottom margin
+	
+	-webkit-appearance: menulist-button; // Gives us more control over the appearance in WebKit
+	
+	height: rhythm(1); // 1 line tall
+	display: block;
+	
+	
+	
+	&[disabled], // IE8 and below don't support :disabled
+	&:disabled {
+		background-color: $color-light-primary-background;
+		color: $color-light-primary-text;
+	}
+}
+
+
+
+// Form buttons
+
+input[type=button],
+input[type=reset],
+input[type=submit] {
+	@extend .button; // Inherit styles and states from the button class
+	
+	@include box-sizing(content-box); // Make borders and padding contribute to the element's dimensions
+	
+	cursor: pointer; // Makes the pointer look like the usual cursor for links
+	
+	// Support for older IE
+	// * targets IE7
+	*overflow: visible; // Remove extraneous padding in IE7
+	*line-height: 1em; // Aligns form button text acceptably in IE7
+}
+
+
+
+// Form headings and labels
+
+fieldset > legend {
+	font-weight: bold;
+}
+
+
+label {
+	display: block;
+}

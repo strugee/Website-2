@@ -1,0 +1,85 @@
+/**
+ * Provides presentational markup for adding scalable icons to text.
+ *
+ *
+ * Presentational markup provided by this file:
+ *
+ * .icon-*: Adds an icon before the text, where * defines which icon to use (such as "rss").
+ *
+ * .icon-after: Adds the icon after the text instead of before it.
+ *
+ * .icon-rss: Places an RSS icon with the text.
+ *
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+/**
+ * Places an icon before the content.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+[class*=icon-] { // Targets elements with a class that contains "icon-"
+	&:before,
+	&:after {
+		vertical-align: bottom; // Prevent document whitespace from creating extraneous vertical gaps
+		speak: none; // Tell screen readers to not read the icon
+	}
+	
+	&:before {
+		// Use the CIF icon font
+		font-family: $cif-icon-font;
+		
+		margin-right: 0.5em;
+	}
+	
+	&:after {
+		display: none;
+	}
+	
+	// Support for older IE
+	.before { @extend [class*=icon-]:before; }
+	.after { @extend [class*=icon-]:after; }
+}
+
+/**
+ * Places an icon after the content.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.icon-after {
+	&:before {
+		display: none;
+	}
+	
+	&:after {
+		// Use the CIF icon font
+		font-family: $cif-icon-font;
+		
+		margin-left: 0.5em;
+		display: inline; // Undo display: none set by [class*=icon-]:after
+	}
+	
+	// Support for older IE
+	.before { @extend .icon-after:before; }
+	.after { @extend .icon-after:after; }
+}
+
+/**
+ * Adds an RSS icon to the content.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.icon-rss {
+	&:before,
+	&:after {
+		content: $icon-font-rss;
+	}
+	
+	// Support for older IE
+	@include cif-ie-pseudo-element('both', $icon-font-rss, $icon-font-rss);
+}

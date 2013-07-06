@@ -1,0 +1,280 @@
+/**
+ * Establishes the basic typographic system for the design.
+ * This file sets heading styles, link styles, list styles, code styles (but not syntax highlighting),
+ * as well as form element font sizes.
+ *
+ *
+ * Presentational markup provided by this file:
+ *
+ * .caption: Defines a caption for a block of content.
+ *
+ * .text-left: Defines a block of content with left-aligned text.
+ *
+ * .text-center: Defines a block of content with centered text.
+ *
+ * .text-right: Defines a block of content with right-aligned text.
+ *
+ * .screen-reader-text: Defines text that does not need to be displayed,
+ *                      but is useful for screen readers or robots.
+ *
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+/**
+ * Establish the vertical rhythm for the design.
+ * @see http://compass-style.org/reference/compass/typography/vertical_rhythm/#mixin-establish-baseline
+ */
+@include establish-baseline($base-font-size);
+
+
+
+body {
+	@include adjust-font-size-to($base-font-size);
+	font-family: $sans-serif;
+	color: $color-primary-text;
+}
+
+
+
+// This comes before the headings because h6 inherits from this declaration
+small {
+	@include adjust-font-size-to($small-font-size);
+	margin: 0 0 rhythm(1, $small-font-size); // 1 line bottom margin
+	color: $color-light-primary-text;
+	
+	// Prevent document whitespace from creating extra vertical spacing
+	vertical-align: top;
+}
+
+
+
+// Headings
+
+h1, h2 {
+	font-family: $serif;
+	
+	// Our serif typeface lacks a bold weight, so we're relying on
+	// contrast of size and whitesapce to create a typographic hierarchy.
+	font-weight: normal;
+}
+
+h1 {
+	@include adjust-font-size-to($h1-font-size);
+	margin: rhythm(2, $h1-font-size) 0 rhythm(1, $h1-font-size); // 2 line top margin, 1 line bottom margin
+}
+
+h2 {
+	@include adjust-font-size-to($h2-font-size, 1); // 1 line tall
+	margin: rhythm(1, $h2-font-size) 0 rhythm(1, $h2-font-size); // 1 line top and bottom margin
+}
+
+h3 {
+	@include adjust-font-size-to($h3-font-size, 1); // 1 line tall
+	margin: rhythm(1, $h3-font-size) 0 0; // 1 line top margin
+	font-weight: bold;
+}
+
+h4 {
+	@include adjust-font-size-to($h4-font-size);
+	margin: rhythm(1, $h4-font-size) 0 0; // 1 line top margin
+	font-weight: bold;
+}
+
+h5 {
+	@include adjust-font-size-to($h5-font-size);
+	margin: rhythm(1, $h5-font-size) 0 0; // 1 line top margin
+	font-weight: bold;
+}
+
+h6 {
+	@extend small; // Inherit styles from the <small> element
+	
+	margin-top: 0;
+}
+
+
+
+// Basic text markup
+
+p {
+	margin: 0 0 rhythm(1); // 1 line bottom margin
+}
+
+blockquote {
+	@extend p; // Inherit styles from the <p> element
+	
+	font-family: $serif;
+	
+	&:before {
+		content: '\201C'; // Opening smart quote
+	}
+	
+	&:after {
+		content: '\201D'; // Closing smart quote
+	}
+}
+
+strong, b {
+	font-weight: bold;
+}
+
+em, i {
+	font-style: italic;
+}
+
+/**
+ * Defines a caption for a block of content.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+figcaption,
+.caption {
+	@extend small; // Inherit styles from the <small> element
+}
+
+/**
+ * Left aligns text.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.text-left {
+	text-align: left;
+}
+
+/**
+ * Centers text.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.text-center {
+	text-align: center;
+}
+
+/**
+ * Right aligns text.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.text-right {
+	text-align: right;
+}
+
+
+
+// Lists
+
+ul, ol {
+	@extend p; // Inherit styles from the <p> element
+	
+	list-style-position: outside;
+}
+
+ul {
+	list-style-type: disc;
+}
+
+ol {
+	list-style-type: decimal;
+}
+
+li {
+	// Nested lists
+	ul, ol {
+		margin-left: 2em;
+		margin-bottom: 0;
+	}
+}
+
+
+
+
+// Links
+
+a {
+	display: inline-block;
+	text-decoration: none;
+	color: $color-link;
+	
+	// Mouse over
+	&:hover {
+		color: $color-link-hover;
+	}
+	
+	// Mouse button depressed
+	&:active {
+		@include translate(1px, 1px); // Translate right 1px and down 1px
+	}
+}
+
+
+
+// Form fields
+
+input,
+textarea,
+select {
+	@include adjust-font-size-to($base-font-size);
+	font-family: $sans-serif;
+	color: $color-primary-text;
+}
+
+
+
+// Code
+
+pre {
+	@include adjust-font-size-to($base-font-size);
+}
+
+// Inline code
+code, kbd {
+	@include adjust-font-size-to($base-font-size);
+	font-family: $monospace;
+	
+	background-color: $color-light-primary-background;
+	vertical-align: bottom; // Prevent line height from being offset by inline <code> elements
+}
+
+// Block code
+pre > code {
+	// Remove the background that inline code has
+	background-color: transparent;
+	
+	// Normalize the code text
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+
+	// Set the tab size of the code
+	$tab-size: 4;
+	-moz-tab-size: $tab-size;
+	-o-tab-size: $tab-size;
+	tab-size: $tab-size;
+
+	// Prevent the browser from hyphenating any wrapped code
+	@include hyphens(none);
+}
+
+
+
+// Screen reader text
+
+/**
+ * Text that does not need to be displayed, but can be important for
+ * screen readers or robots.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.screen-reader-text {
+	position: absolute;
+	top: -9999px;
+	left: -9999px;
+}

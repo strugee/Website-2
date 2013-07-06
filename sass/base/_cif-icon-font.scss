@@ -1,0 +1,22 @@
+/**
+ * Imports the CIF icon font and defines variables for its various icons.
+ *
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+$cif-icon-font: 'CIF Icons';
+
+// Import the CIF Icon font to use it in CSS
+@include font-face($cif-icon-font, font-files('CIF-Icons.woff', 'CIF-Icons.ttf', 'CIF-Icons.svg'), 'CIF-Icons.eot', normal, normal);
+
+
+
+// Variables
+
+// CIF Logo
+$icon-font-logo: '\e001';
+
+// RSS icon
+$icon-font-rss: '\e000';

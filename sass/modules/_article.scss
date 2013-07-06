@@ -1,0 +1,77 @@
+/**
+ * Defines an article of serialized content.
+ *
+ *
+ * Presentational markup provided by this file:
+ *
+ * .articles: Defines a section which contains articles.
+ *
+ * .article: Defines an article of serialized content.
+ *
+ * .article-metadata: Defines metadata for the serialized content.
+ *
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
+/**
+ * Defines a section which contains articles.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.articles {
+	// Prevent floated children from collapsing this element to 0 height
+	@include cif-clearfix;
+	
+	display: inline-block;
+	vertical-align: top; // Prevent document whitespace from causing extra vertical gaps
+	width: span(8); // Span 8 grid columns
+	
+	.article:first-child {
+		// Remove upper margins to prevent them from stretching the upper "padding" of this element
+		@include cif-trim-vertical-margins;
+	}
+	
+	.article:last-child {
+		// Remove bottom margins to prevent them from stretching the bottom "padding" of this element
+		@include cif-trim-vertical-margins;
+	}
+}
+
+/**
+ * Creates a block of serialized content.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.article {
+	@include margin-trailer(1); // 1 line bottom margin
+	width: span(8); // Span 8 grid columns
+	
+	// Use margins to provide enough room for the metadata
+	margin-right: span(4) + $blueprint-grid-margin; // 4-column right margin with gutter
+}
+
+/**
+ * Defines metadata for the serialized content.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.article-metadata {
+	@include column(4); // 4 columns wide
+	
+	
+	// Pull the metadata off to the right
+	margin-right: span(-4) + $blueprint-grid-margin; // Pull right by 4 columns and the gutter
+	float: right;
+	
+	// Make metadata less visually pronounced than article contents
+	& > * {
+		@extend small; // Inherit styles from the <small> element
+		
+		margin: 0;
+	}
+}
