@@ -24,6 +24,7 @@
 [class*=icon-] { // Targets elements with a class that contains "icon-"
 	&:before,
 	&:after {
+		font-weight: normal;
 		vertical-align: bottom; // Prevent document whitespace from creating extraneous vertical gaps
 		speak: none; // Tell screen readers to not read the icon
 	}
