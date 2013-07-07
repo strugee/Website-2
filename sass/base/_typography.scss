@@ -54,10 +54,10 @@ small {
 
 h1, h2 {
 	font-family: $serif;
-	
-	// Our serif typeface lacks a bold weight, so we're relying on
-	// contrast of size and whitesapce to create a typographic hierarchy.
-	font-weight: normal;
+}
+
+h1, h2, h3, h4, h5 {
+	font-weight: 700;
 }
 
 h1 {
@@ -73,25 +73,23 @@ h2 {
 h3 {
 	@include adjust-font-size-to($h3-font-size, 1); // 1 line tall
 	margin: rhythm(1, $h3-font-size) 0 0; // 1 line top margin
-	font-weight: bold;
 }
 
 h4 {
 	@include adjust-font-size-to($h4-font-size);
 	margin: rhythm(1, $h4-font-size) 0 0; // 1 line top margin
-	font-weight: bold;
 }
 
 h5 {
 	@include adjust-font-size-to($h5-font-size);
 	margin: rhythm(1, $h5-font-size) 0 0; // 1 line top margin
-	font-weight: bold;
 }
 
 h6 {
 	@extend small; // Inherit styles from the <small> element
 	
 	margin-top: 0;
+	font-weight: 400;
 }
 
 
