@@ -6,6 +6,8 @@
  *
  * .sidebar: Defines a block of content as belonging in a sidebar.
  *
+ * .sidebar-content: Defines a block of content to go alongside a sidebar.
+ *
  *
  * @dependency modules/_callout
  *
@@ -39,4 +41,19 @@
 		margin-left: 10px;
 		margin-right: -10px !important;
 	}
+}
+
+/**
+ * Defines a block of content to go alongside a sidebar.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+.sidebar-content {
+	// Prevent floated children from collapsing this element to 0 height
+	@include cif-clearfix;
+	
+	display: inline-block;
+	vertical-align: top; // Prevent document whitespace from causing extra vertical gaps
+	width: span(12); // Span 12 grid columns
 }

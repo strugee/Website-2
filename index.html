@@ -12,7 +12,7 @@
 	<!-- Allows HTML5 elements to be styled in older versions of IE -->
 	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	
-	<link rel="stylesheet" href="stylesheets/style.css" />
+	<link rel="stylesheet" href="css/style.css" />
 	
 	<style>
 		/* Fix the debug button to the bottom right corner */
@@ -702,24 +702,23 @@ p.print_out() # Hello CIF</code></pre>
 			</div>
 		</div>
 		
-		<h3>Placing Sidebars with Content</h3>
+		<h3>Placing Sidebars Alongside Content</h3>
+		<div class="two-columns">
+			<div class="column">
+				<p>Content can easily be placed alongside a sidebar without flowing under it by placing the content within a container with a <code>sidebar-content</code> class.</p>
+			</div>
+			<div class="last column callout">
+				<p>Please note that articles do not need to be wrapped in an element with a <code>sidebar-content</code> class.</p>
+			</div>
+		</div>
 		<a href="#" class="show-markup button" data-for="sidebar-with-content-demo">Show Markup</a>
 		<div id="sidebar-with-content-demo">
 			<div class="sidebar">
-				<h4>Sidebar Example</h4>
-				
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				<p>A short sidebar.</p>
 			</div>
-			<div class="articles">
-				<article class="article">
-					<h4>Article Title</h4>
-					<footer class="article-metadata">
-						<p>Posted on January 1st, 2013</p>
-						<p>Posted by Nate Hart</p>
-					</footer>
-					
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				</article>
+			<div class="sidebar-content">
+				<p>Longer contents to go alongside the sidebar. Note how this paragraph does not spill out under the sidebar, like text usually does around floated elements.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 			</div>
 		</div>
 		
