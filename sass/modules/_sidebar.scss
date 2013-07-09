@@ -50,10 +50,18 @@
  * @since 1.0
  */
 .sidebar-content {
+	// Remove upper margins to prevent them from stretching the upper "padding" of this element
+	@include cif-trim-vertical-margins;
+	
 	// Prevent floated children from collapsing this element to 0 height
 	@include cif-clearfix;
 	
 	display: inline-block;
 	vertical-align: top; // Prevent document whitespace from causing extra vertical gaps
 	width: span(12); // Span 12 grid columns
+	
+	// Prevent list bullets from spilling out onto the sidebar
+	ul, ol {
+		list-style-position: inside;
+	}
 }
