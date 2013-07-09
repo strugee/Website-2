@@ -31,12 +31,16 @@
 	
 	.article:first-child {
 		// Remove upper margins to prevent them from stretching the upper "padding" of this element
-		@include cif-trim-vertical-margins;
+		& > :first-child {
+			margin-top: 0;
+		}
 	}
 	
 	.article:last-child {
 		// Remove bottom margins to prevent them from stretching the bottom "padding" of this element
-		@include cif-trim-vertical-margins;
+		& > :last-child {
+			margin-bottom: 0;
+		}
 	}
 }
 
