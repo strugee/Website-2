@@ -17,9 +17,9 @@
  *
  * Presentational markup provided by this file:
  *
- * .align-left: Aligns a block of content left.
+ * .align-left,.alignleft: Aligns a block of content left.
  *
- * .align-right: Aligns a block of content right.
+ * .align-right,.alignright: Aligns a block of content right.
  *
  *
  * @version 1.0
@@ -32,7 +32,8 @@
  * @version 1.0
  * @since 1.0
  */
-.align-left {
+.align-left,
+.alignleft {
 	float: left;
 }
 
@@ -42,6 +43,7 @@
  * @version 1.0
  * @since 1.0
  */
-.align-right {
+.align-right,
+.alignright {
 	float: right;
 }
