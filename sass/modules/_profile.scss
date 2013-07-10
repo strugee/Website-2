@@ -61,8 +61,13 @@
  * @since 1.0
  */
 .profile-body {
-	width: span(5); // Spans 5 columns
+	width: span(8); // Spans 8 columns
 	
-	// Use a left margin to push content away from where the profile image would be
-	margin-left: span(3) + $blueprint-grid-margin;
+	// Styles for when there is a profile image before the body
+	.profile-image + & {
+		width: span(5); // Spans 5 columns
+		
+		// Use a left margin to push content away from where the profile image would be
+		margin-left: span(3) + $blueprint-grid-margin;
+	}
 }
