@@ -25,7 +25,7 @@
 	&:before,
 	&:after {
 		font-weight: normal;
-		vertical-align: bottom; // Prevent document whitespace from creating extraneous vertical gaps
+		line-height: 1;
 		speak: none; // Tell screen readers to not read the icon
 	}
 	
