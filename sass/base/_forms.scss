@@ -133,3 +133,14 @@ fieldset > legend {
 label {
 	display: block;
 }
+
+
+
+// Form errors
+
+.form-error {
+	@extend small; // Inherit styles and states from the <small> element
+	
+	margin-bottom: 0;
+	color: $color-error;
+}
