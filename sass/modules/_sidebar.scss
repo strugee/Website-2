@@ -64,6 +64,6 @@
 	
 	// Prevent list bullets from spilling out onto the sidebar
 	ul, ol {
-		list-style-position: inside;
+		padding-left: 2em;
 	}
 }
