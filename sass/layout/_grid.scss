@@ -132,7 +132,7 @@
 	
 	// Last column
 	.column-2 {
-		@extend .last.column; // Inherit styles from the last column class
+		@include last; // Applies styles for the last column in a row
 	}
 }
 
@@ -150,7 +150,7 @@
 	
 	// Last column
 	.column-4 {
-		@extend .last.column; // Inherit styles from the last column class
+		@include last; // Applies styles for the last column in a row
 	}
 }
 
