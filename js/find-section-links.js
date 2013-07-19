@@ -4,10 +4,6 @@
  * There should be a menu element on the page with an id of "document-submenu" which will be
  * populated by <li>s linking to <h2>s within the document. All <h2> elements with an id set
  * will automatically be linked to when this script is invoked.
- *
- *
- * @version 1.0
- * @since 1.0
  */
 (function() {
 	'use strict'; // Use ECMAScript 5 strict mode (http://ejohn.org/blog/ecmascript-5-strict-mode-json-and-more/)

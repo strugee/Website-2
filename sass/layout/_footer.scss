@@ -8,17 +8,10 @@
  *          contained within a .content wrapper to align them to the grid.
  *          If the footer contains a .copyright or .quote element, they will be
  *          positioned appropriately within the footer.
- *
- *
- * @version 1.0
- * @since 1.0
  */
 
 /**
  * Defines the page footer.
- *
- * @version 1.0
- * @since 1.0
  */
 #footer {
 	background-color: $color-primary-background;
@@ -60,9 +53,6 @@
 /**
  * Make the footer stick to the bottom of the page, even if there's
  * not enough content to push it to the bottom of the viewport.
- *
- * @version 1.0
- * @since 1.0
  */
 
 // Necessary for <html> and <body> to be as tall as the viewport

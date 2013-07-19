@@ -9,17 +9,10 @@
  *          Any .menu or .secondary-menu in the header will have additional styles applied.
  *
  * .header-logo: Defines the header's CIF logo.
- *
- *
- * @version 1.0
- * @since 1.0
  */
 
 /**
  * Defines the page header.
- *
- * @version 1.0
- * @since 1.0
  */
 #header {
 	background-color: $color-primary-background;
@@ -37,9 +30,6 @@
 
 /**
  * Replaces the given element with the CIF logo.
- *
- * @version 1.0
- * @since 1.0
  */
 .header-logo {
 	// Normalize the font size

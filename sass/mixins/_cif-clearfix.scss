@@ -2,9 +2,6 @@
  * Prevents containers with floated children from collapsing to have no height.
  * This mixin is based on a clearfix solution documented here: http://nicolasgallagher.com/micro-clearfix-hack/
  * Most notably, this solution does not use overflow: hidden.
- *
- * @version 1.0
- * @since 1.0
  */
 @mixin cif-clearfix() {
 	/**

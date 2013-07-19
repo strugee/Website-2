@@ -10,9 +10,6 @@
  *                               The high resolution image will be scaled to be the same size as
  *                               the standard resolution image, so it should have the same aspect ratio.
  * @param string $type The file type of the images.
- *
- * @version 1.0
- * @since 1.0
  */
 @mixin cif-high-res-background-image($image, $high-res-image: '', $type: 'png') {
 	// If a high resolution image was not specified, assume it to be {$image}@2x

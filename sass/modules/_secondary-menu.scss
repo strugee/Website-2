@@ -11,17 +11,10 @@
  *                     This class should be applied to a <li>.
  *
  * .grid-aligned.secondary-menu: Defines a secondary menu aligned to a grid.
- *
- *
- * @version 1.0
- * @since 1.0
  */
 
 /**
  * Secondary menu with slight spacing between menu items.
- *
- * @version 1.0
- * @since 1.0
  */
 .secondary-menu {
 	// Prevent floated children from collapsing this element to 0 height
@@ -39,9 +32,6 @@
 	
 	/**
 	 * Defines the currently selected menu item.
-	 *
-	 * @version 1.0
-	 * @since 1.0
 	 */
 	.current-menu-item {
 		& > a {
@@ -58,9 +48,6 @@
 	
 	/**
 	 * Secondary navigation with each menu item aligned to the grid.
-	 *
-	 * @version 1.0
-	 * @since 1.0
 	 */
 	&.grid-aligned {
 		margin-left: -$blueprint-grid-margin;

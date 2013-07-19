@@ -19,17 +19,10 @@
  *                             to mask the image to the logo.
  *
  * .hero-body: Defines introductory hero content.
- *
- *
- * @version 1.0
- * @since 1.0
  */
 
 /**
  * Creates a block of hero content.
- *
- * @version 1.0
- * @since 1.0
  */
 .hero {
 	@include margin-leader(2); // 2 line top margin
@@ -41,9 +34,6 @@
 
 /**
  * Creates a hero graphic. This element should contain an <img> element.
- *
- * @version 1.0
- * @since 1.0
  */
 [class*=hero-graphic] { // Selects elements with a class containing "hero-graphic"
 	@include margin-trailer(1); // 1 line bottom margin
@@ -59,9 +49,6 @@
 /**
  * A hero graphic which has a knocked out CIF logo overlaid
  * to mask the image with the CIF logo.
- *
- * @version 1.0
- * @since 1.0
  */
 .hero-graphic-logo-mask {
 	// Fixed pixel units because we're using an image
@@ -104,9 +91,6 @@
 
 /**
  * Defines the body copy to go along with the hero graphic.
- *
- * @version 1.0
- * @since 1.0
  */
 .hero-body {
 	@include column(4); // 4 columns wide

@@ -5,9 +5,6 @@
  * In such cases, the top margin of the first child element creates "padding" at the top of the container,
  * along with the bottom margin of the last child, which can create excessive whitespace and cause
  * background colors to be applied unevenly.
- *
- * @version 1.0
- * @since 1.0
  */
 @mixin cif-trim-vertical-margins() {
 	// Targets the first direct child element

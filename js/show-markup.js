@@ -10,11 +10,7 @@
  * If the button has an "include-container" class, the markup for the element containing the
  * markup to display will also be included in the displayed markup.
  *
- *
  * @dependency js/prism.js
- *
- * @version 1.0
- * @since 1.0
  */
 (function() {
 
@@ -22,9 +18,6 @@
 
 /**
  * Listens for clicks on elements with a "show-markup" class.
- *
- * @version 1.0
- * @since 1.0
  */
 document.body.addEventListener('click', function(e) {
 	// Listen for clicks on elements with a show-markup class
@@ -76,8 +69,6 @@ document.body.addEventListener('click', function(e) {
  * @param string markupId The id of the element which contains the markup to display.
  * @param element button The button that was clicked.
  * @param bool includeContainer Whether to include the container element in the markup or not.
- * @version 1.0
- * @since 1.0
  */
 var displayMarkup = function(markupId, button, includeContainer) {
 		// Document fragment for managing DOM nodes in memory
@@ -124,8 +115,6 @@ var displayMarkup = function(markupId, button, includeContainer) {
  *
  * @param string markupId The id of the element whose displayed markup should be removed.
  * @param element button The button that was clicked.
- * @version 1.0
- * @since 1.0
  */
 hideMarkup = function(markupId, button) {
 		// The element containing the markup we want to hide
@@ -142,8 +131,6 @@ hideMarkup = function(markupId, button) {
  *
  * @param string markup The markup to reformat.
  * @return string The reformatted markup.
- * @version 1.0
- * @since 1.0
  */
 trimMarkup = function(markup) {
 	var reformattedMarkup = '',

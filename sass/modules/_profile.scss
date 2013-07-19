@@ -10,17 +10,10 @@
  * .profile-image: Defines an optional image to associate with the profile.
  *
  * .profile-body: Defines the body of a profile.
- *
- *
- * @version 1.0
- * @since 1.0
  */
 
 /**
  * Defines a profile.
- *
- * @version 1.0
- * @since 1.0
  */
 .profile {
 	@include margin-trailer(2); // 2 line bottom margin
@@ -37,9 +30,6 @@
 
 /**
  * Defines an optional profile image.
- *
- * @version 1.0
- * @since 1.0
  */
 .profile-image {
 	@include column(3); // 3 columns wide
@@ -56,9 +46,6 @@
 
 /**
  * Defines the body of the profile.
- *
- * @version 1.0
- * @since 1.0
  */
 .profile-body {
 	width: span(8); // Spans 8 columns

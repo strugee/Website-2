@@ -3,10 +3,6 @@
  *
  * This is done by attaching an event to all buttons with a "debug-button" class.
  * Clicking the button will set a "debug" class on the <body>.
- *
- *
- * @version 1.0
- * @since 1.0
  */
 document.body.addEventListener('click', function(e) {
 	'use strict'; // Use ECMAScript 5 strict mode (http://ejohn.org/blog/ecmascript-5-strict-mode-json-and-more/)

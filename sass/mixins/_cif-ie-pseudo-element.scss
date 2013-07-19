@@ -7,9 +7,6 @@
  * @param string $content The contents for the element. Defaults to ''.
  * @param string $second-content If $where is "both", this will be the content for the :after pseudo-element.
  *                               Defaults to ''.
- *
- * @version 1.0
- * @since 1.0
  */
 @mixin cif-ie-pseudo-element($where, $content: '', $second-content: '') {
 	@if ($where == "before") {

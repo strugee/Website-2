@@ -20,18 +20,11 @@
  *
  * .inverted.light.menu: Defines a light menu which has its menu item colors inverted.
  *
- *
  * @dependency modules/button
- *
- * @version 1.0
- * @since 1.0
  */
 
 /**
  * Menu with slight spacing between menu items.
- *
- * @version 1.0
- * @since 1.0
  */
 .menu {
 	// Prevent floated children from collapsing this element to 0 height
@@ -71,9 +64,6 @@
 	
 	/**
 	 * Defines the currently selected menu item.
-	 *
-	 * @version 1.0
-	 * @since 1.0
 	 */
 	.current-menu-item {
 		& > a {
@@ -90,9 +80,6 @@
 	
 	/**
 	 * Menu where menu items abut with each other.
-	 *
-	 * @version 1.0
-	 * @since 1.0
 	 */
 	&.condensed {
 		li {
@@ -104,9 +91,6 @@
 	
 	/**
 	 * Visually lighter menu with less pronounced menu items.
-	 *
-	 * @version 1.0
-	 * @since 1.0
 	 */
 	&.light {
 		li > a {
@@ -123,9 +107,6 @@
 		
 		/**
 		 * Light menu which has its menu item colors inverted.
-		 *
-		 * @version 1.0
-		 * @since 1.0
 		 */
 		&.inverted {
 			li > a {
@@ -147,9 +128,6 @@
 	
 	/**
 	 * Menu which has its menu item colors inverted.
-	 *
-	 * @version 1.0
-	 * @since 1.0
 	 */
 	&.inverted {
 		li > a {

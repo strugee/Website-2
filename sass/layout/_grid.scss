@@ -22,17 +22,10 @@
  *
  * .last.column: Specifies the last column.
  *               Elements with this class should be contained within a .*-columns wrapper.
- *
- *
- * @version 1.0
- * @since 1.0
  */
 
 /**
  * Aligns its contents to the grid.
- *
- * @version 1.0
- * @since 1.0
  */
 .content {
 	/**
@@ -66,9 +59,6 @@
 	
 	/**
 	 * Individual grid column.
-	 *
-	 * @version 1.0
-	 * @since 1.0
 	 */
 	[class*=column-], // Targets direct descendants which have a class attribute that contains "column-"
 	.column { 
@@ -95,9 +85,6 @@
 	
 	/**
 	 * A row of grid columns which is only as wide as its contents.
-	 *
-	 * @version 1.0
-	 * @since 1.0
 	 */
 	&.fluid {
 		// Don't horizontally center the row
@@ -120,9 +107,6 @@
 
 /**
  * Two column row of grid content.
- *
- * @version 1.0
- * @since 1.0
  */
 .two-columns {
 	[class*=column-], // Targets direct descendents which have a class attribute that contains "column-"
@@ -138,9 +122,6 @@
 
 /**
  * Four column row of grid content.
- *
- * @version 1.0
- * @since 1.0
  */
 .four-columns {
 	[class*=column-], // Targets direct descendents which have a class attribute that contains "column-"
@@ -158,9 +139,6 @@
 
 /**
  * Horizontal rule for separating design elements.
- *
- * @version 1.0
- * @since 1.0
  */
 hr {
 	// Compass mixin for aligning <hr> to the grid

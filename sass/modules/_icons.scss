@@ -9,17 +9,10 @@
  * .icon-after: Adds the icon after the text instead of before it.
  *
  * .icon-rss: Places an RSS icon with the text.
- *
- *
- * @version 1.0
- * @since 1.0
  */
 
 /**
  * Places an icon before the content.
- *
- * @version 1.0
- * @since 1.0
  */
 [class*=icon-] { // Targets elements with a class that contains "icon-"
 	&:before,
@@ -47,9 +40,6 @@
 
 /**
  * Places an icon after the content.
- *
- * @version 1.0
- * @since 1.0
  */
 .icon-after {
 	&:before {
@@ -71,9 +61,6 @@
 
 /**
  * Adds an RSS icon to the content.
- *
- * @version 1.0
- * @since 1.0
  */
 .icon-rss {
 	&:before,

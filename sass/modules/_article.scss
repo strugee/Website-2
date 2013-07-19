@@ -9,17 +9,10 @@
  * .article: Defines an article of serialized content.
  *
  * .article-metadata: Defines metadata for the serialized content.
- *
- *
- * @version 1.0
- * @since 1.0
  */
 
 /**
  * Defines a section which contains articles.
- *
- * @version 1.0
- * @since 1.0
  */
 .articles {
 	// Prevent floated children from collapsing this element to 0 height
@@ -46,9 +39,6 @@
 
 /**
  * Creates a block of serialized content.
- *
- * @version 1.0
- * @since 1.0
  */
 .article {
 	@include margin-trailer(1); // 1 line bottom margin
@@ -60,9 +50,6 @@
 
 /**
  * Defines metadata for the serialized content.
- *
- * @version 1.0
- * @since 1.0
  */
 .article-metadata {
 	@include column(4); // 4 columns wide

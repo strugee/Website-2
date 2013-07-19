@@ -20,17 +20,10 @@
  * .inverted.selected.button: Defines a selected button which has its colors inverted.
  *
  * .inverted.selected.light.button: Defines a light, selected button which has its colors inverted.
- *
- *
- * @version 1.0
- * @since 1.0
  */
 
 /**
  * A visually distinct button.
- *
- * @version 1.0
- * @since 1.0
  */
 .button {
 	/**
@@ -135,9 +128,6 @@
 	
 	/**
 	 * Button which is visually less distinct than a normal button.
-	 *
-	 * @version 1.0
-	 * @since 1.0
 	 */
 	&.light {
 		background-color: transparent;
@@ -156,9 +146,6 @@
 		
 		/**
 		 * Light button which is selected.
-		 *
-		 * @version 1.0
-		 * @since 1.0
 		 */
 		&.selected {
 			// Use the dimensions of a normal button
@@ -177,9 +164,6 @@
 	
 	/**
 	 * Button which is selected.
-	 *
-	 * @version 1.0
-	 * @since 1.0
 	 */
 	&.selected {
 		@extend .button:active; // Inherit styles from the active button class
@@ -193,9 +177,6 @@
 	
 	/**
 	 * Button which has its colors inverted.
-	 *
-	 * @version 1.0
-	 * @since 1.0
 	 */
 	&.inverted {
 		background-color: $color-primary-background;
@@ -217,9 +198,6 @@
 		
 		/**
 		 * Light button which has its colors inverted.
-		 *
-		 * @version 1.0
-		 * @since 1.0
 		 */
 		&.light {
 			background-color: transparent;
@@ -239,9 +217,6 @@
 		
 		/**
 		 * Selected button which has its colors inverted.
-		 *
-		 * @version 1.0
-		 * @since 1.0
 		 */
 		&.selected {
 			background: $inset-background-color;
