@@ -18,29 +18,30 @@
 
 ?>
 <form action="" method="post">
+	<?php
+
+	// Helps protect against automated spam and and improves security
+	protect_form( 'membership-form' );
+
+	?>
+
 	<fieldset>
 		<div class="four-columns">
 			<label class="column">
 				Name
-				<?php
-				Validate::error_messages( 'cif-name', "Please tell us your name, we'd like to get to know you!" );
-				?>
+				<?php Validate::error_messages( 'cif-name', "Please tell us your name, we'd like to get to know you!" ); ?>
 				<input type="text" <?php text_field( 'cif-name' ); ?> />
 			</label>
 
 			<label class="column">
 				Year
-				<?php
-				Validate::error_messages( 'cif-year', "Please tell us your class year." );
-				?>
+				<?php Validate::error_messages( 'cif-year', "Please tell us your class year." ); ?>
 				<input type="text" <?php text_field( 'cif-year' ); ?> />
 			</label>
 
 			<label class="column">
 				NetID
-				<?php
-				Validate::error_messages( 'netid', "We'll need your NetID before we can add you as a member." );
-				?>
+				<?php Validate::error_messages( 'netid', "We'll need your NetID before we can add you as a member." ); ?>
 				<input type="text" <?php text_field( 'netid' ); ?> />
 			</label>
 
@@ -52,9 +53,7 @@
 		<div class="four-columns">
 			<label class="column">
 				Email
-				<?php
-				Validate::error_messages( 'email', "We'll need your email address to get back to you." );
-				?>
+				<?php Validate::error_messages( 'email', "We'll need your email address to get back to you." ); ?>
 				<input type="text" <?php text_field( 'email' ); ?> />
 			</label>
 
@@ -68,16 +67,12 @@
 	<fieldset class="two-columns">
 		<label class="column">
 			How did you hear about CIF?
-			<?php
-			Validate::error_messages( 'howhear', "Please tell us how you heard about CIF." );
-			?>
+			<?php Validate::error_messages( 'howhear', "Please tell us how you heard about CIF." ); ?>
 			<textarea name="howhear"><?php textarea_contents( 'howhear' ); ?></textarea>
 		</label>
 		<label class="last column">
 			Why do you want to be a CIF member?
-			<?php
-			Validate::error_messages( 'interest', "Please tell us why you'd like to join CIF." );
-			?>
+			<?php Validate::error_messages( 'interest', "Please tell us why you'd like to join CIF." ); ?>
 			<textarea name="interest"><?php textarea_contents( 'interest' ); ?></textarea>
 		</label>
 	</fieldset>
@@ -120,9 +115,7 @@
 		<fieldset class="column">
 			<legend>When will you visit CIF?</legend>
 
-			<?php
-			Validate::error_messages( 'whenvisit', "Please tell us when you plan to visit CIF." );
-			?>
+			<?php Validate::error_messages( 'whenvisit', "Please tell us when you plan to visit CIF." ); ?>
 
 			<label>
 			<input <?php radio_field( 'whenvisit', 'Already' ); ?> />
@@ -148,9 +141,7 @@
 		<fieldset class="column">
 			<legend>Would you like to live on floor?</legend>
 
-			<?php
-			Validate::error_messages( 'liveonfloor', "Please tell us how you feel about living with us on CIF." );
-			?>
+			<?php Validate::error_messages( 'liveonfloor', "Please tell us how you feel about living with us on CIF." ); ?>
 
 			<label>
 				<input <?php radio_field( 'liveonfloor', 'Yes' ); ?> />

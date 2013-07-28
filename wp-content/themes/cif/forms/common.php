@@ -11,6 +11,62 @@
 
 
 
+/**
+ * Helps secure a form and protect it from automated spam.
+ * ensure_form_is_protected() should be called in the form's
+ * validate.php file with the same arguments to ensure that
+ * no funny stuff occurred.
+ *
+ * This method should be called within the <form> element
+ * in the form's form.php file.
+ *
+ * {$form_name}-extra is the name of the anti-spam form field.
+ *
+ * @param string $form_name A unique name for the form.
+ */
+function protect_form( $form_name ) {
+	// Output a nonce field
+	Validate::error_messages(
+		$form_name . '_nonce',
+		"Sorry, a security measure expired or was invalid. Try submitting the form again and see if it works. If not, <a href='mailto:board@cif.rochester.edu'>contact board</a>."
+	);
+
+	wp_nonce_field( $form_name, $form_name . '_nonce' );
+
+	// Output an accessibly hidden field which some spam bots will fill out
+	echo "<style>.$form_name-extra {position:absolute;top:-9999px;left:-9999px}</style>";
+
+	echo "<label class='$form_name-extra'>";
+
+	Validate::error_messages( $form_name . '-extra', "Please don't fill out this field." );
+
+	echo "Leave this field blank to confirm your humanity.";
+	echo "<input type='text' tabindex='-1' "; // Disallow tabbing to the form field
+	text_field( $form_name . '-extra' );
+
+	echo " /></label>";
+}
+
+/**
+ * Ensures that the form was (probably) submitted by a human,
+ * and that the human (probably) intended to submit the data they submitted.
+ *
+ * This should be called in the validate.php file of a form.
+ * This method only works if protect_form() is called with the
+ * same arguments in the form's form.php file.
+ *
+ * @param string $form_name A unique name for the form.
+ */
+function ensure_form_is_protected( $form_name ) {
+	// Ensure that the nonce is valid
+	Validate::validate_nonce( $form_name . '_nonce', $form_name );
+
+	// Ensure the anti-spam field is empty
+	Validate::validate_equal( $form_name . '-extra', '' );
+}
+
+
+
 // Functions for populating fields after the form has been submitted.
 // These are useful in cases where the form needs to be displayed again.
 

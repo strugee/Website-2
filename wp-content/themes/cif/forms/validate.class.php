@@ -6,6 +6,8 @@ define('ZIP_FORMAT',	1);
 define('DATE_FORMAT',	2);
 define('PHONE_FORMAT',	3);
 define('EMAIL_FORMAT',	4);
+define('EQUAL',	        5);
+define('NONCE',	        6);
 
 
 
@@ -187,7 +189,7 @@ class Validate {
 	 *
 	 * @param mixed $field_names Either a string with the name of the field to validate, or an array of strings of field names.
 	 */
-	public static function validate_email($field_names) {
+	public static function validate_email( $field_names ) {
 		if ( is_array( $field_names ) ) {
 			foreach ( $field_names as $field )
 				self::validate_email( $field );
@@ -203,6 +205,48 @@ class Validate {
 		// Regular expressions for email addresses are tricky and prone to mark the occassional strange address as invalid
 		if ( ! self::is_invalid( $field_names ) && ! preg_match( "~[a-z0-9!#$%&'*+/=?^_`{|}\~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}\~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?~", $_POST[$field_names] ) )
 			self::log_error( $field_names, EMAIL_FORMAT );
+	}
+
+	/**
+	 * Determines whether the specified fields have the specified value.
+	 * An error is logged if a field is invalid.
+	 *
+	 * @param mixed $field_names Either a string with the name of the field to validate, or an array of strings of field names.
+	 * @param string $value The value that the field must be equal to.
+	 * @param string $case Either "sensitive" or "insensitive". Defaults to "insensitive".
+	 */
+	public static function validate_equal( $field_names, $value, $case = 'insensitive' ) {
+		if ( is_array( $field_names ) ) {
+			foreach ( $field_names as $field )
+				self::validate_equal( $field, $value, $case );
+
+			return; // We're done with this method at this point
+		}
+
+		$field_value = $_POST[$field_names];
+
+		// If the value is case insensitive
+		if ( $case == 'insensitive' ) {
+			$field_value = strtolower( $field_value );
+			$value = strtolower( $value );
+		}
+		
+		// Check if the values are equal
+		if ( ! self::is_invalid( $field_names ) && $field_value !== $value )
+			self::log_error( $field_names, EQUAL );
+	}
+
+	/**
+	 * Determines whether the specified WordPress nonce is valid.
+	 * An error is logged if the nonce is invalid.
+	 *
+	 * @param string $nonce The name of the nonce to verify.
+	 * @param string $action Action name. Should give the context to what is taking place and be the same when the nonce was created. (Optional)
+	 */
+	public static function validate_nonce( $nonce, $action = '' ) {
+		// Check if the values are equal
+		if ( ! self::is_invalid( $nonce ) && ! wp_verify_nonce( $_POST[$nonce], $action ) )
+			self::log_error( $nonce, NONCE );
 	}
 }
 

@@ -27,4 +27,7 @@ Validate::validate_required( array(
 	'liveonfloor',
 ) );
 
+// Helps protect against automated spam and and improves security
+ensure_form_is_protected( 'membership-form' );
+
 $form_valid = ! Validate::has_errors();
