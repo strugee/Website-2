@@ -13,7 +13,7 @@
 define( 'TEMPLATE_DIRECTORY', get_template_directory_uri() );
 
 // The location of the stylesheet to use with this theme
-define( 'STYLESHEET_URL', TEMPLATE_DIRECTORY . '/Design/css/style.css' );
+define( 'STYLESHEET_URL', TEMPLATE_DIRECTORY . '/../../../../Website/cdn/css/style.css' );
 
 // The location of the favicon to use with this theme
-define( 'FAVICON_URL', TEMPLATE_DIRECTORY . '/Design/favicon.ico' );
+define( 'FAVICON_URL', TEMPLATE_DIRECTORY . '/../../../../Website/cdn/favicon.ico' );
