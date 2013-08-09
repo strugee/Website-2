@@ -5,17 +5,12 @@
  *
  * This file follows the coding standards detailed here:
  * http://codex.wordpress.org/WordPress_Coding_Standards
- *
- * @author Nate Hart (and future CIFers)
  */
-
-require_once 'functions.php';
-
 
 /**
  * Creates an SQL WHERE clause for retriving posts that occurred during a
  * spring semester. The year of the spring semester comes from calling
- * get_query_var('year').
+ * get_query_var( 'year' ).
  *
  * This function is intended to be used with the posts_where filter.
  * Usage: add_filter( 'posts_where', 'filter_posts_by_spring' );
@@ -31,8 +26,8 @@ function filter_posts_by_spring( $where ) {
 
 	// Escape the year query var for safe use in SQL
 	$year = $wpdb->escape( get_query_var( 'year' ) );
-	$where .= " AND post_date >= '" . $year . "-01-01'";
-	$where .= " AND post_date <= '" . $year . "-07-01'";
+	$where .= " AND post_date >= '$year-01-01'";
+	$where .= " AND post_date <= '$year-07-01'";
 	
 	return $where;
 }
@@ -40,7 +35,7 @@ function filter_posts_by_spring( $where ) {
 /**
  * Creates an SQL WHERE clause for retriving posts that occurred during a
  * fall semester. The year of the fall semester comes from calling
- * get_query_var('year').
+ * get_query_var( 'year' ).
  *
  * This function is intended to be used with the posts_where filter.
  * Usage: add_filter( 'posts_where', 'filter_posts_by_fall' );
@@ -56,8 +51,8 @@ function filter_posts_by_fall( $where ) {
 
 	// Escape the year query var for safe use in SQL
 	$year = $wpdb->escape( get_query_var( 'year' ) );
-	$where .= " AND post_date >= '" . $year . "-07-02'";
-	$where .= " AND post_date <= '" . $year . "-12-31'";
+	$where .= " AND post_date >= '$year-07-02'";
+	$where .= " AND post_date <= '$year-12-31'";
 
 	return $where;
 }
@@ -76,10 +71,12 @@ function filter_posts_by_fall( $where ) {
  * the post type is used.
  *
  * This function is intended for use with the pre_get_posts filter but should
- * not be added as filter directly. Instead, a wrapper function should be created
- * which accepts $query and makes a call to this function specifying $post_type.
- * The wrapper function should then be added as a filter by calling
+ * not be added as a filter directly. Instead, a wrapper function should be
+ * created which accepts $query and makes a call to this function specifying
+ * the $post_type argument. The wrapper function should then be added as a filter
+ * by calling
  * add_filter( 'pre_get_posts', 'my_modify_semesterly_archives_query_wrapper' );
+ *
  * Because this is a filter, don't forget to return the results of the call to
  * this function from your wrapper!
  *
@@ -95,11 +92,12 @@ function modify_semesterly_archives_query( $query, $post_type ) {
 		else
 			$semester = '';
 
-		// Make the semester query var lowercase if it was specified
 		if ( $semester ) {
+			// Make the semester query var lowercase if it was specified
 			$query->set( 'semester', $semester );
-		// Otherwise, use the latest semester with content for this post type
 		} else {
+			// Otherwise, use the latest semester with content for this post type
+			
 			// Get the lastest post
 			$latest_post = get_posts( array(
 				'post_type'   => $post_type,
@@ -157,7 +155,7 @@ function modify_semesterly_archives_query( $query, $post_type ) {
  * always display as "{Semester} {Year} $post_type_title". Without this filter
  * the archives may simply display the year as the title.
  *
- * This method is intended to be used with the wp_title hook. As so, the $title,
+ * This method is intended to be used with the wp_title hook. As such, the $title,
  * $sep, and $seplocation parameters are to maintain consistency with wp_title().
  *
  * This function should not be added as a filter directly. Instead, a wrapper
@@ -166,6 +164,7 @@ function modify_semesterly_archives_query( $query, $post_type ) {
  * this function specifying $post_type and $post_type_title. The wrapper function
  * should then be added as a filter by calling
  * add_filter( 'wp_title', 'my_semesterly_archive_title_filter_wrapper', 10, 3);
+ *
  * Because this is a filter, don't forget to return the results of the call to
  * this function from your wrapper!
  *
@@ -191,7 +190,7 @@ function semesterly_archive_title_filter( $title, $post_type, $post_type_title, 
 		return " $sep $title";
 	}
 
-	// The title will be set to the return value of this filter,
+	// The title will be set to the value returned by this filter,
 	// so we must return the title even if we did nothing to it.
 	return $title;
 }

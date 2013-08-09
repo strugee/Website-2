@@ -1,13 +1,11 @@
 <?php
 
 /**
- * Contains the page heading and sidebar for the announcements archive.
- * Also opens the articles container element.
+ * Page heading and sidebar for the announcements archive.
+ * Also opens the .articles container element.
  *
  * This file follows the coding standards detailed here:
  * http://codex.wordpress.org/WordPress_Coding_Standards
- *
- * @author Nate Hart (and future CIFers)
  */
 
 ?>
@@ -24,4 +22,5 @@
 
 	?>
 </nav>
+
 <div class="articles">

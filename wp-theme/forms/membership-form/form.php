@@ -1,19 +1,19 @@
 <?php
 
 /**
- * Outputs the markup for this form.
+ * Markup for the CIF membership form.
  * 
  * PLEASE NOTE: WordPress reserves certain POST values for itself,
- * so any form fields with those names may causes a 404 to be returned
+ * so any form fields with those names may cause a 404 to be returned
  * instead of the form functioning properly. This includes common names
  * like "name" and "year". See http://codex.wordpress.org/WordPress_Query_Vars#Query_variables for a list of reserved names.
  *
  * forms/functions.php uses this file to display the form.
  *
+ * The Validator class is available for displaying error messages.
+ *
  * This file follows the coding standards detailed here:
  * http://codex.wordpress.org/WordPress_Coding_Standards
- *
- * @author Nate Hart (and future CIFers)
  */
 
 ?>
@@ -29,19 +29,19 @@
 		<div class="four-columns">
 			<label class="column">
 				Name
-				<?php Validate::error_messages( 'cif-name', "Please tell us your name, we'd like to get to know you!" ); ?>
+				<?php Validator::error_messages( 'cif-name', "Please tell us your name, we'd like to get to know you!" ); ?>
 				<input type="text" <?php text_field( 'cif-name' ); ?> />
 			</label>
 
 			<label class="column">
 				Year
-				<?php Validate::error_messages( 'cif-year', "Please tell us your class year." ); ?>
+				<?php Validator::error_messages( 'cif-year', "Please tell us your class year." ); ?>
 				<input type="text" <?php text_field( 'cif-year' ); ?> />
 			</label>
 
 			<label class="column">
 				NetID
-				<?php Validate::error_messages( 'netid', "We'll need your NetID before we can add you as a member." ); ?>
+				<?php Validator::error_messages( 'netid', "We'll need your NetID before we can add you as a member." ); ?>
 				<input type="text" <?php text_field( 'netid' ); ?> />
 			</label>
 
@@ -53,7 +53,7 @@
 		<div class="four-columns">
 			<label class="column">
 				Email
-				<?php Validate::error_messages( 'email', "We'll need your email address to get back to you." ); ?>
+				<?php Validator::error_messages( 'email', "We'll need your email address to get back to you." ); ?>
 				<input type="text" <?php text_field( 'email' ); ?> />
 			</label>
 
@@ -67,12 +67,12 @@
 	<fieldset class="two-columns">
 		<label class="column">
 			How did you hear about CIF?
-			<?php Validate::error_messages( 'howhear', "Please tell us how you heard about CIF." ); ?>
+			<?php Validator::error_messages( 'howhear', "Please tell us how you heard about CIF." ); ?>
 			<textarea name="howhear"><?php textarea_contents( 'howhear' ); ?></textarea>
 		</label>
 		<label class="last column">
 			Why do you want to be a CIF member?
-			<?php Validate::error_messages( 'interest', "Please tell us why you'd like to join CIF." ); ?>
+			<?php Validator::error_messages( 'interest', "Please tell us why you'd like to join CIF." ); ?>
 			<textarea name="interest"><?php textarea_contents( 'interest' ); ?></textarea>
 		</label>
 	</fieldset>
@@ -115,7 +115,7 @@
 		<fieldset class="column">
 			<legend>When will you visit CIF?</legend>
 
-			<?php Validate::error_messages( 'whenvisit', "Please tell us when you plan to visit CIF." ); ?>
+			<?php Validator::error_messages( 'whenvisit', "Please tell us when you plan to visit CIF." ); ?>
 
 			<label>
 			<input <?php radio_field( 'whenvisit', 'Already' ); ?> />
@@ -141,7 +141,7 @@
 		<fieldset class="column">
 			<legend>Would you like to live on floor?</legend>
 
-			<?php Validate::error_messages( 'liveonfloor', "Please tell us how you feel about living with us on CIF." ); ?>
+			<?php Validator::error_messages( 'liveonfloor', "Please tell us how you feel about living with us on CIF." ); ?>
 
 			<label>
 				<input <?php radio_field( 'liveonfloor', 'Yes' ); ?> />

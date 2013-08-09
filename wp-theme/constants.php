@@ -5,34 +5,62 @@
  *
  * This file follows the coding standards detailed here:
  * http://codex.wordpress.org/WordPress_Coding_Standards
- *
- * @author Nate Hart (and future CIFers)
  */
 
 /**
+ * Important variables:
+ *
  * STYLESHEET_URL: The location of the theme's stylesheet.
  *                 We don't use WordPress's style.css for more
  *                 portability and caching from our CDN.
  * FAVICON_URL: The location of the theme's favicon.
+ * MEMBERSHIP_FORM_EMAIL_TO: To field of the email sent when
+ *                           the membership form is submitted.
+ * MEMBERSHIP_FORM_EMAIL_HEADERS Additional headers for the email sent
+ *                               when the membership form is submitted.
+ * MEMBERSHIP_FORM_EMAIL_SUBJECT Subject field of the email sent when
+ *                               the membership form is submitted.
+ *                               {{name}} will be replaced with the
+ *                               student's name.
  */
+
+
+// Whether special debugging settings should be used
+// This may cause different behavoir in other parts of this theme
+define( 'THEME_DEBUG', false );
+
+// Whether the debugging constants should be used
+// This will only change the values of the constants defined in this file
+define( 'USE_DEBUG_CONSTANTS', true );
+
 
 // The location of the theme directory
 define( 'TEMPLATE_DIRECTORY', get_template_directory_uri() );
 
-// Whether special debugging settings should be used
-define( 'THEME_DEBUG', true );
 
-if ( THEME_DEBUG ) {
-	// Theme debugging/development settings
+if ( THEME_DEBUG || USE_DEBUG_CONSTANTS ) {
+	// Theme debugging/development constants
 
 	define( 'STYLESHEET_URL', TEMPLATE_DIRECTORY . '/../../../../Website/cdn/css/style.css' );
 
 	define( 'FAVICON_URL', TEMPLATE_DIRECTORY . '/../../../../Website/cdn/favicon.ico' );
+
+	define( 'MEMBERSHIP_FORM_EMAIL_TO', 'board@cif.rochester.edu' );
+
+	define( 'MEMBERSHIP_FORM_EMAIL_HEADERS', 'From: "Membership Application" <root@web1.cif.rochester.edu>' );
+
+	define( 'MEMBERSHIP_FORM_EMAIL_SUBJECT', 'CIF Membership Application for {{name}}' );
 } else {
-	// Settings for the live site
+	// Constants for the live site
 	
 	define( 'STYLESHEET_URL', 'cdn.cif.rochester.edu/style.css' );
 
 	define( 'FAVICON_URL', 'cdn.cif.rochester.edu/favicon.ico' );
+
+	define( 'MEMBERSHIP_FORM_EMAIL_TO', 'board@cif.rochester.edu' );
+
+	define( 'MEMBERSHIP_FORM_EMAIL_HEADERS', 'From: "Membership Application" <root@web1.cif.rochester.edu>' );
+
+	define( 'MEMBERSHIP_FORM_EMAIL_SUBJECT', 'CIF Membership Application for {{name}}' );
 }
 

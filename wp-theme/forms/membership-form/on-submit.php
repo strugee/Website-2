@@ -2,16 +2,15 @@
 
 /**
  * Handles the submission of valid form data.
+ * A success message is displayed if the submission email was sent successfully.
  *
  * This file follows the coding standards detailed here:
  * http://codex.wordpress.org/WordPress_Coding_Standards
- *
- * @author Nate Hart (and future CIFers)
  */
 
-$email_to = 'board@cif.rochester.edu';
-$email_headers = 'From: "Membership Application" <root@web1.cif.rochester.edu>';
-$subject = 'CIF Membership Application for ' . $_POST['cif-name'];
+$email_to = MEMBERSHIP_FORM_EMAIL_TO;
+$email_headers = MEMBERSHIP_FORM_EMAIL_HEADERS;
+$subject = str_replace( '{{name}}', $_POST['cif-name'], MEMBERSHIP_FORM_EMAIL_SUBJECT );
 
 
 
@@ -36,5 +35,7 @@ if ( mail( $email_to, $subject, $message, $email_headers ) ) {
 	// Sending the email failed, display an error message and the form
 	echo "<p class='form-error'>Sorry, your application couldn't be emailed to our Executive Board. Try <a href='mailto:board@cif.rochester.edu'>contacting board</a> with your application manually and let them know that something went wrong here. We're sorry!</p>";
 
+	// Not using our get_form() function because we only want the markup,
+	// not the automatic form handling as well
 	require 'form.php';
 }

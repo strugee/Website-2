@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Contains the markup for displaying the home page.
+ * Template for the home page.
  * This includes a hero block with a large, randomized graphic
  * masked with the CIF logo, blurbs for CIF services,
  * an upcoming events sidebar, and our latest announcements.
@@ -11,8 +11,6 @@
  *
  * This file follows the coding standards detailed here:
  * http://codex.wordpress.org/WordPress_Coding_Standards
- *
- * @author Nate Hart (and future CIFers)
  */
 
 // Template Name: Home Page
@@ -43,6 +41,7 @@ get_header(); ?>
 			<div class="hero-graphic-logo-mask">
 				<img src="<?php echo $hero_src; ?>" alt="<?php echo $hero_alt; ?>" />
 			</div>
+
 			<div class="hero-body">
 				<h1><?php the_title(); ?></h1>
 				<?php the_field( 'welcome_paragraph' ); ?>
@@ -85,10 +84,11 @@ get_header(); ?>
 		<?php echo do_shortcode( '[google-calendar-events id="1" type="list" max="3"]' ); ?>
 	</div>
 
-	<section class="articles">
+	<?php // id allows the subheader to link to this section of the page ?>
+	<section class="articles" id="announcements">
 		<h2>
 			Announcements
-			<a class="icon-rss" href="<?php bloginfo('rss2_url'); ?>?post_type=announcements">
+			<a class="icon-rss" href="<?php bloginfo( 'rss2_url' ); ?>?post_type=announcements">
 				<span class="screen-reader-text">RSS feed</span>
 			</a>
 		</h2>
@@ -105,12 +105,12 @@ get_header(); ?>
 			while ( $announcements_query->have_posts() ) {
 				$announcements_query->the_post();
 
-				get_template_part( 'content', 'announcements' );
+				get_template_part( 'templates/content', 'announcements' );
 			}
 
 			echo '<a class="button" href="announcements">See older announcements</a>';
 		} else {
-			get_template_part( 'no-content', 'announcements' );
+			get_template_part( 'templates/no-content', 'announcements' );
 		}
 		
 		?>

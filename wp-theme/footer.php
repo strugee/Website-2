@@ -8,8 +8,6 @@
  *
  * This file follows the coding standards detailed here:
  * http://codex.wordpress.org/WordPress_Coding_Standards
- *
- * @author Nate Hart (and future CIFers)
  */
 
 ?>
@@ -31,9 +29,9 @@
 
 			// Get a random quote
 			$quote_settings = get_option( 'cif-quotes' );
-			$quotes = explode("\n", $quote_settings['quotes']);
+			$quotes = explode( "\n", $quote_settings['quotes'] );
 
-			$quote = $quotes[ array_rand($quotes) ];
+			$quote = $quotes[ array_rand( $quotes ) ];
 
 			?>
 
@@ -43,8 +41,10 @@
 	
 	<?php
 
-	// wp_footer is an important hook for loading assets
-	// which need to be output after the contents of the page.
+	/**
+	 * wp_footer is an important hook for loading assets
+	 * which need to be output after the contents of the page.
+	 */
 	wp_footer();
 
 	?>

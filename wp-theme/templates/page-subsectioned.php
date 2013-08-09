@@ -9,16 +9,14 @@
  *
  * This file follows the coding standards detailed here:
  * http://codex.wordpress.org/WordPress_Coding_Standards
- *
- * @author Nate Hart (and future CIFers)
  */
 
 // Template Name: Subsectioned Document
 
 get_header();
 
-while ( have_posts() ): ?>
-	<?php the_post(); ?>
+while ( have_posts() ):
+	the_post(); ?>
 
 	<div class="content">
 		<h1><?php the_title(); ?></h1>
@@ -26,10 +24,11 @@ while ( have_posts() ): ?>
 		<div class="sidebar">
 			<h3>Contents</h3>
 			<ul class="secondary-menu">
-				<?php $section_int = 0; ?>
-				<?php while( has_sub_field( 'sections' ) ): ?>
-					<?php
+				<?php
+	
+				$section_int = 0;
 
+				while( has_sub_field( 'sections' ) ):
 					$section_int += 1;
 					$section_number = $section_int . '.';
 					$title = $section_number . ' ' . get_sub_field( 'section_title' );
@@ -41,10 +40,11 @@ while ( have_posts() ): ?>
 						</a>
 						<?php if ( get_sub_field( 'subsections' ) ): ?>
 							<ul>
-								<?php $subsection_int = 0; ?>
-								<?php while ( has_sub_field( 'subsections' ) ): ?>
-									<?php
-									
+								<?php
+				
+								$subsection_int = 0;
+
+								while ( has_sub_field( 'subsections' ) ):
 									$subsection_int += 1;
 									$subsection_number = $section_number . $subsection_int . '.';
 									$title = $subsection_number . ' ' . get_sub_field( 'subsection_title' );
@@ -55,20 +55,21 @@ while ( have_posts() ): ?>
 											<?php echo $title; ?>
 										</a>
 									</li>
-								<?php endwhile; ?>
+								<?php endwhile; // while has subsections ?>
 							</ul>
-						<?php endif; ?>
+						<?php endif; // if has subsections ?>
 					</li>
-				<?php endwhile; ?>
+				<?php endwhile; // while has sections ?>
 			</ul>
 		</div> <!-- .sidebar -->
 
 		<div class="fluid two-columns sidebar-content">
 			<div class="column">
-				<?php $section_int = 0; ?>
-				<?php while( has_sub_field( 'sections' ) ): ?>
-					<?php
-					
+				<?php
+									
+				$section_int = 0;
+				
+				while( has_sub_field( 'sections' ) ):
 					$section_int += 1;
 					$section_number = $section_int . '.';
 					$title = $section_number . ' ' . get_sub_field( 'section_title' );
@@ -78,22 +79,27 @@ while ( have_posts() ): ?>
 
 					<?php the_sub_field( 'section_contents' ); ?>
 
-					<?php $subsection_int = 0; ?>
-					<?php while ( has_sub_field( 'subsections' ) ): ?>
-						<?php
-						
+					<?php
+					
+					$subsection_int = 0;
+
+					while ( has_sub_field( 'subsections' ) ):
 						$subsection_int += 1;
 						$subsection_number = $section_number . $subsection_int . '.';
 						$title = $subsection_number . ' ' . get_sub_field( 'subsection_title' );
-						
+
 						?>
+
 						<h3 id="<?php echo urlencode( $title ); ?>"><?php echo $title; ?></h3>
 						
 						<?php the_sub_field( 'subsection_contents' ); ?>
-					<?php endwhile; ?>
-				<?php endwhile; ?>
+					<?php endwhile; // while has subsections ?>
+				<?php endwhile; // while has sections ?>
 			</div>
 		</div>
 	</div>
-<?php endwhile; ?>
-<?php get_footer();
+<?php
+
+endwhile;
+
+get_footer();

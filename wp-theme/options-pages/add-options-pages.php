@@ -4,7 +4,8 @@
  * Registers and adds custom options pages to the
  * Settings page in WordPress.
  *
- * @author Nate Hart (and future CIFers)
+ * This class follows the coding standards detailed here:
+ * http://codex.wordpress.org/WordPress_Coding_Standards
  */
 
 /**
@@ -18,15 +19,15 @@ function cif_add_options_pages() {
 }
 add_action( 'admin_menu', 'cif_add_options_pages' );
 
+
 /**
- * Registers settings and settings sections/fields for
- * custom options pages.
+ * Registers settings and settings sections/fields for custom options pages.
  */
 function cif_register_option_settings() {
 	// Options for editing CIF quotes
 	register_setting( 'cif-quotes', 'cif-quotes' );
-	add_settings_section('cif-quotes-main', 'Quotes', 'cif_quotes_section_text', 'cif-quotes');
-	add_settings_field('cif-quotes', 'Quotes', 'cif_quotes_field_markup', 'cif-quotes', 'cif-quotes-main');
+	add_settings_section( 'cif-quotes-main', 'Quotes', 'cif_quotes_section_text', 'cif-quotes' );
+	add_settings_field( 'cif-quotes', 'Quotes', 'cif_quotes_field_markup', 'cif-quotes', 'cif-quotes-main' );
 }
 add_action( 'admin_init', 'cif_register_option_settings' );
 

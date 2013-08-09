@@ -1,13 +1,11 @@
 <?php
 
 /**
- * Contains the page heading and sidebar for the meeting minutes archive.
+ * Page heading and sidebar for the meeting minutes archive.
  * Also opens the two column layout container element.
  *
  * This file follows the coding standards detailed here:
  * http://codex.wordpress.org/WordPress_Coding_Standards
- *
- * @author Nate Hart (and future CIFers)
  */
 
 ?>
@@ -25,4 +23,5 @@
 	
 	?>
 </nav>
+
 <div class="two-columns">

@@ -5,32 +5,31 @@
  *
  * This file follows the coding standards detailed here:
  * http://codex.wordpress.org/WordPress_Coding_Standards
- *
- * @author Nate Hart (and future CIFers)
  */
 
-require_once 'validate.class.php';
+require_once 'Validator.class.php';
 require_once 'common.php';
 
 /**
- * Returns the markup for the form with the given name, automatically handling form
+ * Returns the markup for the form of the given name, automatically handling form
  * submission and validation. The name of the form is the name of the
- * subdirectory of the forms/ directory which it resides in.
+ * subdirectory of the forms directory which it resides in.
  *
  * The form directory must have a form.php file which outputs the
  * markup for the form.
  *
  * @param string $name The name of the form.
- * @return string The markup for the form, or a submission success method.
+ * @return string The markup for the form, or a submission success message if it was submitted successfully.
  */
 function get_form( $name ) {
 	if ( form_was_submitted( $name ) ) {
-		// If the form data is valid, submit it
-		if ( form_is_valid( $name ) )
+		if ( form_is_valid( $name ) ) {
+			// If the form data is valid, submit it
 			return get_submitted_form( $name );
-		// Otherwise, display the form again
-		else
+		} else {
+			// Otherwise, display the form again
 			return get_form_markup( $name );
+		}
 	} else {
 		// Display the form if it was not submitted
 		return get_form_markup( $name );
@@ -40,8 +39,8 @@ function get_form( $name ) {
 
 
 /**
- * Returns the markup for the form with the given name.
- * The name of the form is the name of the subdirectory of the forms/ directory
+ * Returns the markup for the form of the given name.
+ * The name of the form is the name of the subdirectory of the forms directory
  * which it resides in.
  *
  * @param string $name The name of the form.
@@ -65,7 +64,7 @@ function get_form_markup( $name ) {
 
 /**
  * Determines whether the form with the given name was submitted.
- * The name of the form is the name of the subdirectory of the forms/ directory
+ * The name of the form is the name of the subdirectory of the forms directory
  * which it resides in.
  *
  * The form directory must have a was-submitted.php file which sets the
@@ -103,13 +102,13 @@ function form_is_valid( $name ) {
 
 /**
  * Handles the submission of valid for data for the form with the specified name.
- * The name of the form is the name of the subdirectory of the forms/ directory
+ * The name of the form is the name of the subdirectory of the forms directory
  * which it resides in.
  *
- * The form directory must have a on-submit.php file.
+ * The form directory must have an on-submit.php file.
  *
  * @param string $name The name of the form.
- * @return string The markup for the form submission template.
+ * @return string The markup for the submitted form template.
  */
 function get_submitted_form( $name ) {
 	// Start the output buffer

@@ -10,13 +10,11 @@
  *
  * This file follows the coding standards detailed here:
  * http://codex.wordpress.org/WordPress_Coding_Standards
- *
- * @author Nate Hart (and future CIFers)
  */
 
 
 
-Validate::validate_required( array(
+Validator::validate_required( array(
 	'cif-name',
 	'cif-year',
 	'netid',
@@ -30,4 +28,4 @@ Validate::validate_required( array(
 // Helps protect against automated spam and and improves security
 ensure_form_is_protected( 'membership-form' );
 
-$form_valid = ! Validate::has_errors();
+$form_valid = ! Validator::found_validation_errors();

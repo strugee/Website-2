@@ -1,12 +1,10 @@
 <?php
 
 /**
- * Contains the markup for displaying a single column of content.
+ * Markup for a single column of content.
  *
  * This file follows the coding standards detailed here:
  * http://codex.wordpress.org/WordPress_Coding_Standards
- *
- * @author Nate Hart (and future CIFers)
  */
 
 // Check if additional design options were specified and
@@ -15,7 +13,7 @@ $classes = '';
 if ( get_sub_field( 'design_options' ) ) {
 	$options = get_sub_field( 'design_options' );
 
-	if ( in_array( 'is_callout', $options) )
+	if ( in_array( 'is_callout', $options ) )
 		$classes .= ' callout';
 }
 

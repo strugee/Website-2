@@ -1,14 +1,11 @@
 <?php
 
 /**
- * Board minutes template for when there is no content to display.
- * This is used when no board minutes have been posted for the
- * requested semester.
+ * Template for when there are no board minutes posts to display.
+ * Commonly used when there are no board minutes for the requested semester.
  *
  * This file follows the coding standards detailed here:
  * http://codex.wordpress.org/WordPress_Coding_Standards
- *
- * @author Nate Hart (and future CIFers)
  */
 
 ?>

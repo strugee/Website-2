@@ -10,19 +10,13 @@
  *
  * The Announcements archive can be found at
  * {home_url}/announcements
- * (This assumes that permalinks are "pretty" and set
- * to be by post name)
+ * (This assumes that permalinks are "pretty" and set to be by post name)
  *
  * The Announcements post type is registered as "announcements".
  *
  * This file follows the coding standards detailed here:
  * http://codex.wordpress.org/WordPress_Coding_Standards
- *
- * @author Nate Hart (and future CIFers)
  */
-
-require_once 'common.php';
-
 
 /**
  * Registers the Announcements post type.
@@ -125,8 +119,9 @@ add_filter( 'generate_rewrite_rules', 'add_announcements_url_rewrite_rules' );
 
 
 /**
- * Applies the current-menu-item class to any menu item with the title "Announcements"
- * in a WordPress menu if the current page is an announcements archive.
+ * Applies the current-menu-item class to any menu item with
+ * the title "Announcements" in a WordPress menu if the current page
+ * is an announcements archive.
  *
  * @param array $class The classes to apply to the menu item.
  * @param object $menu_item The menu item object.

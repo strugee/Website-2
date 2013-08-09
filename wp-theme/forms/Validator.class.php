@@ -1,13 +1,13 @@
 <?php
 
 // Define error code constants
-define('REQUIRED',		0);
-define('ZIP_FORMAT',	1);
-define('DATE_FORMAT',	2);
-define('PHONE_FORMAT',	3);
-define('EMAIL_FORMAT',	4);
-define('EQUAL',	        5);
-define('NONCE',	        6);
+define('ERROR_REQUIRED',     0);
+define('ERROR_ZIP_FORMAT',   1);
+define('ERROR_DATE_FORMAT',  2);
+define('ERROR_PHONE_FORMAT', 3);
+define('ERROR_EMAIL_FORMAT', 4);
+define('ERROR_EQUALITY',     5);
+define('ERROR_NONCE',        6);
 
 
 
@@ -17,17 +17,16 @@ define('NONCE',	        6);
  *
  * This class follows the coding standards detailed here:
  * http://codex.wordpress.org/WordPress_Coding_Standards
- *
- * @author Nate Hart (and future CIFers)
  */
-class Validate {
+class Validator {
 	/**
 	 * Cache errors as we find them.
 	 * If an error is found, an array index for the field name will be set to an error code.
 	 * Otherwise, a valid field name will not have an index in this array.
 	 */
 	private static $errors;
-	public static $error_class;
+
+	public static $error_class; // Class attribute for error message markup
 	
 	
 	
@@ -55,8 +54,8 @@ class Validate {
 	/**
 	 * Determines whether the specified field is invalid.
 	 * 
-	 * @param string $field_name The name of the field from the form to check.
-	 * @return boolean True if the field was not filled out correctly, false if it was filled out correctly.
+	 * @param string $field_name The name of the field to check.
+	 * @return boolean True if the field was not filled out correctly, false otherwise.
 	 */
 	public static function is_invalid( $field_name ) {
 		return isset( self::$errors[$field_name] );
@@ -67,7 +66,7 @@ class Validate {
 	 * 
 	 * @return boolean True if no errors were encountered, false otherwise.
 	 */
-	public static function has_errors() {
+	public static function found_validation_errors() {
 		return ! empty( self::$errors );
 	}
 	
@@ -110,7 +109,7 @@ class Validate {
 		
 		// Check if the field was not sent or not filled out
 		if ( ( ! isset( $_POST[$field_names] ) || trim( $_POST[$field_names] ) === '' ) && ! self::is_invalid( $field_names ) )
-			self::log_error( $field_names, REQUIRED );
+			self::log_error( $field_names, ERROR_REQUIRED );
 	}
 	
 	/**
@@ -133,7 +132,7 @@ class Validate {
 		
 		// Check if the formatting is valid
 		if ( ! preg_match( '/^\d{5}(-\d{4})?$/', $_POST[$field_names] ) && ! self::is_invalid( $field_names ) )
-			self::log_error( $field_names, ZIP_FORMAT );
+			self::log_error( $field_names, ERROR_ZIP_FORMAT );
 	}
 	
 	/**
@@ -156,7 +155,7 @@ class Validate {
 		
 		// Check if the formatting is valid
 		if ( ! preg_match('/^(\d{4})\D?(0[1-9]|1[0-2])\D?([12]\d|0[1-9]|3[01])$/', $_POST[$field_names] ) && ! self::is_invalid( $field_names ) )
-			self::log_error( $field_names, DATE_FORMAT );
+			self::log_error( $field_names, ERROR_DATE_FORMAT );
 	}
 	
 	/**
@@ -179,7 +178,7 @@ class Validate {
 		
 		// Check if the formatting is valid
 		if ( ! self::is_invalid( $field_names ) && ! preg_match( '/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/', $_POST[$field_names] ) )
-			self::log_error( $field_names, PHONE_FORMAT );
+			self::log_error( $field_names, ERROR_PHONE_FORMAT );
 	}
 	
 	/**
@@ -204,7 +203,7 @@ class Validate {
 		// Check if the formatting is likely to be valid
 		// Regular expressions for email addresses are tricky and prone to mark the occassional strange address as invalid
 		if ( ! self::is_invalid( $field_names ) && ! preg_match( "~[a-z0-9!#$%&'*+/=?^_`{|}\~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}\~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?~", $_POST[$field_names] ) )
-			self::log_error( $field_names, EMAIL_FORMAT );
+			self::log_error( $field_names, ERROR_EMAIL_FORMAT );
 	}
 
 	/**
@@ -215,10 +214,10 @@ class Validate {
 	 * @param string $value The value that the field must be equal to.
 	 * @param string $case Either "sensitive" or "insensitive". Defaults to "insensitive".
 	 */
-	public static function validate_equal( $field_names, $value, $case = 'insensitive' ) {
+	public static function validate_equality( $field_names, $value, $case = 'insensitive' ) {
 		if ( is_array( $field_names ) ) {
 			foreach ( $field_names as $field )
-				self::validate_equal( $field, $value, $case );
+				self::validate_equality( $field, $value, $case );
 
 			return; // We're done with this method at this point
 		}
@@ -226,14 +225,14 @@ class Validate {
 		$field_value = $_POST[$field_names];
 
 		// If the value is case insensitive
-		if ( $case == 'insensitive' ) {
+		if ( $case === 'insensitive' ) {
 			$field_value = strtolower( $field_value );
 			$value = strtolower( $value );
 		}
 		
 		// Check if the values are equal
 		if ( ! self::is_invalid( $field_names ) && $field_value !== $value )
-			self::log_error( $field_names, EQUAL );
+			self::log_error( $field_names, ERROR_EQUALITY );
 	}
 
 	/**
@@ -246,8 +245,8 @@ class Validate {
 	public static function validate_nonce( $nonce, $action = '' ) {
 		// Check if the values are equal
 		if ( ! self::is_invalid( $nonce ) && ! wp_verify_nonce( $_POST[$nonce], $action ) )
-			self::log_error( $nonce, NONCE );
+			self::log_error( $nonce, ERROR_NONCE );
 	}
 }
 
-Validate::init(); // Get this thing started
+Validator::init(); // Get this thing started

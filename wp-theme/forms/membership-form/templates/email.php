@@ -1,12 +1,10 @@
 <?php
 
 /**
- * Email template for the membership form.
+ * Email template for the CIF membership form.
  *
  * This file follows the coding standards detailed here:
  * http://codex.wordpress.org/WordPress_Coding_Standards
- *
- * @author Nate Hart (and future CIFers)
  */
 
 $lines = array(

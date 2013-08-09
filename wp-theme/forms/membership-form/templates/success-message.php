@@ -1,13 +1,10 @@
 <?php
 
 /**
- * Template for displaying a message that the application was
- * sent sucessfully.
+ * Message that the membership application was sent sucessfully.
  *
  * This file follows the coding standards detailed here:
  * http://codex.wordpress.org/WordPress_Coding_Standards
- *
- * @author Nate Hart (and future CIFers)
  */
 
 ?>

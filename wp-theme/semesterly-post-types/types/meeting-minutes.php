@@ -10,20 +10,14 @@
  *
  * The combined Board and Floor Minutes archive can be found at
  * {home_url}/minutes
- * (This assumes that permalinks are "pretty" and set
- * to be by post name)
+ * (This assumes that permalinks are "pretty" and set to be by post name)
  *
  * The Board Minutes post type is registered as "board_minutes".
  * The Floor Minutes post type is registered as "floor_minutes".
  *
  * This file follows the coding standards detailed here:
  * http://codex.wordpress.org/WordPress_Coding_Standards
- *
- * @author Nate Hart (and future CIFers)
  */
-
-require_once 'common.php';
-
 
 /**
  * Registers the Board and Floor Minutes post types.
@@ -219,8 +213,9 @@ add_filter( 'generate_rewrite_rules', 'add_minutes_url_rewrite_rules' );
 
 
 /**
- * Applies the current-menu-item class to any menu item with the title "Meeting Minutes"
- * in a WordPress menu if the current page is a meeting minutes archive.
+ * Applies the current-menu-item class to any menu item with
+ * the title "Meeting Minutes" in a WordPress menu if the current page
+ * is a meeting minutes archive.
  *
  * @param array $class The classes to apply to the menu item.
  * @param object $menu_item The menu item object.

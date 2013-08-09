@@ -8,21 +8,23 @@
  *
  * This file follows the coding standards detailed here:
  * http://codex.wordpress.org/WordPress_Coding_Standards
- *
- * @author Nate Hart (and future CIFers)
  */
 
 // Template Name: Lab Printer Status
 
 get_header();
 
-while ( have_posts() ): ?>
-	<?php the_post(); ?>
+while ( have_posts() ):
+	the_post(); ?>
 
 	<div class="content">
 		<h1><?php the_title(); ?></h1>
 
-		<?php require_once 'printer-status/generator.php'; ?>
+		<?php require_once __DIR__ . '/../printer-status/generator.php'; ?>
 	</div>
-<?php endwhile; ?>
-<?php get_footer();
+
+<?php
+
+endwhile;
+
+get_footer();

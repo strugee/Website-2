@@ -5,10 +5,7 @@
  *
  * This file follows the coding standards detailed here:
  * http://codex.wordpress.org/WordPress_Coding_Standards
- *
- * @author Nate Hart (and future CIFers)
  */
-
 
 
 /**
@@ -26,7 +23,7 @@
  */
 function protect_form( $form_name ) {
 	// Output a nonce field
-	Validate::error_messages(
+	Validator::error_messages(
 		$form_name . '_nonce',
 		"Sorry, a security measure expired or was invalid. Try submitting the form again and see if it works. If not, <a href='mailto:board@cif.rochester.edu'>contact board</a>."
 	);
@@ -38,7 +35,7 @@ function protect_form( $form_name ) {
 
 	echo "<label class='$form_name-extra'>";
 
-	Validate::error_messages( $form_name . '-extra', "Please don't fill out this field." );
+	Validator::error_messages( $form_name . '-extra', "Please don't fill out this field." );
 
 	echo "Leave this field blank to confirm your humanity.";
 	echo "<input type='text' tabindex='-1' "; // Disallow tabbing to the form field
@@ -59,10 +56,10 @@ function protect_form( $form_name ) {
  */
 function ensure_form_is_protected( $form_name ) {
 	// Ensure that the nonce is valid
-	Validate::validate_nonce( $form_name . '_nonce', $form_name );
+	Validator::validate_nonce( $form_name . '_nonce', $form_name );
 
 	// Ensure the anti-spam field is empty
-	Validate::validate_equal( $form_name . '-extra', '' );
+	Validator::validate_equality( $form_name . '-extra', '' );
 }
 
 
@@ -133,22 +130,4 @@ function radio_field( $name, $value ) {
 
 	if ( isset( $_POST[$name] ) && $_POST[$name] === $value )
 		echo ' checked ';
-}
-
-
-
-// Functions for validating submitted form data.
-
-/**
- * Ensures that the specified fields have been filled out.
- *
- * @param array $field_names An array of the names of the required form fields.
- * @return boolean True if the fields were filled out, false if one or more was not.
- */
-function validate_required_fields( $field_names ) {
-	foreach ( $field_names as $field_name )
-		if ( ! isset( $_POST[$field_name] ) || $_POST[$field_name] === '' )
-			return false;
-	
-	return true;
 }
