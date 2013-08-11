@@ -32,19 +32,20 @@
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-<div id="page">
-	<header id="header" role="banner">
-		<div class="content">
-			<h1 class="header-logo"><a href="<?php echo home_url(); ?>" rel="home">CIF</a></h1>
+	<div id="page">
 
-			<?php
-			
-			wp_nav_menu( array(
-				'theme_location' => 'primary',
-				'container'      => 'nav',
-				'menu_class'     => 'inverted light menu',
-			) );
-			
-			?>
-		</div>
-	</header>
+		<header id="header" role="banner">
+			<div class="content">
+				<h1 class="header-logo"><a href="<?php echo home_url(); ?>" rel="home">CIF</a></h1>
+
+				<?php
+				
+				wp_nav_menu( array(
+					'theme_location' => 'primary',
+					'container'      => 'nav',
+					'menu_class'     => 'inverted light menu',
+				) );
+				
+				?>
+			</div>
+		</header>
