@@ -32,6 +32,7 @@
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+<div id="page">
 	<header id="header" role="banner">
 		<div class="content">
 			<h1 class="header-logo"><a href="<?php echo home_url(); ?>" rel="home">CIF</a></h1>

@@ -11,34 +11,36 @@
  */
 
 ?>
-	<footer id="footer" role="contentinfo">
-		<div class="content">
-			<?php
-			
-			wp_nav_menu( array(
-				'theme_location' => 'secondary',
-				'container'      => 'nav',
-				'menu_class'     => 'inverted light menu',
-			) );
-			
-			?>
-			
-			<p class="copyright">&copy; 2013 CIF</p>
+		<footer id="footer" role="contentinfo">
+			<div class="content">
+				<?php
+				
+				wp_nav_menu( array(
+					'theme_location' => 'secondary',
+					'container'      => 'nav',
+					'menu_class'     => 'inverted light menu',
+				) );
+				
+				?>
+				
+				<p class="copyright">&copy; 2013 CIF</p>
 
-			<?php
+				<?php
 
-			// Get a random quote
-			$quote_settings = get_option( 'cif-quotes' );
-			$quotes = explode( "\n", $quote_settings['quotes'] );
+				// Get a random quote
+				$quote_settings = get_option( 'cif-quotes' );
+				$quotes = explode( "\n", $quote_settings['quotes'] );
 
-			$quote = $quotes[ array_rand( $quotes ) ];
+				$quote = $quotes[ array_rand( $quotes ) ];
 
-			?>
+				?>
 
-			<p class="quote"><?php echo $quote; ?></p>
-		</div>
-	</footer>
-	
+				<p class="quote"><?php echo $quote; ?></p>
+			</div>
+		</footer>
+		
+	</div> <!-- #page -->
+
 	<?php
 
 	/**
