@@ -27,102 +27,110 @@ function semesterly_archive_menu( $post_type, $markup = array() ) {
 		'link_base'  => $post_type,
 	);
 
-	// Merge the given markup array with our defaults
+	// Merge the given markup arguments with our defaults
 	$markup = wp_parse_args( $markup, $default_markup );
 
 
-	// Get the latest post of the post type
-	$latest_post = get_posts( array(
-		'post_type'   => $post_type,
-		'post_status' => 'publish',
-		'orderby'     => 'post_date',
-		'order'       => 'DESC',
-		'numberposts' => 1,
-	) );
+	// Get years with semesterly posts of the specified type
+	$spring_years = get_years_with_semesterly_posts( $post_type, 'spring' );
+	$fall_years = get_years_with_semesterly_posts( $post_type, 'fall' );
 
-	// Get the first post of the post type
-	$first_post = get_posts( array(
-		'post_type'   => $post_type,
-		'post_status' => 'publish',
-		'orderby'     => 'post_date',
-		'order'       => 'ASC',
-		'numberposts' => 1,
-	) );
+	// Number of years with posts for each semester
+	$spring_count = count( $spring_years );
+	$fall_count = count( $fall_years);
 
-	// Do nothing if there are no posts
-	if ( ! count( $first_post ) )
+	
+	// Do nothing if there are no posts for any years
+	if ( ! $spring_count && ! $fall_count )
 		return;
 
-	// get_posts returns an array, so get the actual post objects
-	$first_post = $first_post[0];
-	$latest_post = $latest_post[0];
-
-	// Start looping backwards from the latest post
-	$current_semester_is_spring = date_is_in_spring_semester( $latest_post->post_date_gmt );
-	$current_year = get_year_from_timestamp( $latest_post->post_date_gmt );
-	$first_year = get_year_from_timestamp( $first_post->post_date_gmt );
-
-	// When querying for posts, the time span is in terms of years. This variable
-	// is used to determine whether the last query returned a result from the
-	// spring or fall semester. This is used to ensure that the links are output
-	// in the correct order, and that links are only output for semesters that
-	// have posts.
-	$queried_semester_is_spring = $current_semester_is_spring;
-
-	echo '<' . $markup['list_tag'] . ' class="'. $markup['list_class'] . '">';
-	do {
-		// Output a link if the last query gave results for the current semester
-		// Using === because $queried_semester_is_spring could be null
-		if ( $queried_semester_is_spring === $current_semester_is_spring ) {
-			$class = '';
-			if ( $current_year == get_query_var( 'year' ) && $current_semester_is_spring == ( get_query_var( 'semester' ) == 'spring' ) )
-				$class .= ' current-menu-item';
-			echo "<li class='$class'>";
-
-			if ( $current_semester_is_spring ) {
-				echo '<a href="' . home_url( $markup['link_base'] . '/spring/' . $current_year ) . '">';
-				echo 'Spring ' . $current_year . '</a>';
-			} else {
-				echo '<a href="' . home_url( $markup['link_base'] . '/fall/' . $current_year ) . '">';
-				echo 'Fall ' . $current_year . '</a>';
-			}
-
-			echo '</li>';
-		}
-
-		// Change the current semester
-		$current_semester_is_spring = ! $current_semester_is_spring;
-
-		// Change to the previous year if we went from a spring to fall semester
-		if ( ! $current_semester_is_spring )
-			$current_year--;
-
-		// Query if there were any posts for the current semester and year.
-		// This queries for posts by year, ordering the results ascending if we're
-		// looking for a spring post, and descending if we're looking for a fall
-		// post. Only a single post is returned by the query. If that post is from
-		// the semester we're looking for, there was a post for that semester.
-		// Otherwise, there are no posts for that semester of the year and the 
-		// returned result is for a different semester than we want.
-		$queried_post = get_posts( array(
-			'post_type'   => $post_type,
-			'post_status' => 'publish',
-			'orderby'     => 'post_date',
-			'order'       => ( $current_semester_is_spring ? 'ASC' : 'DESC' ),
-			'year'        => $current_year,
-			'numberposts' => 1,
-		) );
-
-		if ( ! count( $queried_post ) ) {
-			$queried_semester_is_spring = null;
-		} else {
-			// Results were found, but we're not sure what semester they're for
-			$queried_post = $queried_post[0];
-			$queried_semester_is_spring = date_is_in_spring_semester( $queried_post->post_date_gmt );
-		}
 	
-	// Continue finding semesters with posts until we've processed all years after the first year
-	} while ( $current_year >= $first_year );
+	// Determine the semester of the first year to loop from
+	if ( ! $spring_count ) {
+		// If there are no spring posts, the first semester is fall.
+		$current_semester = 'fall';
+	} else if ( ! $fall_count ) {
+		// If there are no fall posts, the first semester is spring.
+		$current_semester = 'spring';
+	} else {
+		// Otherwise, the first semester is fall if the most recent year has a fall semester,
+		// or spring if it doesn't.
+		$current_semester = ($spring_years[0] <= $fall_years[0]) ? 'fall' : 'spring';
+	}
 
-	echo '</' . $markup['list_tag'] . '>';
+	// Determine the year to loop backwards from
+	if ( $current_semester === 'fall' )
+		$current_year = $fall_years[0];
+	else
+		$current_year = $spring_years[0];
+
+	// Year array indices
+	$spring_index = 0;
+	$fall_index = 0;
+
+	// Whether there are still semesters with posts
+	$no_more_spring = ! $spring_count;
+	$no_more_fall = ! $fall_count;
+
+
+	// Opening list tag
+	echo "<{$markup['list_tag']} class='{$markup['list_class']}'>";
+
+	do {
+		// Print a link for the current semester and year
+
+		$class = ''; // Additional classes to add to the <li>
+		if ( $current_year == get_query_var( 'year' ) && $current_semester == get_query_var( 'semester' ) )
+			$class .= ' current-menu-item';
+
+		echo "<li class='$class'>";
+
+		echo '<a href="' . home_url( "{$markup['link_base']}/$current_semester/$current_year" ) . '">';
+		echo ucfirst( $current_semester ) . " $current_year</a>";
+
+		echo "</li>";
+
+
+		// Determine the next semester and year to display a link for
+
+		if ( $current_semester === 'spring' ) {
+			$spring_index++; // Move on to the next spring year
+
+			// Determine if that was the last spring semester with posts
+			if ( $spring_index === $spring_count )
+				$no_more_spring = true;
+
+			// If there's no fall with posts between this spring and the next spring
+			if ( $no_more_fall || (! $no_more_spring && $spring_years[$spring_index] > $fall_years[$fall_index]) ) {
+				// Display the next spring semester
+				$current_year = $spring_years[$spring_index];
+			} else {
+				// If there's a fall with posts between this spring and the next spring,
+				// display the next fall semester.
+				$current_semester = 'fall';
+				$current_year = $fall_years[$fall_index];
+			}
+		} else {
+			$fall_index++; // Move on to the next fall year
+
+			// Determine if that was the last fall semester with posts
+			if ( $fall_index === $fall_count )
+				$no_more_fall = true;
+
+			// If there's no fall with posts between this spring and the next spring
+			if ( $no_more_fall || (! $no_more_spring && $spring_years[$spring_index] > $fall_years[$fall_index]) ) {
+				// Display the next spring semester
+				$current_semester = 'spring';
+				$current_year = $spring_years[$spring_index];
+			} else {
+				// If there's a fall with posts between this spring and the next spring,
+				// display the next fall semester.
+				$current_year = $fall_years[$fall_index];
+			}
+		}
+	// Continue looping until there are no more spring and fall semesters to display
+	} while ( ! ($no_more_spring && $no_more_fall) );
+
+	// Closing list tag
+	echo "</{$markup['list_tag']}>";
 }
