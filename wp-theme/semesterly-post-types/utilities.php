@@ -32,6 +32,7 @@ function semesterly_archive_menu( $post_type, $markup = array(), $output_empty =
 	$markup = wp_parse_args( $markup, $default_markup );
 
 	$output_empty = ($output_empty === 'output empty');
+	$empty_li = '<li class="empty"></li>';
 
 
 	// Get years with semesterly posts of the specified type
@@ -96,6 +97,7 @@ function semesterly_archive_menu( $post_type, $markup = array(), $output_empty =
 
 		// Determine the next semester and year to display a link for
 
+		$last_year = $current_year; // The last year processed
 		if ( $current_semester === 'spring' ) {
 			$spring_index++; // Move on to the next spring year
 
@@ -105,8 +107,11 @@ function semesterly_archive_menu( $post_type, $markup = array(), $output_empty =
 
 			// If there's no fall with posts between this spring and the next spring
 			if ( $no_more_fall || (! $no_more_spring && $spring_years[$spring_index] > $fall_years[$fall_index]) ) {
-				// Display the next spring semester
+				// Get ready to display the next spring semester
 				$current_year = $spring_years[$spring_index];
+
+				// Echo an empty list item for the empty fall semester
+				echo $empty_li;
 			} else {
 				// If there's a fall with posts between this spring and the next spring,
 				// display the next fall semester.
@@ -125,12 +130,20 @@ function semesterly_archive_menu( $post_type, $markup = array(), $output_empty =
 				// Display the next spring semester
 				$current_semester = 'spring';
 				$current_year = $spring_years[$spring_index];
+
+				// Echo an empty list item for the empty spring semester
+				echo $empty_li;
 			} else {
 				// If there's a fall with posts between this spring and the next spring,
 				// display the next fall semester.
 				$current_year = $fall_years[$fall_index];
 			}
 		}
+
+		// Output empty list items for each year that was empty
+		for ($i = 0; $i < $last_year - $current_year; $i++)
+			echo $empty_li . $empty_li;
+
 	// Continue looping until there are no more spring and fall semesters to display
 	} while ( ! ($no_more_spring && $no_more_fall) );
 
