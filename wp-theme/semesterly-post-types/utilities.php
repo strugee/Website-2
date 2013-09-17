@@ -18,8 +18,9 @@
  *                      string list_tag The tag to use for the generated list. Defaults to 'ul'.
  *                      string list_class The classes to apply to the list element. This is added to the list_tag element. Defaults to ''.
  *                      string link_base A base for the generated archive urls. Defaults to the $post_type argument.
+ * @param string $output_empty Whether to output a list item for semesters with no content. Either "output empty" or "skip empty". Defaults to "skip empty". Empty list items will have an "empty" class on them.
  */
-function semesterly_archive_menu( $post_type, $markup = array() ) {
+function semesterly_archive_menu( $post_type, $markup = array(), $output_empty = 'skip empty' ) {
 	// Default markup properties
 	$default_markup = array(
 		'list_tag'   => 'ul',
@@ -29,6 +30,8 @@ function semesterly_archive_menu( $post_type, $markup = array() ) {
 
 	// Merge the given markup arguments with our defaults
 	$markup = wp_parse_args( $markup, $default_markup );
+
+	$output_empty = ($output_empty === 'output empty');
 
 
 	// Get years with semesterly posts of the specified type
