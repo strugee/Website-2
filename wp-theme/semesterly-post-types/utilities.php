@@ -18,7 +18,7 @@
  *                      string list_tag The tag to use for the generated list. Defaults to 'ul'.
  *                      string list_class The classes to apply to the list element. This is added to the list_tag element. Defaults to ''.
  *                      string link_base A base for the generated archive urls. Defaults to the $post_type argument.
- * @param string $output_empty Whether to output a list item for semesters with no content. Either "output empty" or "skip empty". Defaults to "skip empty". Empty list items will have an "empty" class on them.
+ * @param string $output_empty Whether to output a list item for semesters with no content. Either "show empty" or "skip empty". Defaults to "skip empty". Empty list items will have an "empty" class on them.
  */
 function semesterly_archive_menu( $post_type, $markup = array(), $output_empty = 'skip empty' ) {
 	// Default markup properties
@@ -31,8 +31,8 @@ function semesterly_archive_menu( $post_type, $markup = array(), $output_empty =
 	// Merge the given markup arguments with our defaults
 	$markup = wp_parse_args( $markup, $default_markup );
 
-	$output_empty = ($output_empty === 'output empty');
-	$empty_li = '<li class="empty"></li>';
+	$output_empty = ($output_empty === 'show empty');
+	$empty_li = '<li class="empty"><a href=""></a></li>';
 
 
 	// Get years with semesterly posts of the specified type
@@ -80,8 +80,18 @@ function semesterly_archive_menu( $post_type, $markup = array(), $output_empty =
 	// Opening list tag
 	echo "<{$markup['list_tag']} class='{$markup['list_class']}'>";
 
+	// Output a leading empty list item if we're starting on spring
+	if ( $current_semester === 'spring' && $output_empty )
+		echo $empty_li;
+
 	do {
 		// Print a link for the current semester and year
+
+		// Output empty list items for each year that was empty between
+		// the last year processed and the current year
+		if ( $output_empty )
+			for ( $i = 1; $i < $last_year - $current_year; $i++ )
+				echo $empty_li . $empty_li;
 
 		$class = ''; // Additional classes to add to the <li>
 		if ( $current_year == get_query_var( 'year' ) && $current_semester == get_query_var( 'semester' ) )
@@ -111,7 +121,8 @@ function semesterly_archive_menu( $post_type, $markup = array(), $output_empty =
 				$current_year = $spring_years[$spring_index];
 
 				// Echo an empty list item for the empty fall semester
-				echo $empty_li;
+				if ( $output_empty )
+					echo $empty_li;
 			} else {
 				// If there's a fall with posts between this spring and the next spring,
 				// display the next fall semester.
@@ -130,19 +141,16 @@ function semesterly_archive_menu( $post_type, $markup = array(), $output_empty =
 				// Display the next spring semester
 				$current_semester = 'spring';
 				$current_year = $spring_years[$spring_index];
-
-				// Echo an empty list item for the empty spring semester
-				echo $empty_li;
 			} else {
 				// If there's a fall with posts between this spring and the next spring,
 				// display the next fall semester.
 				$current_year = $fall_years[$fall_index];
+				
+				// Echo an empty list item for the empty spring semester
+				if ( $output_empty )
+					echo $empty_li;
 			}
 		}
-
-		// Output empty list items for each year that was empty
-		for ($i = 0; $i < $last_year - $current_year; $i++)
-			echo $empty_li . $empty_li;
 
 	// Continue looping until there are no more spring and fall semesters to display
 	} while ( ! ($no_more_spring && $no_more_fall) );
@@ -150,3 +158,4 @@ function semesterly_archive_menu( $post_type, $markup = array(), $output_empty =
 	// Closing list tag
 	echo "</{$markup['list_tag']}>";
 }
+
