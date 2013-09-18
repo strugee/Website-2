@@ -11,7 +11,7 @@
  * Outputs HTML markup for a list of links to the semesterly archives of the
  * specified post type.
  *
- * @TODO Option to allow "filling in" the space for semesters with no content.
+ * @TODO Write unit tests
  *
  * @param mixed $post_type Either a string of the name of the post type to output semesterly archive links for, or an array of strings listing the post types to output semesterly links for (useful for archives which display posts from multiple post types at once).
  * @param array $markup An array of options for the generated markup.
