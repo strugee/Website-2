@@ -16,11 +16,16 @@
 
 	<?php
 
-	semesterly_archive_menu( 'announcements', array(
-		'list_class' => 'grid-aligned secondary-menu',
-	) );
+	semesterly_archive_menu(
+		'announcements',
+		array(
+			'list_class' => 'grid-aligned secondary-menu',
+		),
+		'show empty'
+	);
 
 	?>
 </nav>
 
 <div class="articles">
+
