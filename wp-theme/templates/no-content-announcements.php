@@ -10,5 +10,9 @@
 
 ?>
 <article>
-	<p>There are no announcements for the <?php echo get_query_var( 'semester' );?> semester of <?php echo get_query_var( 'year' ); ?>.</p>
+	<?php if ( get_query_var( 'semester' ) && get_query_var( 'year' ) != 0 ): ?>
+	<p>There are no announcements for the <?php echo get_query_var( 'semester' ); ?> semester of <?php echo get_query_var( 'year' ); ?>.</p>
+	<?php else: ?>
+	<p>There are no announcements to display.</p>
+	<?php endif; ?>
 </article>
