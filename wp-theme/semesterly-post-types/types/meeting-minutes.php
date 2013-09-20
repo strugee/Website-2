@@ -148,8 +148,7 @@ add_action( 'save_post', 'generate_minutes_post_title' );
  * @param WP_Query $query The WordPress query object for the current query.
  */
 function modify_minutes_semesterly_archives_query( $query ) {
-	$query = modify_semesterly_archives_query( $query, 'board_minutes' );
-	return modify_semesterly_archives_query( $query, 'floor_minutes' );
+	return modify_semesterly_archives_query( $query, array( 'board_minutes', 'floor_minutes' ) );
 }
 // Don't apply this filter on admin pages
 if ( ! is_admin() )
