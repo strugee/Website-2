@@ -31,7 +31,7 @@ define( 'THEME_DEBUG', false );
 
 // Whether the debugging constants should be used
 // This will only change the values of the constants defined in this file
-define( 'USE_DEBUG_CONSTANTS', true );
+define( 'USE_DEBUG_CONSTANTS', false );
 
 
 // The location of the theme directory
@@ -53,13 +53,13 @@ if ( THEME_DEBUG || USE_DEBUG_CONSTANTS ) {
 } else {
 	// Constants for the live site
 	
-	define( 'STYLESHEET_URL', 'cdn.cif.rochester.edu/style.css' );
+	define( 'STYLESHEET_URL', 'https://cif.rochester.edu/cdn/style.css' );
 
-	define( 'FAVICON_URL', 'cdn.cif.rochester.edu/favicon.ico' );
+	define( 'FAVICON_URL', 'https://cif.rochester.edu/cdn/favicon.ico' );
 
 	define( 'MEMBERSHIP_FORM_EMAIL_TO', 'board@cif.rochester.edu' );
 
-	define( 'MEMBERSHIP_FORM_EMAIL_HEADERS', 'From: "Membership Application" <root@web1.cif.rochester.edu>' );
+	define( 'MEMBERSHIP_FORM_EMAIL_HEADERS', 'From: "Membership Application" <web1@web1.cif.rochester.edu>' );
 
 	define( 'MEMBERSHIP_FORM_EMAIL_SUBJECT', 'CIF Membership Application for {{name}}' );
 }
