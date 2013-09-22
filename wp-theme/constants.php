@@ -55,7 +55,7 @@ if ( THEME_DEBUG || USE_DEBUG_CONSTANTS ) {
 } else {
 	// Constants for the live site
 	
-	define( 'STYLESHEET_URL', 'http://cif.rochester.edu/cdn/style.css' );
+	define( 'STYLESHEET_URL', 'http://cif.rochester.edu/cdn/css/style.css' );
 
 	define( 'FAVICON_URL', 'http://cif.rochester.edu/cdn/favicon.ico' );
 	
