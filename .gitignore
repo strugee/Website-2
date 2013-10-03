@@ -1,5 +1,5 @@
 # Don't track core WordPress files in the root of the repo
-/wp-*/
+/wp-*/*
 /wp-*.php
 /.htaccess
 /readme.html
@@ -8,4 +8,5 @@
 /xmlrpc.php
 
 # Track the CIF WordPress theme
-!/wp-content/themes/cif/
+!/wp-content/themes/
+/wp-content/themes/index.php
