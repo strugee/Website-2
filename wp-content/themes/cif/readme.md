@@ -1,8 +1,8 @@
 ## Cloning just this theme directory
-The best way to clone this repo for working locally is by initializing a new repo in the `wp-content/themes/` directory of your local WordPress installation. You can then do a sparse checkout to clone only this directory.
+The best way to clone this repo for working locally is by initializing a new repo in the top directory of your local WordPress installation. You can then do a sparse checkout to clone only this directory. It would also be a good idea to checkout the `.gitignore` as well to avoid accidentally committing the WordPress core files to our repository.
 
 	# Create the repo
-	$ cd /path/to/local/wordpress/wp-content/themes/
+	$ cd /path/to/local/wordpress/
 	$ git init
 	
 	# Add this repo as the origin remote
@@ -10,12 +10,11 @@ The best way to clone this repo for working locally is by initializing a new rep
 	
 	# Configure sparse checkouts to only clone the wp-theme directory and files
 	$ git config core.sparseCheckout true
-	$ echo wp-theme/* >> .git/info/sparse-checkout
+	$ echo wp-content/themes/cif/* >> .git/info/sparse-checkout
+	$ echo .gitignore >> .git/info/sparse-checkout
 	
 	# Pull the theme files
 	$ git pull origin master
-
-Be careful not to commit `wp-content/themes/index.php` or any other themes to the repo! If you do, it'll show up in the root of our repo and be a nuisance.
 
 ## Theme Architecture
 Here's a basic rundown of what does what and where everything is. Each file *should* have a header at the top explaining its purpose and any tips to keep in mind.

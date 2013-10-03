@@ -7,6 +7,6 @@
 /license.txt
 /xmlrpc.php
 
-# Track the CIF WordPress theme
+# Track our WordPress themes
 !/wp-content/themes/
 /wp-content/themes/index.php
