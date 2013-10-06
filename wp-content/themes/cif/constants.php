@@ -45,7 +45,7 @@ if ( THEME_DEBUG || USE_DEBUG_CONSTANTS ) {
 
 	define( 'FAVICON_URL', TEMPLATE_DIRECTORY . '/../../../../Website/cdn/favicon.ico' );
 
-	define( 'PANEL_URL', 'http://cif.rochester.edu/panel/' );
+	define( 'PANEL_URL', 'https://cif.rochester.edu/panel/' );
 
 	define( 'MEMBERSHIP_FORM_EMAIL_TO', 'board@cif.rochester.edu' );
 
@@ -55,11 +55,11 @@ if ( THEME_DEBUG || USE_DEBUG_CONSTANTS ) {
 } else {
 	// Constants for the live site
 	
-	define( 'STYLESHEET_URL', 'http://cif.rochester.edu/cdn/css/style.css' );
+	define( 'STYLESHEET_URL', 'https://cif.rochester.edu/cdn/css/style.css' );
 
-	define( 'FAVICON_URL', 'http://cif.rochester.edu/cdn/favicon.ico' );
+	define( 'FAVICON_URL', 'https://cif.rochester.edu/cdn/favicon.ico' );
 	
-	define( 'PANEL_URL', 'http://cif.rochester.edu/panel/' );
+	define( 'PANEL_URL', 'https://cif.rochester.edu/panel/' );
 
 	define( 'MEMBERSHIP_FORM_EMAIL_TO', 'board@cif.rochester.edu' );
 
