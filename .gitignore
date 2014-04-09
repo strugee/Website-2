@@ -10,3 +10,6 @@
 # Track our WordPress themes
 !/wp-content/themes/
 /wp-content/themes/index.php
+
+# Don't track compiled panel templates
+/panel/smarty_compile/
