@@ -1,6 +1,7 @@
 User-agent: *
 
-Disallow: /*? # Disallow all URLs ending with a ?
+# Disallow all URLs ending with a ?
+Disallow: /*?
 
 # WordPress URLs
 Disallow: /wp-admin/
