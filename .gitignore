@@ -16,3 +16,6 @@
 
 # Don't track our panel config file
 /panel/panel-config.php
+
+# Miscellaneous files 
+.bash_history
