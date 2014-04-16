@@ -13,3 +13,6 @@
 
 # Don't track compiled panel templates
 /panel/smarty_compile/
+
+# Don't track our panel config file
+/panel/panel-config.php
