@@ -17,5 +17,8 @@
 # Don't track our panel config file
 /panel/panel-config.php
 
+# Don't track SASS caches
+.sass-cache
+
 # Miscellaneous files 
 .bash_history
