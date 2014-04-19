@@ -40,6 +40,9 @@ This is where custom functions and code for modifying WordPress should go, or at
 ##### 404.php
 404 page template.
 
+##### theme-config-sample.php
+Not actually a WordPress file. This is a sample file for `theme-config.php`, which should not be committed to the repository.
+
 ##### theme-config.php
 Not actually a WordPress file. This is where we define important configuration options for the theme, such as whether `constants.php` should use debugging values for its constants.
 
