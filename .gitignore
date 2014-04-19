@@ -11,6 +11,9 @@
 !/wp-content/themes/
 /wp-content/themes/index.php
 
+# Don't track our CIF theme config file
+/wp-content/themes/cif/theme-config.php
+
 # Don't track compiled panel templates
 /panel/smarty_compile/
 

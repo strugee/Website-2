@@ -25,14 +25,7 @@
  */
 
 
-// Whether special debugging settings should be used
-// This may cause different behavoir in other parts of this theme
-define( 'THEME_DEBUG', false );
-
-// Whether the debugging constants should be used
-// This will only change the values of the constants defined in this file
-define( 'USE_DEBUG_CONSTANTS', false );
-
+require_once 'theme-config.php';
 
 // The location of the theme directory
 define( 'TEMPLATE_DIRECTORY', get_template_directory_uri() );
@@ -41,11 +34,11 @@ define( 'TEMPLATE_DIRECTORY', get_template_directory_uri() );
 if ( THEME_DEBUG || USE_DEBUG_CONSTANTS ) {
 	// Theme debugging/development constants
 
-	define( 'STYLESHEET_URL', TEMPLATE_DIRECTORY . '/../../../../Website/cdn/css/style.css' );
+	define( 'STYLESHEET_URL', 'https://webplusplus.cif.rochester.edu/cdn/css/style.css' );
 
-	define( 'FAVICON_URL', TEMPLATE_DIRECTORY . '/../../../../Website/cdn/favicon.ico' );
+	define( 'FAVICON_URL', 'https://webplusplus.cif.rochester.edu/cdn/favicon.ico' );
 
-	define( 'PANEL_URL', 'https://cif.rochester.edu/panel/' );
+	define( 'PANEL_URL', 'https://webplusplus.cif.rochester.edu/panel/' );
 
 	define( 'MEMBERSHIP_FORM_EMAIL_TO', 'board@cif.rochester.edu' );
 
