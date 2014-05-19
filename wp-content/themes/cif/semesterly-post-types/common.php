@@ -138,6 +138,9 @@ function modify_semesterly_archives_query( $query, $post_type ) {
 		}
 
 		if ( is_valid_semester( $semester ) ) {
+			// Fetch all posts instead of the default number per page by disabling pagination
+			$query->set( 'nopaging', true );
+
 			// Limit the results from the database to the current semester
 			if ( 'spring' == $semester )
 				add_filter( 'posts_where', 'filter_posts_by_spring' );
