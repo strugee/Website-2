@@ -88,7 +88,7 @@ function modify_semesterly_archives_query( $query, $post_type ) {
 		$is_post_type = in_array( $query->query['post_type'], $post_type);
 	else
 		$is_post_type = $post_type == $query->query['post_type'];
-		
+	
 	// If this is the main query and it's the post type's archive
 	$is_post_type = ( isset( $query->query['post_type'] ) && $is_post_type );
 	if ( $is_post_type && $query->is_post_type_archive && $query->is_main_query() ) {
