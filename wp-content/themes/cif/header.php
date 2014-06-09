@@ -24,7 +24,6 @@
 	<!-- Allows HTML5 elements to be styled in older versions of IE -->
 	<!--[if lt IE 9]><script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic|Lora:400,400italic,700,700italic|Inconsolata:400,700" />
 	<?php // STYLESHEET_URL is defined in constants.php ?>
 	<link rel="stylesheet" href="<?php echo STYLESHEET_URL; ?>" />
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
