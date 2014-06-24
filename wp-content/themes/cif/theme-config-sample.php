@@ -11,5 +11,5 @@
 define( 'THEME_DEBUG', false );
 
 // Whether the debugging constants should be used
-// This will only change the values of the constants defined in this file
+// This will only change the values of the constants defined in the constants.php file
 define( 'USE_DEBUG_CONSTANTS', false );

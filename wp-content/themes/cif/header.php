@@ -35,7 +35,7 @@
 
 		<header id="header" role="banner">
 			<div class="content">
-				<h1 class="header-logo"><a href="<?php echo home_url(); ?>" rel="home">CIF</a></h1>
+				<h1><a class="header-logo" href="<?php echo home_url(); ?>" rel="home"><span class="screen-reader-text">CIF</span></a></h1>
 
 				<?php
 				
