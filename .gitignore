@@ -7,10 +7,10 @@
 /license.txt
 /xmlrpc.php
 
-# Track our WordPress theme and memcache script
+# Track our WordPress themes and memcache script
 !/wp-content/themes/
+!/wp-content/object-cache.php
 /wp-content/themes/index.php
-/wp-content/object-cache.php
 
 # Don't track our CIF theme config file
 /wp-content/themes/cif/theme-config.php
