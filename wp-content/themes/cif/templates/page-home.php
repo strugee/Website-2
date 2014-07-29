@@ -17,14 +17,6 @@
 
 get_header(); ?>
 
-<div class="sub-header" role="navigation">
-	<div class="content">
-		<ul class="secondary-menu align-right">
-			<li><a href="#announcements">Announcements</a></li>
-		</ul>
-	</div>
-</div>
-
 <div class="content" role="main">
 	<?php while ( have_posts() ): ?>
 		<?php
@@ -48,6 +40,45 @@ get_header(); ?>
 			</div>
 		</section>
 	<?php endwhile; ?>
+
+	<div class="sidebar align-right">
+		<h2>Upcoming Events</h2>
+		<?php echo do_shortcode( '[google-calendar-events id="1" type="list" max="3"]' ); ?>
+	</div>
+
+	<h2>
+		Announcements
+		<a class="icon-rss" href="<?php bloginfo( 'rss2_url' ); ?>?post_type=announcements">
+			<span class="screen-reader-text">RSS feed</span>
+		</a>
+	</h2>
+
+	<section class="articles">
+
+		<?php 
+
+		// Get the latest 3 announcements and display them
+		$announcements_query = new WP_Query( array(
+			'post_type'      => 'announcements',
+			'posts_per_page' => 3,
+		) );
+
+		if ( $announcements_query->have_posts() ) {
+			while ( $announcements_query->have_posts() ) {
+				$announcements_query->the_post();
+
+				get_template_part( 'templates/content', 'announcements' );
+			}
+
+			echo '<a class="button" href="announcements">See older announcements</a>';
+		} else {
+			get_template_part( 'templates/no-content', 'announcements' );
+		}
+		
+		wp_reset_query(); // Switch back from the announcement query
+
+		?>
+	</section> <!-- .articles -->
 
 	<div class="fluid four-columns">
 		<?php
@@ -78,42 +109,5 @@ get_header(); ?>
 			</div> <!-- .column -->
 		<?php endwhile; ?>
 	</div> <!-- .fluid.four-columns -->
-
-	<div class="sidebar align-right">
-		<h2>Upcoming Events</h2>
-		<?php echo do_shortcode( '[google-calendar-events id="1" type="list" max="3"]' ); ?>
-	</div>
-
-	<?php // id allows the subheader to link to this section of the page ?>
-	<section class="articles" id="announcements">
-		<h2>
-			Announcements
-			<a class="icon-rss" href="<?php bloginfo( 'rss2_url' ); ?>?post_type=announcements">
-				<span class="screen-reader-text">RSS feed</span>
-			</a>
-		</h2>
-
-		<?php 
-
-		// Get the latest 3 announcements and display them
-		$announcements_query = new WP_Query( array(
-			'post_type'      => 'announcements',
-			'posts_per_page' => 3,
-		) );
-
-		if ( $announcements_query->have_posts() ) {
-			while ( $announcements_query->have_posts() ) {
-				$announcements_query->the_post();
-
-				get_template_part( 'templates/content', 'announcements' );
-			}
-
-			echo '<a class="button" href="announcements">See older announcements</a>';
-		} else {
-			get_template_part( 'templates/no-content', 'announcements' );
-		}
-		
-		?>
-	</section> <!-- .articles -->
 </div>
 <?php get_footer();
