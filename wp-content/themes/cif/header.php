@@ -33,7 +33,7 @@
 <body <?php body_class(); ?>>
 	<div id="page">
 
-		<header id="header" role="banner">
+		<header id="header" class="condensed" role="banner">
 			<div class="content">
 				<h1><a class="header-logo" href="<?php echo home_url(); ?>" rel="home"><span class="screen-reader-text">CIF</span></a></h1>
 
