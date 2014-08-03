@@ -25,7 +25,7 @@ get_header(); ?>
 
 		$hero_graphics = get_field( 'hero_graphics' );
 		$hero_graphic = $hero_graphics[ array_rand( $hero_graphics ) ];
-		$hero_src = $hero_graphic['sizes']['large'];
+		$hero_src = $hero_graphic['sizes']['cif-hero-size'];
 		$hero_alt = $hero_graphic['alt'];
 
 		?>

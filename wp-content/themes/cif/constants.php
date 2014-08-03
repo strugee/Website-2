@@ -34,9 +34,9 @@ define( 'TEMPLATE_DIRECTORY', get_template_directory_uri() );
 if ( THEME_DEBUG || USE_DEBUG_CONSTANTS ) {
 	// Theme debugging/development constants
 
-	define( 'STYLESHEET_URL', 'https://webplusplus.cif.rochester.edu/cdn/css/style.css' );
+	define( 'STYLESHEET_URL', 'https://cdn-webplusplus.cif.rochester.edu/css/style.css' );
 
-	define( 'FAVICON_URL', 'https://webplusplus.cif.rochester.edu/cdn/favicon.ico' );
+	define( 'FAVICON_URL', 'https://cdn-webplusplus.cif.rochester.edu/favicon.ico' );
 
 	define( 'PANEL_URL', 'https://webplusplus.cif.rochester.edu/panel/' );
 
