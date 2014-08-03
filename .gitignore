@@ -24,6 +24,9 @@
 # Don't track our panel config file
 /panel/panel-config.php
 
+# Don't track our WordPress uploads
+/cdn/wp-uploads/
+
 # Don't track SASS caches
 .sass-cache
 
