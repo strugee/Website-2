@@ -44,7 +44,15 @@ get_header(); ?>
 	<div class="sidebar align-right">
 		<h2>Upcoming Events</h2>
 		<?php echo do_shortcode( '[google-calendar-events id="1" type="list" max="3"]' ); ?>
+
+		<h2>Find Us Elsewhere</h2>
+		<nav class="secondary-menu grid-aligned">
+			<ul>
+				<li><a href="https://github.com/CIF-Rochester" class="icon-github" target="_blank">GitHub</a></li>
+			</ul>
+		</nav>
 	</div>
+
 
 	<h2>
 		Announcements
