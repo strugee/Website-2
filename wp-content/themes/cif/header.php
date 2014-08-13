@@ -26,6 +26,7 @@
 
 	<?php // STYLESHEET_URL is defined in constants.php ?>
 	<link rel="stylesheet" href="<?php echo STYLESHEET_URL; ?>" />
+	<!--[if IE]><link rel="stylesheet" href="<?php echo IE_STYLESHEET_URL; ?>" /><![endif]-->
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 	
 	<?php wp_head(); ?>
