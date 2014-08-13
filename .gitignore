@@ -31,7 +31,11 @@
 /cif-media/cif-media-config.php
 
 # Don't track our media uploads
-/cif-media/uploads/
+/cif-media/uploads/*
+!/cif-media/uploads/ai_web.png
+!/cif-media/uploads/ai_thumb.png
+!/cif-media/uploads/eps_web.png
+!/cif-media/uploads/eps_thumb.png
 
 # Don't track the Twig templating engine
 /cif-media/Twig
