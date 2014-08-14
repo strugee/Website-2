@@ -40,6 +40,9 @@ This is where custom functions and code for modifying WordPress should go, or at
 ##### 404.php
 404 page template.
 
+##### attachment.php
+Redirects WordPress's attachment pages to the actual attachment URI.
+
 ##### theme-config-sample.php
 Not actually a WordPress file. This is a sample file for `theme-config.php`, which should not be committed to the repository.
 

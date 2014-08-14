@@ -55,6 +55,14 @@ require_once 'options-pages/add-options-pages.php';
 
 
 
+// Add featured image support
+add_theme_support( 'post-thumbnails' );
+
+// Make WordPress generate 700x2000 (maximum dimensions) images for hero images
+add_image_size( 'cif-hero-size', 700, 2000 );
+
+
+
 /**
  * Initializes the CIF theme by:
  * Registering the primary and secondary navigation menus
@@ -175,6 +183,20 @@ function get_post_type_outside_loop() {
 		return $wp_query->query['post_type'];
 	return '';
 }
+
+
+
+/**
+ * Filters output from wp_get_attachment_url to use CDN urls instead
+ * of relative urls.
+ *
+ * @param string $url The output from wp_get_attachment_url.
+ * @return string The CDN url for the attachment.
+ */
+function use_cdn_attachment_url($url) {
+	return str_replace(wp_upload_dir()['baseurl'], UPLOAD_URL_PATH, $url);
+}
+add_filter( 'wp_get_attachment_url', 'use_cdn_attachment_url' );
 
 
 

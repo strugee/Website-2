@@ -7,8 +7,9 @@
 /license.txt
 /xmlrpc.php
 
-# Track our WordPress themes
+# Track our WordPress themes and memcache script
 !/wp-content/themes/
+!/wp-content/object-cache.php
 /wp-content/themes/index.php
 
 # Don't track our CIF theme config file
@@ -22,6 +23,22 @@
 
 # Don't track our panel config file
 /panel/panel-config.php
+
+# Don't track our WordPress uploads
+/cdn/wp-uploads/
+
+# Don't track our media config file
+/cif-media/cif-media-config.php
+
+# Don't track our media uploads
+/cif-media/uploads/*
+!/cif-media/uploads/ai_web.png
+!/cif-media/uploads/ai_thumb.png
+!/cif-media/uploads/eps_web.png
+!/cif-media/uploads/eps_thumb.png
+
+# Don't track the Twig templating engine
+/cif-media/Twig
 
 # Don't track SASS caches
 .sass-cache

@@ -26,6 +26,7 @@
 
 	<?php // STYLESHEET_URL is defined in constants.php ?>
 	<link rel="stylesheet" href="<?php echo STYLESHEET_URL; ?>" />
+	<!--[if IE]><link rel="stylesheet" href="<?php echo IE_STYLESHEET_URL; ?>" /><![endif]-->
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 	
 	<?php wp_head(); ?>
@@ -33,7 +34,7 @@
 <body <?php body_class(); ?>>
 	<div id="page">
 
-		<header id="header" role="banner">
+		<header id="header" class="condensed" role="banner">
 			<div class="content">
 				<h1><a class="header-logo" href="<?php echo home_url(); ?>" rel="home"><span class="screen-reader-text">CIF</span></a></h1>
 
