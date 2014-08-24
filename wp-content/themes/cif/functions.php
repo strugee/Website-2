@@ -61,6 +61,14 @@ add_theme_support( 'post-thumbnails' );
 // Make WordPress generate 700x2000 (maximum dimensions) images for hero images
 add_image_size( 'cif-hero-size', 700, 2000 );
 
+// Make our custom image size selectable when inserting images into posts
+function cif_add_image_sizes( $sizes ) {
+	return array_merge($sizes, array(
+		'cif-hero-size' => 'Two Column Size',
+	));
+}
+add_filter( 'image_size_names_choose', 'cif_add_image_sizes' );
+
 
 
 /**
