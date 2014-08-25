@@ -69,6 +69,14 @@ function cif_add_image_sizes( $sizes ) {
 }
 add_filter( 'image_size_names_choose', 'cif_add_image_sizes' );
 
+// Tell WordPress we're not using version control
+// This will let WordPress automatically update to minor releases,
+// because autoupdates are disabled if version control is in use
+function cif_lie_about_vcs( $checkout, $context ) {
+	return false;
+}
+add_filter( 'automatic_updates_is_vcs_checkout', 'cif_lie_about_vcs', 10, 2 );
+
 
 
 /**
