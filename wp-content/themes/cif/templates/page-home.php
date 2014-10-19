@@ -48,6 +48,7 @@ get_header(); ?>
 		<h2>Find Us Elsewhere</h2>
 		<nav class="secondary-menu grid-aligned">
 			<ul>
+				<li><a href="https://www.facebook.com/groups/computer.interest.floor/" class="icon-facebook" target="_blank">Facebook</a></li>
 				<li><a href="https://github.com/CIF-Rochester" class="icon-github" target="_blank">GitHub</a></li>
 			</ul>
 		</nav>
