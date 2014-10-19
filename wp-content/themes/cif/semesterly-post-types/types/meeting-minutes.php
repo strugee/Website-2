@@ -93,48 +93,28 @@ add_action( 'init', 'register_minutes_post_type' );
  *
  * @param $post_id The id of the post which was just saved.
  */
-function generate_minutes_post_title( $post_id ) {
-	global $wpdb;
-	
-	$post_type = get_post_type( $post_id );
-
+function generate_minutes_post_title( $data ) {
 	// Only generate the title for board/floor minutes
-	if ( ! ( 'board_minutes' == $post_type || 'floor_minutes' == $post_type ) )
-		return;
+	if ( ! ( 'board_minutes' == $data['post_type'] || 'floor_minutes' == $data['post_type'] ) )
+		return $data;
 	
 	// Get a human readable meeting date string (Month dd{st/nd/rd/th}, YYYY)
-	$meeting_date_string = get_the_time( 'F jS, Y', $post_id );
+	$meeting_date_string = get_the_time( 'F jS, Y', $data['post_id'] );
 	
 	// Create the new title in the format "Board/Floor Minutes for {date}"
-	if ( 'board_minutes' == $post_type )
+	if ( 'board_minutes' == $data['post_type'] )
 		$new_title = 'Board';
-	else if ( 'floor_minutes' == $post_type )
+	else if ( 'floor_minutes' == $data['post_type'] )
 		$new_title = 'Floor';
 
 	$new_title .= ' Minutes for ' . $meeting_date_string;
 	
-	// Update the title and slug of the post
-	$wpdb->update(
-		// Table to UPDATE
-		$wpdb->posts,
-		// Data to UPDATE
-		array(
-			'post_title' => $new_title,
-			/**
-			 * Update the post slug (URL-friendly representation of the title)
-			 * sanitize_title() converts non-Latin characters to Latin lookalikes
-			 * and adds hyphens in place of spaces, amongst other things.
-			 *
-			 * post_name is the name of the field in the database where
-			 * the post slugs are stored.
-			 */
-			'post_name' => sanitize_title( $meeting_date_string ),
-		),
-		// WHERE clause for the UPDATE query
-		array( 'ID' => $post_id )
-	);
+	$data['post_title'] = $new_title;
+	$data['post_name'] = sanitize_title( $meeting_date_string );
+
+	return $data;
 }
-add_action( 'save_post', 'generate_minutes_post_title' );
+add_action( 'wp_insert_post_data', 'generate_minutes_post_title' );
 
 
 
