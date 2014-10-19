@@ -99,7 +99,8 @@ function generate_minutes_post_title( $data ) {
 		return $data;
 	
 	// Get a human readable meeting date string (Month dd{st/nd/rd/th}, YYYY)
-	$meeting_date_string = get_the_time( 'F jS, Y', $data['post_id'] );
+	$date = new DateTime($data['post_date_gmt']);
+	$meeting_date_string = $date->format( 'F jS, Y' );
 	
 	// Create the new title in the format "Board/Floor Minutes for {date}"
 	if ( 'board_minutes' == $data['post_type'] )
