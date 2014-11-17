@@ -78,17 +78,6 @@ class CifSnmpPrinter {
 	}
 
 	/**
-	 * TODO What does this do/do we even want this?
-	 */
-	public function getBlinkScript( $line, $id ) {
-		if ( $line['onPercent'] < 100 ) {
-			$toRet = '<script type="text/javascript"><!--//--><![CDATA[//><!--';
-			$toRet .= 'setTimeout("blinker('.$id.','.$line['onTime'].',\'gray\','.$line['offTime'].')",'.$line['onTime'].');';
-			$toRet .= '//--><!]]></script>';
-		}
-	}
-
-	/**
 	 * TODO What does this do?
 	 */
 	public function getIndicators() {
@@ -122,9 +111,9 @@ class CifSnmpPrinter {
 
 	public function getConsoleFullHtml() {
 		// Only display an error message if we failed to connect
-		if ( ! $this->connected ) {
-			return '<p>Failed to connect to printer.</p>';
-		}
+		//if ( ! $this->connected ) {
+			//return '<p>Failed to connect to printer.</p>';
+		//}
 
 		$data = $this->getPrinterGeneral();
 		$chars = $data['prtConsoleNumberOfDisplayChars'];
@@ -316,11 +305,10 @@ class CifSnmpPrinter {
 	}
 
 	public static function static_snmptable($host, $community, $oid) {
-
 		snmp_set_quick_print(true);
 		snmp_set_enum_print(false);
 		snmp_set_oid_numeric_print(true);
-		snmp_set_oid_numeric_print(false);
+		//snmp_set_oid_numeric_print(false);
 
 		$retval = array();
 		// @ to suppress warning messages. We'll validate the return value later.

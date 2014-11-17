@@ -30,23 +30,23 @@ function printDebug( & $prnObj ) {
 	}
 }
 
-$brPrn = new CifSnmpPrinter('192.168.77.6', 'public', 'STATUS');
+$brPrn = new CifSnmpPrinter('192.168.77.10', 'public', 'STATUS');
 //echo $brPrn->getConsoleDisplayHtml().$brPrn->getIndicatorsDisplayHtml();
 echo $brPrn->getConsoleFullHtml();
-echo $brPrn->getAlertsHtml();
-echo $brPrn->getInputsHtml();
-echo $brPrn->getSuppliesHtml();
+ echo $brPrn->getAlertsHtml();
+ echo $brPrn->getInputsHtml();
+ echo $brPrn->getSuppliesHtml();
 
-printDebug($brPrn);
+// printDebug($brPrn);
 
-$hpPrn = new CifSnmpPrinter('192.168.77.5', 'public', true);
+// $hpPrn = new CifSnmpPrinter('192.168.77.11', 'public', true);
 //echo $hpPrn->getConsoleDisplayHtml().$hpPrn->getIndicatorsDisplayHtml();
-echo $hpPrn->getConsoleFullHtml();
-echo $hpPrn->getAlertsHtml();
-echo $hpPrn->getInputsHtml();
-echo $hpPrn->getSuppliesHtml();
+// echo $hpPrn->getConsoleFullHtml();
+// echo $hpPrn->getAlertsHtml();
+// echo $hpPrn->getInputsHtml();
+// echo $hpPrn->getSuppliesHtml();
 
-printDebug($hpPrn);
+// printDebug($hpPrn);
 
 /*
 TODO These throw a fatal error about snmptable() not being defined.
