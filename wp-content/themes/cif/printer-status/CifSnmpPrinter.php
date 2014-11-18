@@ -7,6 +7,99 @@ snmp_read_mib( MIB_PATH . 'IANA-PRINTER-MIB.txt' );
 snmp_read_mib( MIB_PATH . 'Printer-MIB.txt' );
 snmp_read_mib( MIB_PATH . 'HOST-RESOURCES-MIB.txt' );
 
+/**
+ * 
+ **/
+class CifPrinter {
+
+	private $address,
+	        $community,
+			$lcd_description,
+			$connected,
+			$ink_levels;
+	
+	public function __construct($address, $community = 'public', $lcd_description = false) {
+		$this->connected       = false;
+		$this->address         = $address;
+		$this->community       = $community;
+		$this->lcd_description = $lcd_description;
+		$this->collect_printer_info();
+	}
+
+	public function get_ink_levels() {
+	
+	}
+
+	private function collect_printer_info() {
+		// Setting quick print turns off verbose data values being returned,
+		// and causes only the value we care about to be given
+		snmp_set_quick_print(true);
+
+		// Don't automatically convert enum values to their integer representations
+		snmp_set_enum_print(false);
+
+		//snmp_set_oid_numeric_print(true);
+		//snmp_set_oid_numeric_print(false);
+
+		$retval = array();
+		
+		// @ to suppress warning messages. We'll validate the return value later.
+		$raw = @snmprealwalk($this->host, $this->community, '.1.3.6.1.2.1.43.11.1.1.6');
+
+		// Connection failed
+		if ($raw === false) {
+			echo 'OOOPS';
+			return $retval;
+		}
+
+		$this->connected = true;
+
+		if (count($raw) == 0)
+			return $retval; // no data
+
+		$prefix_length = 0;
+		$largest = 0;
+		foreach ($raw as $key => $value) {
+			echo $key . ' => ' . $value;
+			if ($prefix_length == 0) {
+				// don't just use $oid's length since it may be non-numeric
+				$prefix_elements = count(explode('.',$oid));
+				$tmp = '.' . strtok($key, '.');
+				while ($prefix_elements > 1) {
+					$tmp .= '.' . strtok('.');
+					$prefix_elements--;
+				}
+				$tmp .= '.';
+				$prefix_length = strlen($tmp);
+			}
+			$key = substr($key, $prefix_length);
+			$index = explode('.', $key, 2);
+			isset($retval[$index[1]]) or $retval[$index[1]] = array();
+			if ($largest < $index[0]) $largest = $index[0];
+			if(is_string($value)) {
+				if(substr($value, 0, 1) == '"' && substr($value, -1, 1) == '"') {
+					$value = substr($value, 1, -1);
+				}
+
+			}
+			$retval[$index[1]][$index[0]] = $value;
+		}
+
+		if (count($retval) == 0) return ($retval); // no data
+
+		// fill in holes and blanks the agent may "give" you
+		foreach($retval as $k => $x) {
+			for ($i = 1; $i <= $largest; $i++) {
+				if (! isset($retval[$k][$i])) {
+					$retval[$k][$i] = '';
+				}
+			}
+			ksort($retval[$k]);
+		}
+		return($retval);
+	}
+}
+
 class CifSnmpPrinter {
 
 	private $host,
@@ -316,7 +409,6 @@ class CifSnmpPrinter {
 	}
 
 	public static function static_snmptable($host, $community, $oid) {
-
 		snmp_set_quick_print(true);
 		snmp_set_enum_print(false);
 		snmp_set_oid_numeric_print(true);
