@@ -1,19 +1,19 @@
 # Don't track core WordPress files in the root of the repo
-/wp-*/*
-/wp-*.php
-/.htaccess
-/readme.html
-/index.php
-/license.txt
-/xmlrpc.php
+/main/wp-*/*
+/main/wp-*.php
+/main/.htaccess
+/main/readme.html
+/main/index.php
+/main/license.txt
+/main/xmlrpc.php
 
 # Track our WordPress themes and memcache script
-!/wp-content/themes/
-!/wp-content/object-cache.php
-/wp-content/themes/index.php
+!/main/wp-content/themes/
+!/main/wp-content/object-cache.php
+/main/wp-content/themes/index.php
 
 # Don't track our CIF theme config file
-/wp-content/themes/cif/theme-config.php
+/main/wp-content/themes/cif/theme-config.php
 
 # Don't track the Twig templating engine
 /panel/Twig-*/
