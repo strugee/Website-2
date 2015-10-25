@@ -44,7 +44,7 @@ if ( THEME_DEBUG || USE_DEBUG_CONSTANTS ) {
 
 	define( 'MEMBERSHIP_FORM_EMAIL_TO', 'board@cif.rochester.edu' );
 
-	define( 'MEMBERSHIP_FORM_EMAIL_HEADERS', 'From: "Membership Application" <root@web1.cif.rochester.edu>' );
+	define( 'MEMBERSHIP_FORM_EMAIL_HEADERS', 'From: "Membership Application" <root@webplusplus.cif.rochester.edu>' );
 
 	define( 'MEMBERSHIP_FORM_EMAIL_SUBJECT', 'CIF Membership Application for {{name}}' );
 } else {
