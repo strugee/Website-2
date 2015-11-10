@@ -20,6 +20,9 @@
 
 	<?php // FAVICON_URL is defined in constants.php ?>
 	<link rel="shortcut icon" href="<?php echo FAVICON_URL; ?>" />
+	<link rel="apple-touch-icon" sizes="114x114" href="<?php echo CDN_URL; ?>cif-icon-114.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="<?php echo CDN_URL; ?>cif-icon-144.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="<?php echo CDN_URL; ?>cif-icon-180.png">
 	
 	<!-- Allows HTML5 elements to be styled in older versions of IE -->
 	<!--[if lt IE 9]><script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->

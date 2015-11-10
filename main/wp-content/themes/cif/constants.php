@@ -34,6 +34,8 @@ define( 'TEMPLATE_DIRECTORY', get_template_directory_uri() );
 if ( THEME_DEBUG || USE_DEBUG_CONSTANTS ) {
 	// Theme debugging/development constants
 
+	define( 'CDN_URL', 'https://cdn-webplusplus.cif.rochester.edu/' );
+
 	define( 'STYLESHEET_URL', 'https://cdn-webplusplus.cif.rochester.edu/css/style.css' );
 
 	define( 'IE_STYLESHEET_URL', 'https://cdn-webplusplus.cif.rochester.edu/css/ie.css' );
@@ -44,12 +46,14 @@ if ( THEME_DEBUG || USE_DEBUG_CONSTANTS ) {
 
 	define( 'MEMBERSHIP_FORM_EMAIL_TO', 'board@cif.rochester.edu' );
 
-	define( 'MEMBERSHIP_FORM_EMAIL_HEADERS', 'From: "Membership Application" <root@web1.cif.rochester.edu>' );
+	define( 'MEMBERSHIP_FORM_EMAIL_HEADERS', 'From: "Membership Application" <root@webplusplus.cif.rochester.edu>' );
 
 	define( 'MEMBERSHIP_FORM_EMAIL_SUBJECT', 'CIF Membership Application for {{name}}' );
 } else {
 	// Constants for the live site
 	
+	define( 'CDN_URL', 'https://cdn.cif.rochester.edu/' );
+
 	define( 'STYLESHEET_URL', 'https://cif.rochester.edu/cdn/css/style.css' );
 
 	define( 'IE_STYLESHEET_URL', 'https://cdn.cif.rochester.edu/css/ie.css' );
